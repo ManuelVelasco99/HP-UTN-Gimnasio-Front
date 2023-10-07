@@ -2,6 +2,7 @@
 import { MatButtonModule    } from '@angular/material/button';
 import { MatCardModule      } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule      } from '@angular/material/icon';
 import { MatInputModule     } from '@angular/material/input';
 import { MatToolbarModule   } from '@angular/material/toolbar'
 
@@ -20,6 +21,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 //COMPONENTS
 import { LayoutFormularioComponent } from './layout/formulario/layout-formulario.component';
 import { LayoutGeneralComponent    } from './layout/general/layout-general.component';
+
+//MODULES
+import { RouterModule } from '@angular/router';
 
 //SERVICES
 import { ApiService } from './api.service';
@@ -40,12 +44,16 @@ import { ApiService } from './api.service';
         MatButtonModule,
         MatCardModule,
         MatFormFieldModule,
+		MatIconModule,
         MatInputModule,
         MatToolbarModule,
 
 		//ANGULAR FORMS
 		FormsModule,
         ReactiveFormsModule,
+
+		//MODULES
+		RouterModule,
 
 		//SERVICES
 		ApiService,
@@ -58,6 +66,7 @@ import { ApiService } from './api.service';
         MatButtonModule,
         MatCardModule,
         MatFormFieldModule,
+		MatIconModule,
         MatInputModule,
         MatToolbarModule,
 
@@ -68,6 +77,9 @@ import { ApiService } from './api.service';
 		//COMPONENTS
 		LayoutGeneralComponent,
 		LayoutFormularioComponent,
+
+		//MODULES
+		RouterModule,
 
 		//SERVICES
 		ApiService,

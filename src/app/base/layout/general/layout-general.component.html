@@ -1,3 +1,10 @@
-<mat-toolbar color="primary"></mat-toolbar>
+<mat-toolbar color="primary">
+    
+    <ng-container *ngFor="let acceso of accesos">
+        <button *ngIf="!acceso.route" mat-button>{{acceso.nombre}}</button>
+        <button mat-button [routerLink]="acceso.route">{{acceso.nombre}}</button>
+    </ng-container>
+
+</mat-toolbar>
 
 <ng-content select="contenido"></ng-content>
