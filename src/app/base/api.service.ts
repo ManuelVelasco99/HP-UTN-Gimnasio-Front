@@ -1,4 +1,5 @@
 import { catchError        } from 'rxjs/operators';
+import { environment       } from '../../environments/environment';
 import { HttpClient        } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable        } from '@angular/core';
@@ -17,7 +18,7 @@ export class ApiService {
 		private http : HttpClient,
 	) { }
 
-	public url = "http://localhost:8000";
+	public url = environment.apiUrl;
 
 
     public get(uri: string, params: any = {}): Observable<any> {
