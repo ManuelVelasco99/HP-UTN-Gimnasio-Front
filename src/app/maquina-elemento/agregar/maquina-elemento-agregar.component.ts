@@ -35,17 +35,31 @@ export class MaquinaElementoAgregarComponent extends FormularioBaseComponent {
 		});
 	}
 
-	public enviar() : void {
+	public async enviar() : Promise<void> {
 		this.form.markAllAsTouched();
 		let formValue = this.form.value;
 
 		console.log("formValue: ", formValue);
+		if(this.form.invalid){
+			return;
+		}
+		if(this.modoEdicion){
+			try {
+				await this.apiService.post(`${this.uri}/${this.id}/editar`,formValue);
+				this.router.navigate(["maquina-elemento/listar"]);
+			} catch (error) {}
+		}
+		else{
+			try {
+				await this.apiService.post(`${this.uri}/agregar`,formValue);
+				this.router.navigate(["maquina-elemento/listar"]);
+			} catch (error) {}
+		}
 
-		this.apiService.post(`${this.uri}/agregar`,formValue);
 	}
 
 	public clickCancelar() : void {
-		console.log("se canceló");
+		this.router.navigate(["maquina-elemento/listar"]);
 	}
 
 }

@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class LayoutGeneralComponent {
 
+    public accesos : Array<any> = [
+        {
+            nombre : "Maquina/elemento",
+            route  : "/maquina-elemento/listar"
+        }
+    ];
 }
