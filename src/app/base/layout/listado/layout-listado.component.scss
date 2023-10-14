@@ -1,0 +1,41 @@
+:host{
+    
+    .contenedor{
+        display: flex;
+        flex-direction: column;
+        padding-left:  24px;
+        padding-right: 24px;
+    
+        .contenedor-titulo-listado{
+            display: flex;
+            align-items: center;
+            font-size: 22px;
+            margin-top: 24px;
+        }
+
+        .contenedor-botones{
+            display: flex;
+            align-items: center;
+            margin-top: 16px;
+            column-gap: 12px;
+        }
+
+        table{
+            margin-top: 12px;
+            margin-bottom: 32px;
+
+            .th-accion {
+                width: 68px;
+            }
+
+            .td-accion {
+                text-align: center;
+                mat-icon{
+                    cursor: pointer;
+                }
+            }
+
+        }
+
+    }
+}
