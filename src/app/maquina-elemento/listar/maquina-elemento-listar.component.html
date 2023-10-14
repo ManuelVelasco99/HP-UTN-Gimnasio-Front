@@ -1,21 +1,10 @@
-<app-layout-general>
-    <contenido class="contenedor">
-        <p>maquina-elemento-listar works!</p> 
-        <button mat-raised-button color="primary" [routerLink]="'/maquina-elemento/agregar'" class="boton-agregar">Agregar</button>
-        <br>
-        <ng-container *ngFor="let registro of registrosListado">
-            <div class="row">
-                {{registro.id}} | {{registro.descripcion}}  | {{registro.estado}}  
-                <button mat-mini-fab matTooltip="Primary" color="primary" [routerLink]="'/maquina-elemento/' + registro.id + '/editar'">
-                    <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-mini-fab matTooltip="Primary" color="primary">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </div>
-            <br>
-        </ng-container>
-        
-    </contenido>
-</app-layout-general>
+<app-layout-listado
+    [tituloListado]="'Maquinas/Elementos'"
+    [urlAgregar]="'/maquina-elemento/agregar'"
+    [registrosListado]="registrosListado"
+    [columnasAMostrar]="columnasAMostrar"
+    (clickBotonEditar)="clickBotonEditar($event)"
+    (clickBotonEliminar)="clickBotonEliminar($event)"
+>
+</app-layout-listado>
 

@@ -1,0 +1,46 @@
+<app-layout-general>
+    <contenido class="contenedor">
+
+        <div class="contenedor-titulo-listado">
+            <span>{{tituloListado}}</span>
+        </div>
+
+        <div class="contenedor-botones">
+            <button mat-icon-button color="primary" [routerLink]="''" aria-label="Example icon button with a home icon">
+                <mat-icon>home</mat-icon>
+            </button>
+            <button mat-raised-button color="primary" [routerLink]="urlAgregar">Agregar</button>
+        </div>
+
+        <table #table mat-table [dataSource]="registrosListado" class="mat-elevation-z8">
+
+			<ng-container *ngFor="let columna of columnasAMostrar">
+
+				<ng-container *ngIf="columna !== 'editar' && columna !== 'eliminar'"  [matColumnDef]="columna">
+					<th mat-header-cell *matHeaderCellDef> {{columna.substring(0,1).toUpperCase() + columna.substring(1)}} </th>
+					<td mat-cell *matCellDef="let element"> {{element[columna]}} </td>
+				</ng-container>
+
+				<ng-container *ngIf="columna === 'editar'"  matColumnDef="editar" >
+					<th mat-header-cell *matHeaderCellDef class="th-accion"></th>
+					<td mat-cell *matCellDef="let element" class="td-accion"> 
+						<mat-icon color="primary" (click)="clickBotonEditar.emit(element.id)">edit</mat-icon>
+					</td>
+				</ng-container>
+
+				<ng-container *ngIf="columna === 'eliminar'"  matColumnDef="eliminar">
+					<th mat-header-cell *matHeaderCellDef class="th-accion"></th>
+					<td mat-cell *matCellDef="let element" class="td-accion"> 
+						<mat-icon color="primary" (click)="clickBotonEliminar.emit(element.id)">delete</mat-icon>						
+					</td>
+				</ng-container>
+
+			</ng-container>
+			
+            <tr mat-header-row *matHeaderRowDef="columnasAMostrar"></tr>
+
+            <tr mat-row *matRowDef="let row; columns: columnasAMostrar;"></tr>
+          </table>
+
+    </contenido>
+</app-layout-general>
