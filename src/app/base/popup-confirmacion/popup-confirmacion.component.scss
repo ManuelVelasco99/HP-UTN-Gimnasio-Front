@@ -1,0 +1,21 @@
+:host{
+
+    .contenedor-popup{
+        display: flex;
+        flex-direction: column;
+        padding: 24px;
+
+        .texto{
+            display: flex;
+            justify-content: center;
+        }
+
+        .botones{
+            display: flex;
+            column-gap: 16px;
+            margin-top: 16px;
+            justify-content: center;
+        }
+
+    }
+}

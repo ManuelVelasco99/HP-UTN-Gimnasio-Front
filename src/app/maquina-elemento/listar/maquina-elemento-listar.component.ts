@@ -10,9 +10,13 @@ export class MaquinaElementoListarComponent extends ListadoBaseComponent {
 
 	public registrosListado : Array<any> = [];
 
-	public columnasAMostrar : Array<string> = ["id", "descripcion", "estado", "editar", "eliminar"];//, "estado"];//id: 1, descripcion: 'Bici', estado: true
+	public columnasAMostrar : Array<string> = ["id", "descripcion", "estado", "editar", "eliminar"];
 
-	async ngOnInit(): Promise<void> {	
+	ngOnInit() : void {	
+		this.obtenerListado();
+	}
+
+	private async obtenerListado() : Promise<void> {
 		this.registrosListado = await this.apiService.getData("/maquina-elemento/listar");
 	}
 
@@ -20,7 +24,14 @@ export class MaquinaElementoListarComponent extends ListadoBaseComponent {
 		this.router.navigate([`maquina-elemento/${id}/editar`]);
 	}
 
-	public clickBotonEliminar(id : number) : void {
-		console.log("eliminar registro con id: ",id)
+	public async clickBotonEliminar(id : number) : Promise<void> {
+		let respuesta = await this.confirmService.mostrarMensajeConfirmacion(
+			"¿Estás seguro que quieres eliminar esta máquina/elemento?",
+			"Eliminar"
+		);
+		if(respuesta){
+			await this.apiService.post(`/maquina-elemento/${id}/eliminar`, {});
+			this.obtenerListado();
+		}
 	}
 }
