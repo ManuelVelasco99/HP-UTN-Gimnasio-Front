@@ -30,6 +30,15 @@ const routes: Routes = [
             },
         ]
     },
+    {
+        path : 'precio-cuota',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./precio-cuota/precio-cuota.module').then(m => m.PrecioCuotaModule),
+            },
+        ]
+    },
 ];
 
 @NgModule({
