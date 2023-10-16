@@ -1,12 +1,15 @@
 //ANGULAR MATERIAL
-import { MatButtonModule    } from '@angular/material/button';
-import { MatCardModule      } from '@angular/material/card';
-import { MatDialogModule    } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule      } from '@angular/material/icon';
-import { MatInputModule     } from '@angular/material/input';
-import { MatTableModule     } from '@angular/material/table';
-import { MatToolbarModule   } from '@angular/material/toolbar'
+import { MatButtonModule     } from '@angular/material/button';
+import { MatCardModule       } from '@angular/material/card';
+import { MAT_DATE_LOCALE     } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule     } from '@angular/material/dialog';
+import { MatFormFieldModule  } from '@angular/material/form-field';
+import { MatIconModule       } from '@angular/material/icon';
+import { MatInputModule      } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatTableModule      } from '@angular/material/table';
+import { MatToolbarModule    } from '@angular/material/toolbar';
 
 //ANGULAR COMMON
 import { CommonModule } from '@angular/common';
@@ -49,10 +52,12 @@ import { ApiService } from './api.service';
 		//ANGULAR MATERIAL
         MatButtonModule,
         MatCardModule,
+		MatDatepickerModule,
 		MatDialogModule,
         MatFormFieldModule,
 		MatIconModule,
         MatInputModule,
+		MatNativeDateModule,
 		MatTableModule,
         MatToolbarModule,
 
@@ -73,10 +78,12 @@ import { ApiService } from './api.service';
 		//ANGULAR MATERIAL
         MatButtonModule,
         MatCardModule,
+		MatDatepickerModule,
 		MatDialogModule,
         MatFormFieldModule,
 		MatIconModule,
         MatInputModule,
+		MatNativeDateModule,
         MatToolbarModule,
 
 		//ANGULAR FORMS
@@ -97,7 +104,14 @@ import { ApiService } from './api.service';
 	schemas: [
 		//ANGULAR CORE
         NO_ERRORS_SCHEMA,
-    ]
+    ],
+	providers: [
+		MatNativeDateModule,
+		{
+			provide: MAT_DATE_LOCALE,
+			useValue: 'en-GB' 
+		}
+	]
 })
 export class BaseModule {
 	static forRoot(): ModuleWithProviders<BaseModule> {
