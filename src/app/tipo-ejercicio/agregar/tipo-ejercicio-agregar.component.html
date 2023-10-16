@@ -1,0 +1,30 @@
+<app-layout-formulario
+    [tituloFormulario]="tituloFormulario"
+    (clickBotonCancelar)="clickCancelar()"
+    (clickBotonPrincipal)="enviar()"
+    [textoBotonPrincipal]="textoBoton"
+>
+    <contenido>
+
+        
+        <form [formGroup]="form">
+
+            <div class="contenedor-campos">
+
+                <mat-form-field>
+                    <mat-label>Descripcion</mat-label>
+                    <input formControlName="descripcion" matInput required>
+                    <mat-error *ngIf="form.get('descripcion')?.getError('required')">Obligatorio</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Multimedia</mat-label>
+                    <input formControlName="multimedia" matInput>
+                </mat-form-field>
+
+            </div>
+
+        </form>
+
+    </contenido>
+</app-layout-formulario>

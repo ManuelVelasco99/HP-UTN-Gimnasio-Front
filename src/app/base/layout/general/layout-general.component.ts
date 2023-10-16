@@ -11,6 +11,10 @@ export class LayoutGeneralComponent {
         {
             nombre : "Maquina/elemento",
             route  : "/maquina-elemento/listar"
+        },
+        {
+            nombre : "Tipo ejercicio",
+            route  : "/tipo-ejercicio/listar"
         }
     ];
 }

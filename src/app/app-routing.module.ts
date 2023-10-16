@@ -21,6 +21,15 @@ const routes: Routes = [
             },
         ]
     },
+    {
+        path : 'tipo-ejercicio',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./tipo-ejercicio/tipo-ejercicio.module').then(m => m.TipoEjercicioModule),
+            },
+        ]
+    },
 ];
 
 @NgModule({
