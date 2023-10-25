@@ -10,6 +10,9 @@ import { MatInputModule      } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule      } from '@angular/material/table';
 import { MatToolbarModule    } from '@angular/material/toolbar';
+////seba adss//
+import { MatSelectModule	 } from '@angular/material/select';
+
 
 //ANGULAR COMMON
 import { CommonModule } from '@angular/common';
@@ -60,6 +63,8 @@ import { ApiService } from './api.service';
 		MatNativeDateModule,
 		MatTableModule,
         MatToolbarModule,
+		/////////sebaads/////
+		MatSelectModule,
 
 		//ANGULAR FORMS
 		FormsModule,
@@ -85,6 +90,8 @@ import { ApiService } from './api.service';
         MatInputModule,
 		MatNativeDateModule,
         MatToolbarModule,
+		/////////sebaads/////
+		MatSelectModule,
 
 		//ANGULAR FORMS
 		FormsModule,
