@@ -19,6 +19,10 @@ export class LayoutGeneralComponent {
         {
             nombre : "Precio cuota",
             route  : "/precio-cuota/listar"
+        },
+        {
+            nombre : "Cuota",
+            route  : "/cuota/listar"
         }
     ];
 }
