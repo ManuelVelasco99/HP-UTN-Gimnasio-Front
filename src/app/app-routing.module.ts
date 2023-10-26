@@ -48,6 +48,15 @@ const routes: Routes = [
             },
         ]
     },
+    {
+        path : 'rutina',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./rutina/rutina.module').then(m => m.RutinaModule),
+            },
+        ]
+    },
 ];
 
 @NgModule({
