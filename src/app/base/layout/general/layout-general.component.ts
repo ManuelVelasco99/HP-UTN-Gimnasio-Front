@@ -23,6 +23,10 @@ export class LayoutGeneralComponent {
         {
             nombre : "Usuarios",
             route  : "/usuario/listar"
+        },
+        {
+            nombre : "Rutinas",
+            route  : "/rutina/listar"
         }
     ];
 }
