@@ -3,36 +3,44 @@ import { Component               } from '@angular/core';
 import { FormControl             } from '@angular/forms';
 import { FormularioBaseComponent } from 'src/app/base/formulario-base.component';
 
+import { MatSelectModule } from '@angular/material/select';
+
+
 @Component({
-  selector: 'app-rutina-agregar',
-  templateUrl: './rutina-agregar.component.html',
-  styleUrls: ['./rutina-agregar.component.scss']
+  selector: 'app-ejercicio-agregar-rutina',
+  templateUrl: './ejercicio-agregar-rutina.component.html',
+  styleUrls: ['./ejercicio-agregar-rutina.component.scss']
 })
-export class RutinaAgregarComponent extends FormularioBaseComponent{
-  public tituloFormulario  : string = this.modoEdicion ? 'Editar Rutina' : 'Agregar Rutina';
-  public registrosRoles: Array<any> = [];
-  public registrosDias: Array<any> = [1];
+export class EjercicioAgregarRutinaComponent extends FormularioBaseComponent {
+  public tituloFormulario  : string = this.modoEdicion ? 'Editar Usuario' : 'Agregar Usuario';
+  public registrosEjercicios: Array<any> = [];
 	constructor(
 		private route : ActivatedRoute,
 	) {
 		super();
 	}
+
   ngOnInit(): void {	
 		this.uri = "/usuario"	
 		this.crearFormulario();
-		//this.rellenarRoles();
+		this.rellenarEjercicios();
 		let params = this.route.snapshot.params;
 		if(this.modoEdicion) {
 			this.id = params['id'];
 			this.obtenerYCompletar();
 		}
 	}
-  private crearFormulario() {
-		this.form = this.formBuilder.group({
-			nombre : new FormControl({ value: '', disabled: false }),
-		});
+
+  private crearFormulario(){
+    this.form = this.formBuilder.group(
+      {
+        series : new FormControl({ value: '', disabled: false }),
+      }
+    )
+  }
+  private async rellenarEjercicios() : Promise <void>{
+		this.registrosEjercicios = await this.apiService.getData("/tipo-ejercicio/listar");
 	}
-  
 
   public async enviar() : Promise<void> {
 		this.form.markAllAsTouched();
@@ -55,16 +63,12 @@ export class RutinaAgregarComponent extends FormularioBaseComponent{
 		}
 		
 	}
-  public agregarDia() :void{
-    let nuevoDia : number = this.registrosDias.length + 1;
-    this.registrosDias.push(nuevoDia);
-  }
 
-	public clickCancelar() : void {
+  public clickCancelar() : void {
 		this.redireccionarAlListado();
 	}
 
 	private redireccionarAlListado() : void {
-		this.router.navigate(["rutina/listar"]);
+		this.router.navigate(["usuario/listar"]);
 	}
 }
