@@ -1,0 +1,24 @@
+            <form [formGroup]="form">
+                <div class="contenedor-campos">
+                    <mat-form-field>
+                        <mat-label>Tipo ejercicio</mat-label>
+                        <mat-select matInput required="">   
+                          <mat-option *ngFor="let rol of registrosEjercicios " [value]='rol.id'l>
+                            {{rol.descripcion}}
+                          </mat-option>
+                          <mat-error *ngIf="form.get('idRol')?.getError('required')">Obligatorio</mat-error>
+                        </mat-select>
+                      </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Series</mat-label>
+                        <input formControlName="series" matInput required>
+                        <mat-error *ngIf="form.get('series')?.getError('required')">Obligatorio</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Repeticiones</mat-label>
+                        <input formControlName="repeticiones" matInput required>
+                        <mat-error *ngIf="form.get('repeticiones')?.getError('required')">Obligatorio</mat-error>
+                    </mat-form-field>
+                    <mat-icon color="primary" >delete</mat-icon>
+                </div>
+            </form>    
