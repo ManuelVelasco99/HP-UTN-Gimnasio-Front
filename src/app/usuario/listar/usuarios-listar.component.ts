@@ -27,6 +27,7 @@ export class UsuariosListarComponent extends ListadoBaseComponent {
 
 	private async obtenerListado() : Promise<void> {
 		this.registrosListado = await this.apiService.getData("/usuario/listar");
+		console.log(this.registrosListado);
 	}
 
 
