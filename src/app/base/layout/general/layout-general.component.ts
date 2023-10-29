@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { AuthService } from '../../auth.service';
+import { Component   } from '@angular/core';
 
 @Component({
     selector    : 'app-layout-general',
@@ -29,4 +30,25 @@ export class LayoutGeneralComponent {
             route  : "/rutina/listar"
         }
     ];
+
+    public nombreUsuario! : string;
+
+    constructor(
+        private authService : AuthService,
+    ){
+
+    }
+
+    async ngOnInit() : Promise<void> {
+        let datosUsuario = await this.authService.obtenerDatosUsuario();
+        if(datosUsuario){
+            this.nombreUsuario = datosUsuario.nombre + " " + datosUsuario.apellido;
+        }
+        
+    }
+
+    public clickLogout() : void {
+        this.authService.logout();
+    }
+
 }

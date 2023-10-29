@@ -12,6 +12,15 @@ const routes: Routes = [
 			},
 		]
 	},
+    {
+        path : 'auth',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+            },
+        ]
+    },
 	{
         path : 'maquina-elemento',
         children : [

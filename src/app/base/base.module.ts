@@ -36,7 +36,8 @@ import { PopupConfirmacionComponent } from './popup-confirmacion/popup-confirmac
 import { RouterModule } from '@angular/router';
 
 //SERVICES
-import { ApiService } from './api.service';
+import { ApiService  } from './api.service';
+import { AuthService } from './auth.service';
 
 
 
@@ -108,6 +109,7 @@ import { ApiService } from './api.service';
 
 		//SERVICES
 		ApiService,
+		AuthService,
 	],
 	schemas: [
 		//ANGULAR CORE
@@ -115,6 +117,7 @@ import { ApiService } from './api.service';
     ],
 	providers: [
 		MatNativeDateModule,
+		AuthService,
 		{
 			provide: MAT_DATE_LOCALE,
 			useValue: 'en-GB' 
