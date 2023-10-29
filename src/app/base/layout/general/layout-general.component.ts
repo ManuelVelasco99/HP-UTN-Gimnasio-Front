@@ -47,4 +47,8 @@ export class LayoutGeneralComponent {
         
     }
 
+    public clickLogout() : void {
+        this.authService.logout();
+    }
+
 }

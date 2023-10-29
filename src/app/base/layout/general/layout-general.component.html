@@ -10,9 +10,10 @@
     <div *ngIf="!nombreUsuario" class="boton-ingresar" [routerLink]="'/auth/login'">
         Ingresar
     </div>
-    <div *ngIf="nombreUsuario" class="boton-usuario" [routerLink]="'/auth/login'">
+    <div *ngIf="nombreUsuario" class="boton-usuario">
         <mat-icon>person</mat-icon>
         {{nombreUsuario}}
+        <mat-icon *ngIf="nombreUsuario" (click)="clickLogout()" style="cursor: pointer;">logout</mat-icon>
     </div>
 
 </mat-toolbar>

@@ -24,6 +24,10 @@
                         <span>Olvidé mi contraseña</span>
                     </a>
 
+                    <span class="mensaje-error" *ngIf="mensajeError">
+                        {{mensajeError}}
+                    </span>
+
                     <button mat-raised-button color="primary" class="boton-ingresar">Ingresar</button>
                 </div>
     

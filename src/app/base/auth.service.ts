@@ -2,6 +2,7 @@ import { ApiService  } from './api.service';
 import { environment } from '../../environments/environment';
 import { Injectable  } from '@angular/core';
 import { NgModule    } from '@angular/core';
+import { Router      } from '@angular/router';
 
 
 @Injectable({
@@ -11,16 +12,17 @@ import { NgModule    } from '@angular/core';
 export class AuthService {
 
   	constructor(
-        private apiService : ApiService
+        private apiService : ApiService,
+        private router     : Router
 	) { }
 
     public static datosUsuario : any;
 
 	public url = environment.apiUrl;
 
-    public almacenarToken(token : string) {
+    public async  almacenarToken(token : string) : Promise<void> {
         localStorage.setItem("access-token", token);
-        this.establecerDatosUsuario();
+        await this.establecerDatosUsuario();
     }
 
     public async establecerDatosUsuario() : Promise<void> {
@@ -39,6 +41,12 @@ export class AuthService {
         return AuthService.datosUsuario;
     }
 
-
+    public logout() : void {
+        localStorage.removeItem("access-token");
+        if(this.router.url === "/"){
+            window.location.reload();
+        }
+        this.router.navigate([""]);
+    }
 
 }

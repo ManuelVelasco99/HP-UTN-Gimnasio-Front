@@ -16,6 +16,8 @@ export class AuthLoginComponent extends FormularioBaseComponent {
         super();
     }
 
+    public mensajeError : string = "";
+
     ngOnInit () : void {
         this.crearFormulario();   
     }
@@ -31,15 +33,20 @@ export class AuthLoginComponent extends FormularioBaseComponent {
         if(this.form.invalid){
             return;
         }
+        this.mensajeError = "";
 
         let response;
         try {
             response = await this.apiService.post('/auth/login',this.form.value);
-        } catch (error) {
-
+        } catch (error : any) {
+            if(error.status === 403){
+                this.mensajeError = error.error.data;
+            }
+            return;
         }
             
-        this.authService.almacenarToken(response.data.token);
+        await this.authService.almacenarToken(response.data.token);
+        this.router.navigate([""]);
 
     }
 

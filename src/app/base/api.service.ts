@@ -65,7 +65,7 @@ export class ApiService {
         return o.pipe(catchError((e: HttpErrorResponse)=> {
             if ([403,404,422].includes(e.status)){
                 //this.snackBar.show(e.error.message||e.error.error);
-				alert(e.error.message||e.error.error);
+				//alert(e.error.message||e.error.error);
             }
             if (e.status === 401) {
                 //this.router.navigateByUrl('/auth/login');
