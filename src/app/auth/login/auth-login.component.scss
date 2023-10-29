@@ -1,0 +1,37 @@
+:host{
+    .contenedor{
+        display: flex;
+        justify-content: center;
+
+        .card-formulario{
+            
+        }
+
+        .texto-superior{
+            text-align: center;
+            font-style: italic;
+            color: gray;
+        }
+
+        .card-formulario{
+            display: flex;
+            margin: 20px;
+            margin-top: 64px;
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+
+            .contenedor-campos{
+                display: flex;
+                flex-direction: column;
+                margin-top: 16px;
+
+                .boton-ingresar{
+                    margin-top: 16px;
+                }
+            }
+        }
+    }
+    
+
+}

@@ -1,6 +1,7 @@
 import { catchError        } from 'rxjs/operators';
 import { environment       } from '../../environments/environment';
 import { HttpClient        } from '@angular/common/http';
+import { HttpHeaders       } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable        } from '@angular/core';
 import { lastValueFrom     } from 'rxjs';
@@ -22,11 +23,17 @@ export class ApiService {
 
 
     public get(uri: string, params: any = {}): Observable<any> {
-        //let url = this.generarParametrosUrl(uri, params);
-
-        return this.handle(this.http.get(this.url + uri, {
-            observe: 'body',
-        }));
+        return this.handle(
+            this.http.get(
+                this.url + uri,
+                {
+                    observe: 'body',
+                    headers : new HttpHeaders({
+                        'access-token': localStorage.getItem("access-token") || "",
+                    })
+                }, 
+            )
+        );
     }
 
 	public async getData(uri: string, params: any = {}) : Promise<any> {
