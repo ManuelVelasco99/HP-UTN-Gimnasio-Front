@@ -1,8 +1,10 @@
 <mat-toolbar color="primary">
     <div class="accesos">
         <ng-container *ngFor="let acceso of accesos">
-            <button *ngIf="!acceso.route" mat-button>{{acceso.nombre}}</button>
-            <button mat-button [routerLink]="acceso.route">{{acceso.nombre}}</button>
+            <ng-container *ngIf="acceso.rolesPermitidos.length === 0 || acceso.rolesPermitidos.includes(rol_id)">
+                <button *ngIf="!acceso.route" mat-button>{{acceso.nombre}}</button>
+                <button mat-button [routerLink]="acceso.route">{{acceso.nombre}}</button>
+            </ng-container>
         </ng-container>
     </div>
     

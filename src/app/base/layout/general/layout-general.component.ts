@@ -10,28 +10,35 @@ export class LayoutGeneralComponent {
 
     public accesos : Array<any> = [
         {
-            nombre : "Maquina/elemento",
-            route  : "/maquina-elemento/listar"
+            nombre          : "Maquina/elemento",
+            route           : "/maquina-elemento/listar",
+            rolesPermitidos : [1]
         },
         {
-            nombre : "Tipo ejercicio",
-            route  : "/tipo-ejercicio/listar"
+            nombre          : "Tipo ejercicio",
+            route           : "/tipo-ejercicio/listar",
+            rolesPermitidos : []
         },
         {
-            nombre : "Precio cuota",
-            route  : "/precio-cuota/listar"
+            nombre          : "Precio cuota",
+            route           : "/precio-cuota/listar",
+            rolesPermitidos : []
         },
         {
-            nombre : "Usuarios",
-            route  : "/usuario/listar"
+            nombre          : "Usuarios",
+            route           : "/usuario/listar",
+            rolesPermitidos : []
         },
         {
-            nombre : "Rutinas",
-            route  : "/rutina/listar"
+            nombre          : "Rutinas",
+            route           : "/rutina/listar",
+            rolesPermitidos : []
         }
     ];
 
     public nombreUsuario! : string;
+
+    public rol_id : number | null = null;
 
     constructor(
         private authService : AuthService,
@@ -43,6 +50,8 @@ export class LayoutGeneralComponent {
         let datosUsuario = await this.authService.obtenerDatosUsuario();
         if(datosUsuario){
             this.nombreUsuario = datosUsuario.nombre + " " + datosUsuario.apellido;
+            this.rol_id        = datosUsuario.rol.id;
+            console.log("this.rol_id: ",this.rol_id);
         }
         
     }
