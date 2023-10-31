@@ -42,11 +42,15 @@ export class AuthService {
     }
 
     public logout() : void {
-        localStorage.removeItem("access-token");
+        AuthService.removeToken();
         if(this.router.url === "/"){
             window.location.reload();
         }
         this.router.navigate([""]);
+    }
+
+    public static removeToken() : void {
+        localStorage.removeItem("access-token");
     }
 
 }
