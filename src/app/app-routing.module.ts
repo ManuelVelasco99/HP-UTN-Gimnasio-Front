@@ -40,6 +40,15 @@ const routes: Routes = [
         ]
     },
     {
+        path : 'tipo-clase',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./tipo-clase/tipo-clase.module').then(m => m.TipoClaseModule),
+            },
+        ]
+    },
+    {
         path : 'precio-cuota',
         children : [
             {
