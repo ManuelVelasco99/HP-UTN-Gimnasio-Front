@@ -9,7 +9,7 @@
             <button mat-icon-button color="primary" [routerLink]="''" aria-label="Example icon button with a home icon">
                 <mat-icon>home</mat-icon>
             </button>	
-			<div class="contenedor-filtros">
+			<div *ngIf="filtrosDisponibles.length > 0" class="contenedor-filtros">
 				<ng-container *ngFor="let filtro of filtrosDisponibles">
 					<mat-form-field>
 						<mat-label>{{filtro.textoFiltro}}</mat-label>
