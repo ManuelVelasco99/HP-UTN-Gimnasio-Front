@@ -15,6 +15,11 @@ export class LayoutGeneralComponent {
             rolesPermitidos : [1]
         },
         {
+            nombre          : "Tipo clase",
+            route           : "/tipo-clase/listar",
+            rolesPermitidos : [1]
+        },
+        {
             nombre          : "Tipo ejercicio",
             route           : "/tipo-ejercicio/listar",
             rolesPermitidos : []
