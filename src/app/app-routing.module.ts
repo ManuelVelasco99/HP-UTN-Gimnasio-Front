@@ -66,6 +66,15 @@ const routes: Routes = [
             },
         ]
     },
+    {
+        path : 'ingreso-socio',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./ingreso-socio/ingreso-socio.module').then(m => m.IngresoSocioModule),
+            },
+        ]
+    },
 ];
 
 @NgModule({
