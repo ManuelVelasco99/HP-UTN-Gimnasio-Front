@@ -9,13 +9,19 @@
         <div class="contenedor-campos">
             <mat-form-field>
                 <mat-label>Nombre Rutina</mat-label>
-                <input formControlName="nombre" matInput required>
+                <input formControlName="nombre" matInput required >
                 <mat-error *ngIf="form.get('nombre')?.getError('required')">Obligatorio</mat-error>
             </mat-form-field>
         </div>
     </form>
 
-    <app-dia-agregar-rutina *ngFor="let dia of registrosDias " [numeroDia]='dia'></app-dia-agregar-rutina><br>
+    <app-dia-agregar-rutina *ngFor="let dia of registrosDias" 
+        [ejercicios]="dia" 
+        [numeroDia]=dia.numeroDia 
+        (clickBotonEliminarDia) = "eliminarDia(dia)" 
+        (clickBotonAgregarEjercicio) = "addEjercicio(dia)">    
+    </app-dia-agregar-rutina>
+   <br>
     <div class="contenedor-botones">
         <button mat-raised-button (click)="this.agregarDia()" color="primary">Agregar Día</button>
     </div>

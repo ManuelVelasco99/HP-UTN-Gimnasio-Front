@@ -1,7 +1,14 @@
 <mat-card>
     <h1>Día {{numeroDia}}</h1>
-    <app-ejercicio-agregar-rutina *ngFor="let ejercicio of registroEjercicios "> </app-ejercicio-agregar-rutina> <br>
+    <app-ejercicio-agregar-rutina 
+        *ngFor="let ejercicio of ejercicios; let indexOfelement=index"
+        [ejercicio]="ejercicio"
+        [numeroDiaEjercicio] = numeroDia 
+        (clickBotonEliminarEjercicio) = "eliminarEjercicio(indexOfelement)"
+    > </app-ejercicio-agregar-rutina>
+    <br>
     <button mat-raised-button color="primary" (click)="this.agregarEjercicio()" >Agregar ejercicio </button>
-    <button mat-raised-button >Eliminar dia</button>
+    <br>
+    <button mat-raised-button (click)="this.clickBotonEliminarDia.emit()">Eliminar dia</button>
     <br>
 </mat-card>
