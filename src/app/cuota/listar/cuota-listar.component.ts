@@ -10,19 +10,16 @@ export class CuotaListarComponent extends ListadoBaseComponent {
 
   public registrosListado : Array<any> = [];
 
-	public columnasAMostrar : Array<string> = ["id", "fecha_periodo","fecha_pago", "motivo_baja", "editar", "eliminar"];
+	public columnasAMostrar : Array<string> = ["id", "fecha_periodo","fecha_pago", "motivo_baja", "eliminar"];
 
 	ngOnInit() : void {	
 		this.obtenerListado();
 	}
 
 	private async obtenerListado() : Promise<void> {
-		this.registrosListado = await this.apiService.getData("/cuota/listar");
+		this.registrosListado = await this.apiService.getData("/cuota-mensual/listar");
 	}
 
-	public clickBotonEditar(id : number) : void {
-		this.router.navigate([`cuota/${id}/editar`]);
-	}
 
 	public async clickBotonEliminar(id : number) : Promise<void> {
 		let respuesta = await this.confirmService.mostrarMensajeConfirmacion(
