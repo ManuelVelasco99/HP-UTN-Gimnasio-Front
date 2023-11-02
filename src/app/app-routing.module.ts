@@ -84,6 +84,15 @@ const routes: Routes = [
             },
         ]
     },
+    {
+        path : 'clase',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./clase/clase.module').then(m => m.ClaseModule),
+            },
+        ]
+    },
 ];
 
 @NgModule({
