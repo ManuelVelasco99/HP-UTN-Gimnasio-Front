@@ -1,0 +1,12 @@
+<app-layout-listado
+    [tituloListado]="'Socios'"
+    [urlAgregar]="'/socios/agregar'"
+    [registrosListado]="registrosListado"
+    [columnasAMostrar]="columnasAMostrar"
+    [filtrosDisponibles]="filtrosDisponibles"
+    (clickBotonFiltrar)="clickFiltrar()"
+    (clickBotonEditar)="clickBotonEditar($event)"
+    (clickBotonEliminar)="clickBotonEliminar($event)"
+>
+</app-layout-listado>
+

@@ -84,6 +84,15 @@ const routes: Routes = [
             },
         ]
     },
+    {
+        path : 'socio',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./socio/socio.module').then(m => m.SocioModule),
+            },
+        ]
+    },
 ];
 
 @NgModule({
