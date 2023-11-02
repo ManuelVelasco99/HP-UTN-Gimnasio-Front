@@ -67,4 +67,13 @@ export class CuotaAgregarComponent extends FormularioBaseComponent {
 	public clickCancelar() : void {
 		this.router.navigate(["cuota/listar"]);
 	}
+
+	public async clickValidarDniSocio() : Promise<void> {
+		try {
+			let response= await this.apiService.post("/cuota-mensual/validar-pago",{dni:this.form.get("dni")?.value})
+		} catch (error) {
+			console.log(error)
+		}
+
+	}
 }
