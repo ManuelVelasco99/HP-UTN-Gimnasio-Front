@@ -17,9 +17,7 @@ import { DiaAgregarRutinaComponent } from './agregar/dia/dia-agregar-rutina.comp
             RutinaAgregarComponent,
            // DiaAgregarComponent,
             EjercicioAgregarRutinaComponent,
-           DiaAgregarRutinaComponent,
-
-        //   EjercicioAgregarRutinaComponent,
+            DiaAgregarRutinaComponent,
         ],
         imports: [
             BaseModule,

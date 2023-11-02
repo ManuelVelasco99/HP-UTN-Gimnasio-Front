@@ -1,24 +1,25 @@
-            <form [formGroup]="form">
-                <div class="contenedor-campos">
-                    <mat-form-field>
-                        <mat-label>Tipo ejercicio</mat-label>
-                        <mat-select matInput required="">   
-                          <mat-option *ngFor="let rol of registrosEjercicios " [value]='rol.id'l>
-                            {{rol.descripcion}}
-                          </mat-option>
-                          <mat-error *ngIf="form.get('idRol')?.getError('required')">Obligatorio</mat-error>
-                        </mat-select>
-                      </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Series</mat-label>
-                        <input formControlName="series" matInput required>
-                        <mat-error *ngIf="form.get('series')?.getError('required')">Obligatorio</mat-error>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Repeticiones</mat-label>
-                        <input formControlName="repeticiones" matInput required>
-                        <mat-error *ngIf="form.get('repeticiones')?.getError('required')">Obligatorio</mat-error>
-                    </mat-form-field>
-                    <mat-icon color="primary" >delete</mat-icon>
-                </div>
-            </form>    
+            
+<div class="contenedor-campos">
+	<mat-form-field>
+		<mat-label>Tipo ejercicio</mat-label>
+		<mat-select matInput required="" [(ngModel)]="ejercicio.id_tipo_ejercicio">   
+			<mat-option *ngFor="let ejercicio of registrosEjercicios " [value]='ejercicio.id'>
+				{{ejercicio.descripcion}}
+			</mat-option>
+			<mat-error *ngIf="form.get('idRol')?.getError('required')">Obligatorio</mat-error>
+		</mat-select>
+		</mat-form-field>
+	<mat-form-field>
+		<mat-label>Series</mat-label>
+		<input  matInput required [(ngModel)]="ejercicio.series">
+		<mat-error *ngIf="form.get('series')?.getError('required')">Obligatorio</mat-error>
+	</mat-form-field>
+	<mat-form-field>
+		<mat-label>Repeticiones</mat-label>
+		<input  matInput required [(ngModel)]="ejercicio.repeticiones">
+		<mat-error *ngIf="form.get('repeticiones')?.getError('required')">Obligatorio</mat-error>
+	</mat-form-field>
+	<div class="botonEliminar" >
+		<mat-icon color="primary" (click)="this.clickBotonEliminarEjercicio.emit()" >delete</mat-icon>
+	</div>                   
+</div>
