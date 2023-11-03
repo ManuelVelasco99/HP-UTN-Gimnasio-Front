@@ -90,6 +90,15 @@ const routes: Routes = [
             {
                 path: '',
                 loadChildren: () => import('./clase/clase.module').then(m => m.ClaseModule),
+            }
+        ]
+    },
+    {
+        path : 'socio',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./socio/socio.module').then(m => m.SocioModule),
             },
         ]
     },

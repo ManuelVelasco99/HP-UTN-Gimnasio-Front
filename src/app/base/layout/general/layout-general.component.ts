@@ -40,6 +40,11 @@ export class LayoutGeneralComponent {
             rolesPermitidos : []
         },
         {
+            nombre          : "Socios",
+            route           : "/socio/listar",
+            rolesPermitidos : [1]
+        },
+        {
             nombre          : "Ingreso Socios",
             route           : "/ingreso-socio",
             rolesPermitidos : [1,3]
