@@ -48,6 +48,11 @@ export class LayoutGeneralComponent {
             nombre          : "Ingreso Socios",
             route           : "/ingreso-socio",
             rolesPermitidos : [1,3]
+        },
+        {
+            nombre          : "Clase",
+            route           : "/clase/listar",
+            rolesPermitidos : [1,2]
         }
     ];
 
