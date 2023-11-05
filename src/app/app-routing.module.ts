@@ -12,6 +12,15 @@ const routes: Routes = [
 			},
 		]
 	},
+    {
+        path : 'auth',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+            },
+        ]
+    },
 	{
         path : 'maquina-elemento',
         children : [
@@ -27,6 +36,15 @@ const routes: Routes = [
             {
                 path: '',
                 loadChildren: () => import('./tipo-ejercicio/tipo-ejercicio.module').then(m => m.TipoEjercicioModule),
+            },
+        ]
+    },
+    {
+        path : 'tipo-clase',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./tipo-clase/tipo-clase.module').then(m => m.TipoClaseModule),
             },
         ]
     },
@@ -54,6 +72,33 @@ const routes: Routes = [
             {
                 path: '',
                 loadChildren: () => import('./rutina/rutina.module').then(m => m.RutinaModule),
+            },
+        ]
+    },
+    {
+        path : 'ingreso-socio',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./ingreso-socio/ingreso-socio.module').then(m => m.IngresoSocioModule),
+            },
+        ]
+    },
+    {
+        path : 'clase',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./clase/clase.module').then(m => m.ClaseModule),
+            }
+        ]
+    },
+    {
+        path : 'socio',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./socio/socio.module').then(m => m.SocioModule),
             },
         ]
     },

@@ -8,8 +8,19 @@
         <div class="contenedor-botones">
             <button mat-icon-button color="primary" [routerLink]="''" aria-label="Example icon button with a home icon">
                 <mat-icon>home</mat-icon>
-            </button>
+            </button>	
+			<div *ngIf="filtrosDisponibles.length > 0" class="contenedor-filtros">
+				<ng-container *ngFor="let filtro of filtrosDisponibles">
+					<mat-form-field>
+						<mat-label>{{filtro.textoFiltro}}</mat-label>
+						<input [(ngModel)]="filtro.valorFiltro" matInput>
+					</mat-form-field>
+				</ng-container>	
+				
+				<button mat-raised-button color="primary" (click)="clickBotonFiltrar.emit()">Filtrar</button>
+			</div>
             <button mat-raised-button color="primary" [routerLink]="urlAgregar">Agregar</button>
+			
         </div>
 
         <table #table mat-table [dataSource]="registrosListado" class="mat-elevation-z8">
