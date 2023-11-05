@@ -37,12 +37,29 @@ export class LayoutListadoComponent {
     public clickBotonEditar   : EventEmitter<number> = new EventEmitter();
 
 	@Output()
-    public clickBotonEliminar : EventEmitter<number> = new EventEmitter();
+    public clickBotonEditarRutina   : EventEmitter<Array<any>> = new EventEmitter();
 
 	@Output()
+    public clickBotonEliminar : EventEmitter<number> = new EventEmitter();
+  
+	@Output()
+    public clickBotonAsignarRutina: EventEmitter<number> = new EventEmitter();
+  
+  @Output()
     public clickBotonFiltrar  : EventEmitter<any> = new EventEmitter();
 
 	@ViewChild(MatTable)
 	public table! : MatTable<any>;
-  
+
+	public esRutina : boolean = false;
+	
+	
+	ngOnInit(): void{
+		if (this.urlAgregar == '/rutina/agregar') {
+			this.esRutina = true;
+		}else{
+			this.esRutina = false;
+		}
+	  }
+	
 }

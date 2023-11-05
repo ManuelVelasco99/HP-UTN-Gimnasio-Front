@@ -3,12 +3,13 @@
     <app-ejercicio-agregar-rutina 
         *ngFor="let ejercicio of ejercicios; let indexOfelement=index"
         [ejercicio]="ejercicio"
-        [numeroDiaEjercicio] = numeroDia 
+        [numeroDiaEjercicio] = numeroDia
+        [camposDeshabilitados]="camposDeshabilitados" 
         (clickBotonEliminarEjercicio) = "eliminarEjercicio(indexOfelement)"
     > </app-ejercicio-agregar-rutina>
     <br>
-    <button mat-raised-button color="primary" (click)="this.agregarEjercicio()" >Agregar ejercicio </button>
+    <button mat-raised-button color="primary" (click)="this.agregarEjercicio()" disabled= "{{this.camposDeshabilitados}}" >Agregar ejercicio </button>
     <br>
-    <button mat-raised-button (click)="this.clickBotonEliminarDia.emit()">Eliminar dia</button>
+    <button mat-raised-button (click)="this.clickBotonEliminarDia.emit()" disabled= "{{this.camposDeshabilitados}}">Eliminar dia</button>
     <br>
 </mat-card>
