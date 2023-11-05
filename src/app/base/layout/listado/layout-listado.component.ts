@@ -5,6 +5,7 @@ import { MatTable     } from '@angular/material/table';
 import { Output       } from '@angular/core';
 import { ViewChild    } from '@angular/core';
 
+
 @Component({
 	selector    : 'app-layout-listado',
 	templateUrl : './layout-listado.component.html',
@@ -28,9 +29,26 @@ export class LayoutListadoComponent {
     public clickBotonEditar   : EventEmitter<number> = new EventEmitter();
 
 	@Output()
+    public clickBotonEditarRutina   : EventEmitter<Array<any>> = new EventEmitter();
+
+	@Output()
     public clickBotonEliminar : EventEmitter<number> = new EventEmitter();
 
+	@Output()
+    public clickBotonAsignarRutina: EventEmitter<number> = new EventEmitter();
+	
 	@ViewChild(MatTable)
 	public table! : MatTable<any>;
-  
+
+	public esRutina : boolean = false;
+	
+	
+	ngOnInit(): void{
+		if (this.urlAgregar == '/rutina/agregar') {
+			this.esRutina = true;
+		}else{
+			this.esRutina = false;
+		}
+	  }
+	
 }

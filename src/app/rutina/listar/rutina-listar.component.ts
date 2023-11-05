@@ -14,21 +14,35 @@ export class RutinaListarComponent extends ListadoBaseComponent {
     "nombre_profesor",
     "fecha_creacion",
     "nombre",
+    "asignar",
     "editar", "eliminar"
   ];
+
   ngOnInit(): void{
     this.obtenerListado();
   }
+
   private async obtenerListado() : Promise<void>{
     this.registrosListado = await this.apiService.getData("/rutina/listar");
     this.registrosListado = this.registrosListado.concat(await this.apiService.getData("/rutinaPreset/listar"));
-		console.log(this.registrosListado);
   }
 
 
+  public clickBotonAsignarRutina( id:number) :void{
+    console.log(id);
+    this.router.navigate([`rutina/${id}/asignar`]);
+  };
 
-  public clickBotonEditar(id : number) : void {
-		this.router.navigate([`rutina/${id}/editar`]);
+  public clickBotonEditar(fila : Array<any>) : void {
+    let esP : boolean;
+    let id : number = fila[0];
+    if(fila[1] == "----"){
+      esP = true;
+    }else{
+      esP = false;
+    }
+    this.router.navigate([`rutina/${id}/${esP}/editar`]);
+    console.log(`rutina/${id}${esP}/editar`);
 	}
 
 	public async clickBotonEliminar(id : number) : Promise<void> {

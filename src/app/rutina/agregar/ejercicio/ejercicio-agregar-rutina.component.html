@@ -1,25 +1,25 @@
             
 <div class="contenedor-campos">
 	<mat-form-field>
-		<mat-label>Tipo ejercicio</mat-label>
-		<mat-select matInput required="" [(ngModel)]="ejercicio.id_tipo_ejercicio">   
+		<mat-label>Tipo ejercicio</mat-label>	
+		<mat-select matInput required [(ngModel)]="ejercicio.id_tipo_ejercicio" disabled= "{{this.camposDeshabilitados}}">   
 			<mat-option *ngFor="let ejercicio of registrosEjercicios " [value]='ejercicio.id'>
 				{{ejercicio.descripcion}}
 			</mat-option>
-			<mat-error *ngIf="form.get('idRol')?.getError('required')">Obligatorio</mat-error>
-		</mat-select>
+			</mat-select>
+			<mat-error>Obligatorio</mat-error>
 		</mat-form-field>
 	<mat-form-field>
 		<mat-label>Series</mat-label>
-		<input  matInput required [(ngModel)]="ejercicio.series">
-		<mat-error *ngIf="form.get('series')?.getError('required')">Obligatorio</mat-error>
+		<input  matInput required [(ngModel)]="ejercicio.series" disabled= "{{this.camposDeshabilitados}}">
+		<mat-error>Obligatorio</mat-error>	
 	</mat-form-field>
 	<mat-form-field>
 		<mat-label>Repeticiones</mat-label>
-		<input  matInput required [(ngModel)]="ejercicio.repeticiones">
-		<mat-error *ngIf="form.get('repeticiones')?.getError('required')">Obligatorio</mat-error>
+		<input  matInput required [(ngModel)]="ejercicio.repeticiones" disabled= "{{this.camposDeshabilitados}}">
+		<mat-error>Obligatorio</mat-error>
 	</mat-form-field>
-	<div class="botonEliminar" >
-		<mat-icon color="primary" (click)="this.clickBotonEliminarEjercicio.emit()" >delete</mat-icon>
+	<div class="botonEliminar">
+		<mat-icon color="primary" (click)="!this.camposDeshabilitados ? clickBotonEliminarEjercicio.emit() : '' " >delete</mat-icon>
 	</div>                   
 </div>

@@ -20,13 +20,16 @@ export class Ejercicio {
   styleUrls: ['./ejercicio-agregar-rutina.component.scss']
 })
 export class EjercicioAgregarRutinaComponent extends FormularioBaseComponent  {
+	
 	@Input()
- 	public numeroDiaEjercicio : number = 1;
+ 	public numeroDiaEjercicio : number = 1 ;
 	@Input()
-	public idRutinaPreset : number =0;
+	public idRutinaPreset : number =0 ;
+	@Input()
+	public camposDeshabilitados : boolean = true;
 	//public tituloFormulario  : string = this.modoEdicion ? 'Editar ejercicio' : 'Agregar Ejercicio';
   	public registrosEjercicios: Array<any> = [];
-
+	
 	@Input()
 	public ejercicio! : Ejercicio;
 	
@@ -52,15 +55,18 @@ export class EjercicioAgregarRutinaComponent extends FormularioBaseComponent  {
       }
     )
   }
+
   private async rellenarEjercicios() : Promise <void>{
 		this.registrosEjercicios = await this.apiService.getData("/tipo-ejercicio/listar");
 	}
+	
   public async enviar() : Promise<void> {
 		this.form.value.dia = this.numeroDiaEjercicio;
 		this.form.value.rutinaPresetId = this.idRutinaPreset;
 		this.form.markAllAsTouched();
 		let formValue = this.form.value;
 		if(this.form.invalid){
+			
 			return;
 		}
 		if(this.modoEdicion){
@@ -78,9 +84,9 @@ export class EjercicioAgregarRutinaComponent extends FormularioBaseComponent  {
 		
 	}
 
-  public clickCancelar() : void {
-		this.redireccionarAlListado();
-	}
+	public clickCancelar() : void {
+			this.redireccionarAlListado();
+		}
 
 	
 

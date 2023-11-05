@@ -13,6 +13,14 @@ const routes : Routes =[
         path:'agregar',
         component: RutinaAgregarComponent,
     },
+    {
+        path:':id/:esP/editar',
+        component: RutinaAgregarComponent,
+    },
+    {
+        path:':id/asignar',
+        component: RutinaAgregarComponent,
+    },
 ];
 
 @NgModule(

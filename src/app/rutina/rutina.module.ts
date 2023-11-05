@@ -9,6 +9,7 @@ import { RutinaRoutingModule                } from './rutina-routing.module';
 import { RutinaAgregarComponent } from './agregar/rutina-agregar.component';
 import { EjercicioAgregarRutinaComponent } from './agregar/ejercicio/ejercicio-agregar-rutina.component';
 import { DiaAgregarRutinaComponent } from './agregar/dia/dia-agregar-rutina.component';
+import { UsuarioVerificarComponent } from './agregar/usuario/usuario-verificar.component';
 
 @NgModule(
     {
@@ -18,6 +19,7 @@ import { DiaAgregarRutinaComponent } from './agregar/dia/dia-agregar-rutina.comp
            // DiaAgregarComponent,
             EjercicioAgregarRutinaComponent,
             DiaAgregarRutinaComponent,
+            UsuarioVerificarComponent,
         ],
         imports: [
             BaseModule,
