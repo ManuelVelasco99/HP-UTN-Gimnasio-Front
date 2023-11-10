@@ -5,6 +5,7 @@
     (clickBotonCancelar)="clickCancelar()"
     (clickBotonPrincipal)="enviar()"
     [textoBotonPrincipal]="textoBoton"
+    [botonesDesHabilitados] = "camposDeshabilitados"
 >
 
 <contenido>
@@ -12,11 +13,10 @@
     <div class="contenedor-campos"> 
         <mat-form-field>
             <mat-label>DNI socio</mat-label>
-            <input  matInput required [(ngModel)]="dniSocio">
+                <input  matInput required [(ngModel)]="dniSocio" disabled="{{this.modoEdicion}}">
             <mat-error>Obligatorio</mat-error>
         </mat-form-field>
-        <button class="boton-verificarSocio" (click)="this.verificarSocio()" mat-raised-button color="primary">Verificar socio</button>
-        
+        <button class="boton-verificarSocio" (click)="this.verificarSocio()" mat-raised-button color="primary" disabled="{{this.modoEdicion}}">Verificar socio</button>
     </div>
         <app-usuario-verificar
             [socio] = this.socio
@@ -24,24 +24,21 @@
     </mat-card>
     <br>
     <mat-card>
-        <h1>    Rutina      </h1>
-        <form [formGroup]="form" >
-            <div class="contenedor-campos">
-                <mat-form-field >
-                    <mat-label>Nombre Rutina</mat-label>
-                    <input formControlName="nombre" matInput required  [value] = nombreRutina> 
-                    <mat-error *ngIf="form.get('nombre')?.getError('required')">Obligatorio</mat-error>
-                </mat-form-field>
-            </div>
-        </form>
-
+        <h1>Rutina</h1>
+        <div class="contenedor-campos">
+            <mat-form-field>
+                <mat-label>Nombre Rutina</mat-label>
+                    <input  matInput required [(ngModel)]="nombreRutina" maxlength="40">
+                <mat-error>Obligatorio</mat-error>
+            </mat-form-field>
+        </div>
         <app-dia-agregar-rutina *ngFor="let dia of registrosDias" 
             [ejercicios]="dia" 
             [numeroDia]=dia.numeroDia 
             (clickBotonEliminarDia) = "eliminarDia(dia)" 
             (clickBotonAgregarEjercicio) = "addEjercicio(dia)"
             [camposDeshabilitados]="camposDeshabilitados"
-            [editAsigMode] = "asignarMode"
+            [cargoEjerAlIniciar] = "cargoEjerAlIniciar"
             >    
         </app-dia-agregar-rutina>
     </mat-card>

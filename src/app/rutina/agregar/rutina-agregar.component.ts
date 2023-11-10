@@ -18,45 +18,58 @@ import { empty } from 'rxjs';
 
 
 export class RutinaAgregarComponent extends FormularioBaseComponent{
-	public esPreset 					: boolean = false;
+	public esPreset 					: boolean = true;
 	public tituloRutina 				: string = this.esPreset ? 'Rutina Preset' : 'Rutina';
 	public tituloFormulario  			: string = this.modoEdicion ? 'Editar ' +this.tituloRutina: 'Agregar ' +  this.tituloRutina;
 	public registrosRoles 				: Array<any> = [];
 	public registrosDias				: Array<any> = []; 
 	public idRutinaP 					: number = 0;
 	public registroEjercicios 			: Array<any> = [];
-	public nombreRutina 				: string ='nombre rutina cargado';
+	public nombreRutina 				: string ='';
 	public camposDeshabilitados			: boolean = !this.esPreset; /// Si es preset que directamente el formulario para agregar dias y ejercicios este habilitado y como el campo en el form es disabled? lo mando como falso
-	public asignarMode = false;
-	public dniSocio : string = '';
-	public socio: Socio = new Socio();
+	public cargoEjerAlIniciar			: boolean = true;
+	public asignarMode 					= false;
+	public dniSocio 					: string = '';
+	public socio						: Socio = new Socio();
+	public idProfe 						: number = 4;
 	constructor(
 		private route : ActivatedRoute,
 	) {
 		super();
 	}
   	ngOnInit(): void {
-		this.validarModoAsignar();
-		if(this.esPreset){
-			this.uri = "/rutinaPreset"
-		}else{
-			this.uri = "/rutina"
-		}	
-			
-		this.crearFormulario();
 		let params = this.route.snapshot.params;
-		this.agregarDia();
-		if(this.modoEdicion) {
-			this.id = params['id'];
-			if(params['esP']=='true'){
-				this.esPreset =true;
-			}else{
-				this.esPreset =false;
-			}
+
+		this.validarModoAsignar();
+		this.validadEdicion();
+		
+		console.log("this.modoEdicion",this.modoEdicion)
+		if(this.asignarMode){
+			this.cargoEjerAlIniciar = false;
 		}
-		
-		
-	}
+		if(this.modoEdicion){
+			this.cargoEjerAlIniciar = false;
+		}
+
+		this.idRutinaP = params['id'];
+
+		if(params['esP']=='true'){
+				this.esPreset =true;
+				this.uri ="/rutinaPreset"
+		}else{
+				this.esPreset =false;
+				this.uri ="/rutina";
+				this.verificarSocio();
+			}
+
+		if(this.modoEdicion){
+			this.idRutinaP == params['id'];
+			this.cargarParaAsignar();
+		}
+		console.log("RUTINA ID: ", this.idRutinaP )
+		this.crearFormulario();		
+		this.agregarDia();	
+		}
 
 	private crearFormulario() {
 		this.form = this.formBuilder.group({
@@ -67,7 +80,6 @@ export class RutinaAgregarComponent extends FormularioBaseComponent{
 	public async verificarSocio(){
 		this.socio = new Socio();
 		if(this.dniSocio!=''){
-			console.log("INGRESE UN DNI");
 			try{
 				this.socio = await this.apiService.getData(`/usuario/${this.dniSocio}/obtenerDni`);
 				if(this.socio==null){
@@ -76,7 +88,7 @@ export class RutinaAgregarComponent extends FormularioBaseComponent{
 			}catch(error){
 				this.camposDeshabilitados = true;
 			}
-			console.log(this.socio);
+			//console.log(this.socio);
 		}
 
 		if(this.socio.apellido!=''){
@@ -91,15 +103,24 @@ export class RutinaAgregarComponent extends FormularioBaseComponent{
 		let formValue = this.form.value;
 		let data : any = {};
 		let dadata :any;
-		this.nombreRutina = this.form.value.nombre;
-		if(this.form.invalid ){
-			
+		////this.nombreRutina = this.form.value.nombre;
+
+		// if(this.form.invalid ){	
+		// 	return;
+		// }
+		if(this.nombreRutina == '' || this.registrosDias.length<=0)
+		{
+			console.log("Error en el form", this.registrosDias.length);
+
 			return;
 		}
-
 		if(this.modoEdicion){
 			try {
-				await this.apiService.post(`${this.uri}/${this.id}/editar`,formValue);
+				await this.apiService.post(`${this.uri}/editar`,{
+					ejercicios: this.registrosDias, 
+					nombreRutina: this.nombreRutina,
+					idRutina: this.idRutinaP
+					});
 				this.redireccionarAlListado();
 			} catch (error) {}
 		}
@@ -107,9 +128,22 @@ export class RutinaAgregarComponent extends FormularioBaseComponent{
 			try {
 				if(!this.camposDeshabilitados){
 					if(this.esPreset){
-						await this.apiService.post(`${this.uri}/agregar`,{ejercicios: this.registrosDias, nombreRutina: this.nombreRutina});	
+						/////////////////// CARGA DE LA RUTINA PRESET ///////////////////
+						await this.apiService.post(`${this.uri}/agregar`,{
+							ejercicios: this.registrosDias, 
+							nombreRutina: this.nombreRutina
+						});	
+						this.redireccionarAlListado();
+						/////////////////// CARGA DE LA RUTINA PRESET ///////////////////
 					}else{
-						await this.apiService.post(`${this.uri}/agregar`,{ejercicios: this.registrosDias, nombreRutina: this.nombreRutina, usuario:this.socio});	
+						///////////////// CARGA DE LA RUTINA A UN SOCIO /////////////////
+						await this.apiService.post(`${this.uri}/agregar`,{
+							ejercicios: this.registrosDias, 
+							nombreRutina: this.nombreRutina, 
+							usuario:this.socio
+						});	
+						this.redireccionarAlListado();
+						///////////////// CARGA DE LA RUTINA A UN SOCIO /////////////////
 					}
 				}
 			} catch (error) {}
@@ -141,7 +175,6 @@ export class RutinaAgregarComponent extends FormularioBaseComponent{
 				}
 			}
 			this.registrosDias=tempDias;
-
 			for(let i =0 ; i< this.registrosDias.length; i++){
 				tempDias[i].numeroDia=i+1;
 				for(let j = 0; j<this.registrosDias[i].length; j++)
@@ -154,45 +187,81 @@ export class RutinaAgregarComponent extends FormularioBaseComponent{
 			
 		}
 	}
+
 	private async cargarParaAsignar(){
-		let tempEjercicios : Array <Ejercicio>;
 		let ejercicio : Ejercicio;
 		let tempRutina : any;
 		let cantDias : number = 0;
-		
-		tempRutina = await this.apiService.getData(`/rutinaPreset/${this.idRutinaP}/obtener`);
-		this.nombreRutina = tempRutina[0].rp_nombre;
+		let idSocio : number = 0;
+		let url = "/rutinaPreset";
+		///this.form.value.nombre
+		if(this.esPreset || this.asignarMode){
+			url = "/rutinaPreset"
+		}else{
+			url = "/rutina"
+		}
+
+		tempRutina = await this.apiService.getData(`${url}/${this.idRutinaP}/obtener`);
+
+		if(this.esPreset || this.asignarMode){
+			this.nombreRutina = tempRutina[0].rp_nombre;
+		}else{
+			this.nombreRutina = tempRutina[0].r_nombre;
+			this.socio = new Socio();
+			idSocio = tempRutina[0].r_socioId;
+			this.socio = await this.apiService.getData(`/usuario/${idSocio}/obtener`);
+			this.dniSocio = this.socio.dni;
+		}
 		
 		for(let i =0; i< tempRutina.length; i++){
 			if(tempRutina[i].ejercicios_diaRutina>cantDias){
 				cantDias = tempRutina[i].ejercicios_diaRutina;
 			}
 		}
+
 		for(let i=1; i<cantDias; i++){
 			let tempDias : Array <Dia>=[];
 			this.registrosDias.push(tempDias);
 		}
+
 		for(let i=0; i < this.registrosDias.length; i++)
 		{
 			this.registrosDias[i].numeroDia= i+1;
 		}
+
 		for(let j = 0; j < this.registrosDias.length; j++){
 			for(let i =0; i< tempRutina.length; i++)
 				{
 					if(tempRutina[i].ejercicios_diaRutina == this.registrosDias[j].numeroDia)
 					{
 						ejercicio = new Ejercicio();
+						ejercicio.id = tempRutina[i].ejercicios_id
 						ejercicio.diaRutina = tempRutina[i].ejercicios_diaRutina ;
 						ejercicio.id_tipo_ejercicio = tempRutina[i].ejercicios_tiposEjercicioId;
 						ejercicio.series =  tempRutina[i].ejercicios_series;
 						ejercicio.repeticiones = tempRutina[i].ejercicios_repeticiones;
-						this.registrosDias[j].push(ejercicio);
-						
+						console.log(ejercicio);
+						this.registrosDias[j].push(ejercicio);				
 					}
 				}
 		}
-
+		
 	}
+
+	private validadEdicion() :void{
+		let url = this.router.url;
+        let urlArray = url.split("/");
+		let params = this.route.snapshot.params;
+        if(urlArray[urlArray.length - 1] === "edicion"){
+            this.esPreset = false;
+            this.textoBoton = "Guardar";
+			this.idRutinaP = params['id'];
+			this.asignarMode = false;
+			this.modoEdicion  = true;
+			this.cargarParaAsignar();
+        }
+	}
+
 
 	private validarModoAsignar() : void {
         let url = this.router.url;
@@ -219,5 +288,6 @@ export class RutinaAgregarComponent extends FormularioBaseComponent{
 	private redireccionarAlListado() : void {
 		this.router.navigate(["rutina/listar"]);
 	}
+
 
 }

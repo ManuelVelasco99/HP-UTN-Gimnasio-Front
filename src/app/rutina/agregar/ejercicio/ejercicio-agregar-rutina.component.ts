@@ -8,6 +8,7 @@ import { EventEmitter			 } from '@angular/core';
 import { MatSelectModule 		 } from '@angular/material/select';
 
 export class Ejercicio {
+	id!: number;
 	id_tipo_ejercicio! : number;
 	series! : number;
 	repeticiones! : string;
