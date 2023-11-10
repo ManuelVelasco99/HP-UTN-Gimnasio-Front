@@ -27,14 +27,16 @@ export class DiaAgregarRutinaComponent {
 	public ejercicios : Array<any> = [];
 
 	@Input()
-	public editAsigMode : boolean = false;
+	public cargoEjerAlIniciar : boolean = false;
+
 	@Input()
 	public camposDeshabilitados : boolean = false;
 
 	public registroEjercicios : Array<any> = [];
 
 	ngOnInit(){
-		if(!this.editAsigMode){
+
+		if(this.cargoEjerAlIniciar){
 			this.agregarEjercicio();
 		}
 	}

@@ -23,6 +23,7 @@ export class RutinaListarComponent extends ListadoBaseComponent {
   }
 
   private async obtenerListado() : Promise<void>{
+    this.registrosListado = [];
     this.registrosListado = await this.apiService.getData("/rutina/listar");
     this.registrosListado = this.registrosListado.concat(await this.apiService.getData("/rutinaPreset/listar"));
   }
@@ -42,10 +43,43 @@ export class RutinaListarComponent extends ListadoBaseComponent {
       esP = false;
     }
     this.router.navigate([`rutina/${id}/${esP}/editar`]);
-    console.log(`rutina/${id}${esP}/editar`);
 	}
 
-	public async clickBotonEliminar(id : number) : Promise<void> {
+  public async clickBotonAgregar() : Promise<void> {
+    let esP = await this.confirmService.mostrarMensajeConfirmacion(
+			"¿Qué tipo de rutina desea agregar?",
+      "Preset",
+      "Personalizada",
+			
+		);
+    this.router.navigate([`rutina/${esP}/agregar`]);
+	}
 
+
+	public async clickBotonEliminar(fila : Array<any>) : Promise<void> {
+    let msjD = "Rutina eliminada con exito"
+    let respuesta = await this.confirmService.mostrarMensajeConfirmacion(
+			"¿Estás seguro que quieres eliminar la rutina?",
+			"Eliminar"	
+		);
+    let borrado : any;
+      if(respuesta){
+        if(fila[1] == "----" ){
+          ////Es preset///
+             borrado=await this.apiService.getData(`/rutinaPreset/${fila[0]}/eliminar`);
+            
+        }else{
+             borrado=await this.apiService.getData(`/rutina/${fila[0]}/eliminar`);
+        }
+        if(borrado == "ERR-NOAUTORIZADO" ){
+          msjD = "Usted no puede borrar la rutina"
+        }
+        await this.confirmService.mostrarMensajeConfirmacion(
+          msjD,
+          "Continuar"	
+        );
+        this.obtenerListado();
+        console.log(borrado);
+      }
 	}
 }

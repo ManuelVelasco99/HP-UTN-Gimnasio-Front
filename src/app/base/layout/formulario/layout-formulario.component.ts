@@ -16,6 +16,9 @@ export class LayoutFormularioComponent {
     @Input()
     public textoBotonPrincipal : string = '';
 
+    @Input()
+    public botonesDesHabilitados : boolean = false;
+
     @Output()
     public clickBotonCancelar : EventEmitter<void> = new EventEmitter();
 

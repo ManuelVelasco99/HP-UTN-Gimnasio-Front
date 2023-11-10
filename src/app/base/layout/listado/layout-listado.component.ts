@@ -5,6 +5,9 @@ import { MatTable     } from '@angular/material/table';
 import { Output       } from '@angular/core';
 import { ViewChild    } from '@angular/core';
 
+import { LocatorService } from '../../locator.service';
+import { ConfirmService } from '../../confirm.service';
+
 export class Filtro {
 	textoFiltro  : string = "";
 	valorFiltro  : string = "";
@@ -33,6 +36,9 @@ export class LayoutListadoComponent {
 	@Input()
 	public filtrosDisponibles : Filtro[] = [];
 
+	@Input()
+	public esRutina : boolean = false;
+
 	@Output()
     public clickBotonEditar   : EventEmitter<number> = new EventEmitter();
 
@@ -41,25 +47,22 @@ export class LayoutListadoComponent {
 
 	@Output()
     public clickBotonEliminar : EventEmitter<number> = new EventEmitter();
+
+	@Output()
+    public clickBotonEliminarRutina : EventEmitter<any> = new EventEmitter();
   
 	@Output()
     public clickBotonAsignarRutina: EventEmitter<number> = new EventEmitter();
   
-  @Output()
+ 	@Output()
     public clickBotonFiltrar  : EventEmitter<any> = new EventEmitter();
+
+	@Output()
+	public clickBotonAgregar :EventEmitter<any> = new EventEmitter();
 
 	@ViewChild(MatTable)
 	public table! : MatTable<any>;
-
-	public esRutina : boolean = false;
 	
-	
-	ngOnInit(): void{
-		if (this.urlAgregar == '/rutina/agregar') {
-			this.esRutina = true;
-		}else{
-			this.esRutina = false;
-		}
-	  }
+	public confirmService = LocatorService.injector.get(ConfirmService);	  
 	
 }

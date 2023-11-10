@@ -1,11 +1,13 @@
 <app-layout-listado
     [tituloListado]="'Listado de rutinas'"
     [urlAgregar]="'/rutina/agregar'"
+    [esRutina] = "true"
     [registrosListado]="registrosListado"
     [columnasAMostrar]="columnasAMostrar"
     (clickBotonEditarRutina)="clickBotonEditar($event)"
-    (clickBotonEliminar)="clickBotonEliminar($event)"
+    (clickBotonEliminarRutina)="clickBotonEliminar($event)"
     (clickBotonAsignarRutina)="clickBotonAsignarRutina($event)"
+    (clickBotonAgregar) = "clickBotonAgregar()"
 >
 </app-layout-listado>
 
