@@ -1,0 +1,31 @@
+:host{
+    display: flex;
+    width: 100%;
+
+    .nombre-rutina{
+        background: rgb(74, 91, 189);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        height: 46px;
+        margin:0 12px;
+        margin-top: 12px;
+
+        color: #FFF;
+
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+
+    mat-tab-group{
+        margin: 0 12px;
+        margin-top: 12px;
+    }
+
+    ::ng-deep .mat-mdc-tab-body-wrapper{
+        background: aliceblue;
+    }
+}

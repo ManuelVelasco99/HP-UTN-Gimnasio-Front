@@ -1,0 +1,13 @@
+<app-layout-general>
+    <contenido class="contenedor">
+        <div class="nombre-rutina">
+            Nombre rutina
+        </div>
+
+        <mat-tab-group>
+            <mat-tab *ngFor="let tab of lotsOfTabs" [label]="tab">
+                <app-consulta-rutina-dia-listado-ejercicios></app-consulta-rutina-dia-listado-ejercicios>
+            </mat-tab>
+        </mat-tab-group>
+    </contenido>
+</app-layout-general>

@@ -102,6 +102,15 @@ const routes: Routes = [
             },
         ]
     },
+    {
+        path : 'consulta-rutina',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./consulta-rutina/consulta-rutina.module').then(m => m.ConsultaRutinaModule),
+            },
+        ]
+    },
 ];
 
 @NgModule({
