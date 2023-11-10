@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="desktop" color="primary" *ngIf="deviceService.isDesktop">
     <div class="accesos">
         <ng-container *ngFor="let acceso of accesos">
             <ng-container *ngIf="acceso.rolesPermitidos.length === 0 || acceso.rolesPermitidos.includes(rol_id)">
@@ -19,5 +19,26 @@
     </div>
 
 </mat-toolbar>
+<mat-toolbar class="mobile" color="primary" *ngIf="deviceService.isMobile">
+    <div *ngIf="nombreUsuario" class="boton-usuario">
+        <mat-icon>person</mat-icon>
+        {{nombreUsuario}}
+        <mat-icon *ngIf="nombreUsuario" (click)="clickLogout()" style="cursor: pointer;">logout</mat-icon>
+    </div>
+</mat-toolbar>
+<div class="accesos" *ngIf="deviceService.isMobile && enElHome">
+    <ng-container *ngFor="let acceso of accesos">
+        <ng-container *ngIf="acceso.rolesPermitidos.length === 0 || acceso.rolesPermitidos.includes(rol_id)">
+            <div class="acceso">
+                <button *ngIf="!acceso.route" mat-button>{{acceso.nombre}}</button>
+                <button mat-button [routerLink]="acceso.route">{{acceso.nombre}}</button>
+            </div>
+        </ng-container>
+        
+    </ng-container>
+    <div *ngIf=" obtenerAccesosPorRol(rol_id).length === 0">
+        <button mat-button [routerLink]="'auth/login'">Ingresar</button>
+    </div>
+</div>
 
 <ng-content select="contenido"></ng-content>

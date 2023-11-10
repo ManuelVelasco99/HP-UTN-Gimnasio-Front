@@ -4,11 +4,13 @@ import { MatCardModule       } from '@angular/material/card';
 import { MAT_DATE_LOCALE     } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule     } from '@angular/material/dialog';
+import { MatDividerModule    } from '@angular/material/divider';
 import { MatFormFieldModule  } from '@angular/material/form-field';
 import { MatIconModule       } from '@angular/material/icon';
 import { MatInputModule      } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule      } from '@angular/material/table';
+import { MatTabsModule       } from '@angular/material/tabs';
 import { MatToolbarModule    } from '@angular/material/toolbar';
 ////seba adss//
 import { MatSelectModule	 } from '@angular/material/select';
@@ -36,8 +38,9 @@ import { PopupConfirmacionComponent } from './popup-confirmacion/popup-confirmac
 import { RouterModule } from '@angular/router';
 
 //SERVICES
-import { ApiService  } from './api.service';
-import { AuthService } from './auth.service';
+import { ApiService    } from './api.service';
+import { AuthService   } from './auth.service';
+import { DeviceService } from './device.service';
 
 
 
@@ -59,11 +62,13 @@ import { AuthService } from './auth.service';
         MatCardModule,
 		MatDatepickerModule,
 		MatDialogModule,
+		MatDividerModule,
         MatFormFieldModule,
 		MatIconModule,
         MatInputModule,
 		MatNativeDateModule,
 		MatTableModule,
+		MatTabsModule,
         MatToolbarModule,
 		/////////sebaads/////
 		MatSelectModule,
@@ -87,11 +92,14 @@ import { AuthService } from './auth.service';
         MatCardModule,
 		MatDatepickerModule,
 		MatDialogModule,
+		MatDividerModule,
         MatFormFieldModule,
 		MatIconModule,
         MatInputModule,
 		MatNativeDateModule,
+		MatTableModule,
         MatToolbarModule,
+		MatTabsModule,
 		/////////sebaads/////
 		MatSelectModule,
 
@@ -110,6 +118,7 @@ import { AuthService } from './auth.service';
 		//SERVICES
 		ApiService,
 		AuthService,
+		DeviceService,
 	],
 	schemas: [
 		//ANGULAR CORE

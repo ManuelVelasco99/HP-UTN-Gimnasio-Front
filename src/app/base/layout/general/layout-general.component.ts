@@ -1,5 +1,7 @@
-import { AuthService } from '../../auth.service';
-import { Component   } from '@angular/core';
+import { AuthService   } from '../../auth.service';
+import { Component     } from '@angular/core';
+import { DeviceService } from '../../device.service';
+import { Input         } from '@angular/core';
 
 @Component({
     selector    : 'app-layout-general',
@@ -22,22 +24,22 @@ export class LayoutGeneralComponent {
         {
             nombre          : "Tipo ejercicio",
             route           : "/tipo-ejercicio/listar",
-            rolesPermitidos : []
+            rolesPermitidos : [1]
         },
         {
             nombre          : "Precio cuota",
             route           : "/precio-cuota/listar",
-            rolesPermitidos : []
+            rolesPermitidos : [1]
         },
         {
             nombre          : "Usuarios",
             route           : "/usuario/listar",
-            rolesPermitidos : []
+            rolesPermitidos : [1]
         },
         {
             nombre          : "Rutinas",
             route           : "/rutina/listar",
-            rolesPermitidos : []
+            rolesPermitidos : [1,2]
         },
         {
             nombre          : "Socios",
@@ -53,15 +55,24 @@ export class LayoutGeneralComponent {
             nombre          : "Clase",
             route           : "/clase/listar",
             rolesPermitidos : [1,2]
+        },
+        {
+            nombre          : "Sus rutinas",
+            route           : "/consulta-rutina",
+            rolesPermitidos : [4]
         }
     ];
 
     public nombreUsuario! : string;
 
-    public rol_id : number | null = null;
+    public rol_id : number = 5;
+
+    @Input()
+	public enElHome : boolean = false;
 
     constructor(
-        private authService : AuthService,
+        private authService   : AuthService,
+        public  deviceService : DeviceService,
     ){
 
     }
@@ -78,6 +89,16 @@ export class LayoutGeneralComponent {
 
     public clickLogout() : void {
         this.authService.logout();
+    }
+
+    public obtenerAccesosPorRol(id_rol : number = 5) : Array<any> {
+        let rolesFiltrados : Array<any>= [];
+        this.accesos.forEach(element => {
+            if(element.rolesPermitidos.includes(id_rol)){
+                rolesFiltrados.push(element);
+            }
+        });
+        return rolesFiltrados;
     }
 
 }
