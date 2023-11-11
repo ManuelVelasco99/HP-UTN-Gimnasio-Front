@@ -1,5 +1,6 @@
 import { Component               } from '@angular/core';
 import { FormControl             } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { FormularioBaseComponent } from 'src/app/base/formulario-base.component';
 
 @Component({
@@ -8,19 +9,28 @@ import { FormularioBaseComponent } from 'src/app/base/formulario-base.component'
 	styleUrls   : ['./socio-agregar.component.scss']
 })
 export class SocioAgregarComponent extends FormularioBaseComponent {
+	constructor(
+		private route : ActivatedRoute,
+	) {
+		super();
+	}
 
-	public tituloFormulario : string = "Agregar socio";
-
+	public tituloFormulario : string = this.modoEdicion ? 'Editar socio': 'Agregar socio ';
 	ngOnInit(): void {	
 		this.uri = "/socio"	
 		this.crearFormulario();
+		let params = this.route.snapshot.params;
+		if(this.modoEdicion){
+			this.id = params['id'];
+			this.cargarParaAsignar();
+		}
 	}
 
 	private crearFormulario() {
 		this.form = this.formBuilder.group({
 			nombre                : new FormControl({ value: '', disabled: false }),
 			apellido              : new FormControl({ value: '', disabled: false }),
-			descripcion           : new FormControl({ value: '', disabled: false }),
+			///descripcion           : new FormControl({ value: '', disabled: false }),
 			dni                   : new FormControl({ value: '', disabled: false }),
 			fecha_nacimiento      : new FormControl({ value: '', disabled: false }),
 			telefono              : new FormControl({ value: '', disabled: false }),
@@ -37,14 +47,22 @@ export class SocioAgregarComponent extends FormularioBaseComponent {
 		if(this.form.invalid){
 			return;
 		}
-
-		//TODO: Agregar el modo edicion
-		try {
-			formValue.fecha_nacimiento = new Date(formValue.fecha_nacimiento).toISOString().split("T")[0];
-			await this.apiService.post(`${this.uri}/agregar`,formValue);
-			this.router.navigate(["socio/listar"]);
-		} catch (error) {
-
+		if(this.modoEdicion){
+			try {
+				formValue.fecha_nacimiento = new Date(formValue.fecha_nacimiento).toISOString().split("T")[0];
+				await this.apiService.post(`${this.uri}/actualizar`,{formValue, id: this.id});
+				this.router.navigate(["socio/listar"]);
+			} catch (error) {
+	
+			}
+		}else{
+			try {
+				formValue.fecha_nacimiento = new Date(formValue.fecha_nacimiento).toISOString().split("T")[0];
+				await this.apiService.post(`${this.uri}/agregar`,formValue);
+				this.router.navigate(["socio/listar"]);
+			} catch (error) {
+	
+			}
 		}
 
 	}
@@ -79,4 +97,18 @@ export class SocioAgregarComponent extends FormularioBaseComponent {
 			}
 		}
 	}
+
+	public async cargarParaAsignar(): Promise<void>{
+		let profesor = await this.apiService.getData(`/socio/${this.id}/obtener`);
+		this.form.setValue({
+				nombre                	: profesor.nombre,
+				apellido              	: profesor.apellido,
+				dni                   	: profesor.dni,
+				fecha_nacimiento      	: profesor.fecha_nacimiento,
+				telefono              	: profesor.telefono,
+				email                 	: profesor.email,
+				contrasenia           	: profesor.contrasenia,
+				confirmar_contrasenia 	: profesor.contrasenia,
+		});
+	  }
 }		
