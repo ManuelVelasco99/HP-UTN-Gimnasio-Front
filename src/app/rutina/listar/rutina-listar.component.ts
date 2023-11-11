@@ -19,13 +19,26 @@ export class RutinaListarComponent extends ListadoBaseComponent {
   ];
 
   ngOnInit(): void{
+    this.filtrosDisponibles.push(
+			{
+				textoFiltro  : "Socio",
+				valorFiltro  : "",
+				nombreFiltro : "nombresocio"
+			}
+		);
     this.obtenerListado();
+
   }
 
-  private async obtenerListado() : Promise<void>{
+  public async obtenerListado(soloPresets: boolean = false) : Promise<void>{
     this.registrosListado = [];
-    this.registrosListado = await this.apiService.getData("/rutina/listar");
-    this.registrosListado = this.registrosListado.concat(await this.apiService.getData("/rutinaPreset/listar"));
+    if(!soloPresets){
+      this.registrosListado = await this.apiService.getData("/rutina/listar" + this.queryParams,);
+    }
+    if(!this.queryParams || soloPresets){
+      this.registrosListado = this.registrosListado.concat(await this.apiService.getData("/rutinaPreset/listar"));
+    }
+
   }
 
 
@@ -45,16 +58,21 @@ export class RutinaListarComponent extends ListadoBaseComponent {
     this.router.navigate([`rutina/${id}/${esP}/editar`]);
 	}
 
+  public clickFiltrar() : void {
+		this.actualizarQueryParamsDesdeFiltros(this.filtrosDisponibles);
+		this.obtenerListado();
+	}
+
   public async clickBotonAgregar() : Promise<void> {
-    let esP = await this.confirmService.mostrarMensajeConfirmacion(
+    let esP = ! await this.confirmService.mostrarMensajeConfirmacion(
 			"¿Qué tipo de rutina desea agregar?",
-      "Preset",
-      "Personalizada",
+      
+      "Rutina socio",
+      "Rutina preset",
 			
 		);
     this.router.navigate([`rutina/${esP}/agregar`]);
 	}
-
 
 	public async clickBotonEliminar(fila : Array<any>) : Promise<void> {
     let msjD = "Rutina eliminada con exito"
