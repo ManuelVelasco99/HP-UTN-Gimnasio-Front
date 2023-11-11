@@ -31,11 +31,11 @@ export class LayoutGeneralComponent {
             route           : "/precio-cuota/listar",
             rolesPermitidos : [1]
         },
-        {
+        /*{ Se comenta por el momento, se debe agregar individual para profesores
             nombre          : "Usuarios",
             route           : "/usuario/listar",
             rolesPermitidos : [1]
-        },
+        },*/
         {
             nombre          : "Rutinas",
             route           : "/rutina/listar",

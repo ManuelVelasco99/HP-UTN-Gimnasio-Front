@@ -25,6 +25,14 @@ export class PrecioCuotaListarComponent extends ListadoBaseComponent {
 			"¿Estás seguro que quieres eliminar el precio de la cuota?",
 			"Eliminar"	
 		);
+		if(respuesta){
+			try {
+				let respuesta = await this.apiService.post(`/precio-cuota/${id}/eliminar`, {});
+				this.obtenerListado();	
+			} catch (error) {
+	
+			}
+		}
 	}
 
 
