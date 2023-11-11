@@ -7,7 +7,10 @@
     (clickBotonEditarRutina)="clickBotonEditar($event)"
     (clickBotonEliminarRutina)="clickBotonEliminar($event)"
     (clickBotonAsignarRutina)="clickBotonAsignarRutina($event)"
-    (clickBotonAgregar) = "clickBotonAgregar()"
+    (clickFiltroPreset)="obtenerListado($event)"
+    (clickBotonAgregar) ="clickBotonAgregar()"
+    (clickBotonFiltrar)="clickFiltrar()"
+    [filtrosDisponibles] ="filtrosDisponibles"
 >
 </app-layout-listado>
 

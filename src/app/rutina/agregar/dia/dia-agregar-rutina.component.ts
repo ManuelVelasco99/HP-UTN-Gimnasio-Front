@@ -3,6 +3,9 @@ import { EventEmitter } from '@angular/core';
 import { Input        } from '@angular/core';
 import { Output       } from '@angular/core';
 import { Ejercicio, EjercicioAgregarRutinaComponent } from '../ejercicio/ejercicio-agregar-rutina.component';
+import { ConfirmService } from 'src/app/base/confirm.service';
+import { LocatorService } from 'src/app/base/locator.service';
+
 
 export class Dia {
 	idTipoEjercicio! : number;
@@ -19,7 +22,7 @@ export class Dia {
 })
 export class DiaAgregarRutinaComponent {
 
-
+	public confirmService = LocatorService.injector.get(ConfirmService);
 	@Input()
 	public numeroDia : number = 1;
 
@@ -42,8 +45,22 @@ export class DiaAgregarRutinaComponent {
 	}
 
 
-	public eliminarEjercicio(index:number): void{
-		this.ejercicios.splice(index,1);
+	public async eliminarEjercicio(index:number): Promise<void>{
+		if(this.ejercicios.length>1){
+			let respuesta = await this.confirmService.mostrarMensajeConfirmacion(
+				"¿Estás seguro que quieres eliminar el ejercicio?",
+				"Eliminar"	
+			);
+	
+			if(respuesta){
+				this.ejercicios.splice(index,1);
+			}
+		}
+		else{
+			await this.confirmService.mostrarMensajeConfirmacion(
+				"No puede dejar un día sin ejercicios, si no quiere más ejercicios u otro día en su rutina, borre el día"
+			);
+		}
 	}
 
 	public agregarEjercicio() :void {

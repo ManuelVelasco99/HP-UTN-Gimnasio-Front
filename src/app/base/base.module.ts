@@ -12,6 +12,7 @@ import { MatTableModule      } from '@angular/material/table';
 import { MatToolbarModule    } from '@angular/material/toolbar';
 ////seba adss//
 import { MatSelectModule	 } from '@angular/material/select';
+import { MatCheckboxModule	 } from '@angular/material/checkbox';
 
 
 //ANGULAR COMMON
@@ -67,6 +68,7 @@ import { AuthService } from './auth.service';
         MatToolbarModule,
 		/////////sebaads/////
 		MatSelectModule,
+		MatCheckboxModule,
 
 		//ANGULAR FORMS
 		FormsModule,

@@ -46,13 +46,14 @@
 
 
                <mat-form-field>
-                <mat-label>Rol</mat-label>
-                <mat-select matInput required="">   
-                  <mat-option *ngFor="let rol of registrosRoles " [value]='rol.id'l>
+                <mat-label>Rol</mat-label> 
+                <mat-select matInput required="" formControlName="idRol" >   
+                  <mat-option *ngFor="let rol of registrosRoles " [value]='rol.id'>
                     {{rol.nombre}}
                   </mat-option>
-                  <mat-error *ngIf="form.get('idRol')?.getError('required')">Obligatorio</mat-error>
+                  
                 </mat-select>
+                <mat-error *ngIf="form.get('idRol')?.getError('required')">Obligatorio</mat-error>
               </mat-form-field>
 
                 <mat-form-field>
