@@ -1,12 +1,15 @@
-import { Component    } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import { Input        } from '@angular/core';
-import { MatTable     } from '@angular/material/table';
-import { Output       } from '@angular/core';
-import { ViewChild    } from '@angular/core';
+import { Component    		} from '@angular/core';
+import { EventEmitter 		} from '@angular/core';
+import { Input        		} from '@angular/core';
+import { MatTable     		} from '@angular/material/table';
+import { Output       		} from '@angular/core';
+import { ViewChild    		} from '@angular/core';
 
-import { LocatorService } from '../../locator.service';
-import { ConfirmService } from '../../confirm.service';
+import { LocatorService 	} from '../../locator.service';
+import { ConfirmService 	} from '../../confirm.service';
+
+
+import { MatCheckboxModule	} from '@angular/material/checkbox';
 
 export class Filtro {
 	textoFiltro  : string = "";
@@ -20,7 +23,7 @@ export class Filtro {
 	styleUrls   : ['./layout-listado.component.scss']
 })
 export class LayoutListadoComponent {
-
+	
 	@Input()
 	public tituloListado : string = "";
 
@@ -60,9 +63,17 @@ export class LayoutListadoComponent {
 	@Output()
 	public clickBotonAgregar :EventEmitter<any> = new EventEmitter();
 
+	@Output()
+	public clickFiltroPreset : EventEmitter<boolean> = new EventEmitter();
+
 	@ViewChild(MatTable)
 	public table! : MatTable<any>;
 	
 	public confirmService = LocatorService.injector.get(ConfirmService);	  
 	
+	public soloPresets : boolean =false;
+
+	public cambioCheck(){
+		console.log("solo presets", this.soloPresets)
+	}
 }

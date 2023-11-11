@@ -9,16 +9,20 @@
             <button mat-icon-button color="primary" [routerLink]="''" aria-label="Example icon button with a home icon">
                 <mat-icon>home</mat-icon>
             </button>	
+
+			<mat-checkbox *ngIf="esRutina" color="primary" [(ngModel)]="soloPresets" (change)="clickFiltroPreset.emit(soloPresets)" >Rutinas Presets</mat-checkbox>
+
 			<div *ngIf="filtrosDisponibles.length > 0" class="contenedor-filtros">
 				<ng-container *ngFor="let filtro of filtrosDisponibles">
 					<mat-form-field>
 						<mat-label>{{filtro.textoFiltro}}</mat-label>
-						<input [(ngModel)]="filtro.valorFiltro" matInput>
+						<input [(ngModel)]="filtro.valorFiltro" matInput disabled="{{soloPresets}}">	
 					</mat-form-field>
 				</ng-container>	
 				
-				<button mat-raised-button color="primary" (click)="clickBotonFiltrar.emit()">Filtrar</button>
+				<button mat-raised-button color="primary" (click)="clickBotonFiltrar.emit()" disabled="{{soloPresets}}">Filtrar</button>
 			</div>
+			
             <button *ngIf="!esRutina" mat-raised-button color="primary" [routerLink]="urlAgregar">Agregar</button>
 			<button *ngIf="esRutina" mat-raised-button color="primary" (click)="clickBotonAgregar.emit()">Agregar</button>
         </div>
