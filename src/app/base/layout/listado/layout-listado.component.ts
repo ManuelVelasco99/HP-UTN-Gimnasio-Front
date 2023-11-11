@@ -42,6 +42,9 @@ export class LayoutListadoComponent {
 	@Input()
 	public esRutina : boolean = false;
 
+	@Input()
+	public textoBotonListado : string = "Agregar";
+
 	@Output()
     public clickBotonEditar   : EventEmitter<number> = new EventEmitter();
 

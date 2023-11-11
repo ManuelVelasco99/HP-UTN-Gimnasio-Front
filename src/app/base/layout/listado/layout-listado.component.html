@@ -22,9 +22,8 @@
 				
 				<button mat-raised-button color="primary" (click)="clickBotonFiltrar.emit()" disabled="{{soloPresets}}">Filtrar</button>
 			</div>
-			
-            <button *ngIf="!esRutina" mat-raised-button color="primary" [routerLink]="urlAgregar">Agregar</button>
-			<button *ngIf="esRutina" mat-raised-button color="primary" (click)="clickBotonAgregar.emit()">Agregar</button>
+            <button *ngIf="!esRutina" mat-raised-button color="primary" [routerLink]="urlAgregar">{{textoBotonListado}}</button>
+			<button *ngIf="esRutina" mat-raised-button color="primary" (click)="clickBotonAgregar.emit()">{{textoBotonListado}}</button>
         </div>
 
         <table #table mat-table [dataSource]="registrosListado" class="mat-elevation-z8">

@@ -9,7 +9,8 @@ import { FormularioBaseComponent } from 'src/app/base/formulario-base.component'
 })
 export class PrecioCuotaAgregarComponent extends FormularioBaseComponent {
 
-	public tituloFormulario  : string = this.modoEdicion ? 'Editar Precio cuota' : 'Agregar Precio cuota';
+	public          tituloFormulario  : string = this.modoEdicion ? 'Editar Precio cuota' : 'Actualizar Precio cuota';
+	public override textoBoton        : string = "Actualizar";
 
 	ngOnInit(): void {	
 		this.uri = "/precio-cuota"	
