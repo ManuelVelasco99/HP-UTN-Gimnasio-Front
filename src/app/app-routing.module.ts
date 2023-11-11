@@ -103,6 +103,15 @@ const routes: Routes = [
         ]
     },
     {
+        path : 'profesor',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./profesor/profesor.module').then(m => m.ProfesorModule),
+            },
+        ]
+    },
+    {
         path : 'consulta-rutina',
         children : [
             {
