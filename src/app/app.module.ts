@@ -8,7 +8,6 @@ import { Injector                } from '@angular/core';
 import { LocatorService          } from './base/locator.service';
 import { NgModule                } from '@angular/core';
 
-
 @NgModule({
 	declarations: [
 		AppComponent,
