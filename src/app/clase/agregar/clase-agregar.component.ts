@@ -24,7 +24,7 @@ export class ClaseAgregarComponent extends FormularioBaseComponent{
   ngOnInit(): void {	
     this.uri = "/clase"	
     this.crearFormulario();
-    this.rellenarTipoEjercicioYProfesor()
+    this.cargarParaAsignar()
     let params = this.route.snapshot.params;
     if(this.modoEdicion){
       this.id = params['id'];
@@ -93,8 +93,14 @@ export class ClaseAgregarComponent extends FormularioBaseComponent{
         fecha          : clase.fecha,
         horario_inicio : clase.horario_inicio,
         horario_fin    : clase.horario_fin,
+        tipoClase      : clase.tipoClase.id,
+        profesor       : clase.usuario.id,
+        /*
         tipoClase      : clase.tipoClase,
-        profesor       : clase.usuario,
+        profesor       : clase.profesor,
+         */
       });
+
+      this.rellenarTipoEjercicioYProfesor();
   }
 }
