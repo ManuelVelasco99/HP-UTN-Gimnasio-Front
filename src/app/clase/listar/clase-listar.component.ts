@@ -30,8 +30,8 @@ export class ClaseListarComponent extends ListadoBaseComponent{
 			"Eliminar"
 		);
 		if(respuesta){
-			await this.apiService.post(`/clase/${id}/eliminar`, {});
-			this.obtenerListado();
+			await this.apiService.getData(`/clase/${id}/eliminar`);
 		}
+		this.obtenerListado();
 	}
 }
