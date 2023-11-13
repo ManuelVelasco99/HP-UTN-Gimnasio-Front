@@ -1,0 +1,16 @@
+<mat-icon class="cerrar-listado-notas" (click)="dialogRef.close()">close</mat-icon>
+<div class="titulo-listar-notas">
+    Notas
+</div>
+
+<div class="contenedor-notas">
+    <div *ngFor="let nota of notas" class="nota">
+        <div class="contenedor-superior-nota">
+            Nota: {{nota.comentario}}
+        </div>
+        <mat-divider></mat-divider>
+        <div class="contenedor-inferior-nota">
+            Peso: {{nota.peso}}
+        </div>
+    </div>
+</div>
