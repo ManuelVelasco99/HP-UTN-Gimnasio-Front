@@ -13,6 +13,10 @@ const routes: Routes = [
 		path: 'agregar',
 		component: SocioAgregarComponent,
 	},
+	{
+		path: ':id/editar',
+		component: SocioAgregarComponent,
+	},
 ];
 
 @NgModule({

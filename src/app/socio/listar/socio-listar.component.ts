@@ -42,6 +42,10 @@ export class SocioListarComponent extends ListadoBaseComponent {
 			"¿Estás seguro que quieres eliminar al socio Juan Perez?",
 			"Eliminar"
 		);
+		if(respuesta){
+			await this.apiService.getData(`/socio/${id}/eliminar`);
+		}
+		this.obtenerListado();
 	}
 
 }
