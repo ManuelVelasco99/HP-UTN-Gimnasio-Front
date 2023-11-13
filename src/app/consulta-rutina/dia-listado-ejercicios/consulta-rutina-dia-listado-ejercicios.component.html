@@ -4,30 +4,44 @@
     <div class="columna-repeticiones">Rep.</div>
 </div>
 <div class="rows">
-    <div *ngFor="let ejercicio of eLEMENT_DATA" class="row" (click)="ejercicio.mostrarNotas=!ejercicio.mostrarNotas">
+    <div *ngFor="let ejercicio of ejerciciosParaMostrar; let indexOfelement=index" class="row" (click)="ejercicio.mostrarNotas=!ejercicio.mostrarNotas">
         <div class="contenedor-columnas">
             <div class="columna-ejercicio">{{ejercicio.ejercicio}}</div>
             <div class="columna-series">{{ejercicio.series}}</div>
             <div class="columna-repeticiones">{{ejercicio.repeticiones}}</div>
         </div>
         <ng-container *ngIf="ejercicio.mostrarNotas">
-            <mat-divider></mat-divider>
-        <div class="contenedor-inferior">
-            Descipcion: rabajar y fortalecer los músculos del abdomen
-            <mat-icon>smart_display</mat-icon>
-        </div>
-        <div class="nota">
-            <div class="contenedor-superior-nota">
-                Nota: No doblar tanto el cuello 
-                <mat-icon>note_add</mat-icon>
-                <mat-icon>library_books</mat-icon>
-            </div>
-            <mat-divider></mat-divider>
-            <div class="contenedor-inferior-nota">
-                Peso: 10kg
-            </div>
             
-        </div>
+            <mat-divider></mat-divider>
+            <div class="contenedor-inferior">
+                Descipcion: {{ejercicio.descripcion}}
+                <mat-icon>smart_display</mat-icon>
+            </div>
+            <ng-container *ngIf="ejercicio.notas.length > 0">
+                <div class="nota">
+                    <div class="contenedor-superior-nota">
+                        <span>
+                            Nota: {{ejercicio.notas[0].comentario}}
+                        </span>
+                        <div class="contenedor-iconos-nota">
+                            <mat-icon (click)="clickAgregarNota($event, indexOfelement)">note_add</mat-icon>
+                            <mat-icon (click)="verNotas($event, indexOfelement)">library_books</mat-icon>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="contenedor-inferior-nota">
+                        Peso: {{ejercicio.notas[0].peso}}
+                    </div>
+                    
+                </div>
+            </ng-container>
+            <ng-container *ngIf="ejercicio.notas.length === 0">
+                <div class="nota-agregar">
+                    Agregar nota
+                    <mat-icon (click)="clickAgregarNota($event, indexOfelement)">note_add</mat-icon>
+                </div>
+            </ng-container>   
+            
         </ng-container>
         
     </div>
