@@ -10,7 +10,7 @@ export class ClaseListarComponent extends ListadoBaseComponent{
 
   public registrosListado : Array<any> = [];
 
-  public columnasAMostrar : Array<string> = ["id", "clase", "fecha","horario","cupo","profesor", "editar", "eliminar"];
+  public columnasAMostrar : Array<string> = ["id", "clase", "fecha","horario_inicio", "horario_fin","cupo","profesor", "editar", "eliminar"];
 
   ngOnInit() : void {	
 		this.obtenerListado();
@@ -30,8 +30,8 @@ export class ClaseListarComponent extends ListadoBaseComponent{
 			"Eliminar"
 		);
 		if(respuesta){
-			await this.apiService.post(`/clase/${id}/eliminar`, {});
-			this.obtenerListado();
+			await this.apiService.getData(`/clase/${id}/eliminar`);
 		}
+		this.obtenerListado();
 	}
 }

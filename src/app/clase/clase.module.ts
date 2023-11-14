@@ -4,11 +4,13 @@ import { NgModule                        } from '@angular/core';
 import { NO_ERRORS_SCHEMA                } from '@angular/core';
 import { ClaseListarComponent  } from './listar/clase-listar.component';
 import { ClaseRoutingModule    } from './clase-routing.module';
+import { ClaseAgregarComponent } from './agregar/clase-agregar.component';
 
 
 @NgModule({
 	declarations: [
-		ClaseListarComponent
+		ClaseListarComponent,
+  		ClaseAgregarComponent
 	],
 	imports: [
 		BaseModule,
