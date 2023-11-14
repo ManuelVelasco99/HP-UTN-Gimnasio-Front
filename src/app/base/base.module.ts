@@ -34,15 +34,18 @@ import { LayoutFormularioComponent  } from './layout/formulario/layout-formulari
 import { LayoutGeneralComponent     } from './layout/general/layout-general.component';
 import { LayoutListadoComponent     } from './layout/listado/layout-listado.component';
 import { PopupConfirmacionComponent } from './popup-confirmacion/popup-confirmacion.component';
-
+import { PopupMultimediaComponent   } from './popup-multimedia/popup-multimedia.component';
 //MODULES
 import { RouterModule } from '@angular/router';
 
 //SERVICES
-import { ApiService    } from './api.service';
-import { AuthService   } from './auth.service';
-import { DeviceService } from './device.service';
+import { ApiService        } from './api.service';
+import { AuthService       } from './auth.service';
+import { DeviceService     } from './device.service';
+import { MultimediaService } from './multimedia.service';
 
+//PIPES
+import { SafePipe } from './pipe';
 
 
 @NgModule({
@@ -51,6 +54,8 @@ import { DeviceService } from './device.service';
 		LayoutFormularioComponent,
 		LayoutListadoComponent,
   		PopupConfirmacionComponent,
+		PopupMultimediaComponent,
+		SafePipe,
  	],
 	imports: [
 
@@ -121,6 +126,10 @@ import { DeviceService } from './device.service';
 		ApiService,
 		AuthService,
 		DeviceService,
+		MultimediaService,
+
+		//PIPES
+		SafePipe,
 	],
 	schemas: [
 		//ANGULAR CORE
