@@ -30,10 +30,19 @@
 
 			<ng-container *ngFor="let columna of columnasAMostrar">
 
-				<ng-container *ngIf="columna !== 'editar' && columna !== 'eliminar'  && columna !== 'asignar'" [matColumnDef]="columna">
+				<ng-container *ngIf="columna !== 'editar' && columna !== 'eliminar'  && columna !== 'asignar' && columna !== 'multimedia' " [matColumnDef]="columna">
 					<th mat-header-cell *matHeaderCellDef> {{columna.substring(0,1).toUpperCase() + columna.substring(1)}} </th>
 					<td mat-cell *matCellDef="let element"> {{element[columna]}} </td>
 				</ng-container>
+				
+				<ng-container *ngIf="columna === 'multimedia'"  matColumnDef="multimedia" >
+					<th mat-header-cell *matHeaderCellDef class="th-accion"></th>
+					<td mat-cell *matCellDef="let element" class="td-accion"> 
+						<mat-icon *ngIf="element.multimedia === '' " color="gray"  disabled="true">smart_display</mat-icon>
+						<mat-icon *ngIf="element.multimedia !=='' " color="primary" (click)="clickMultimediaEvent.emit(element.multimedia)" >smart_display</mat-icon>
+					</td>
+				</ng-container>
+
 				<ng-container  *ngIf="columna === 'asignar'"  matColumnDef="asignar" >
 					<th mat-header-cell *matHeaderCellDef class="th-accion"></th>
 					<td mat-cell *matCellDef="let element" class="td-accion"> 

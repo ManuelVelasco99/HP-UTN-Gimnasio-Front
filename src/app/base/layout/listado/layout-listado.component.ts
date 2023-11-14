@@ -10,7 +10,7 @@ import { ConfirmService 	} from '../../confirm.service';
 
 
 import { MatCheckboxModule	} from '@angular/material/checkbox';
-
+import { MultimediaService              } from 'src/app/base/multimedia.service';
 export class Filtro {
 	textoFiltro  : string = "";
 	valorFiltro  : string = "";
@@ -69,6 +69,9 @@ export class LayoutListadoComponent {
 	@Output()
 	public clickFiltroPreset : EventEmitter<boolean> = new EventEmitter();
 
+	@Output()
+	public clickMultimediaEvent : EventEmitter<string> = new EventEmitter();
+
 	@ViewChild(MatTable)
 	public table! : MatTable<any>;
 	
@@ -76,7 +79,9 @@ export class LayoutListadoComponent {
 	
 	public soloPresets : boolean =false;
 
+
 	public cambioCheck(){
 		console.log("solo presets", this.soloPresets)
 	}
+
 }

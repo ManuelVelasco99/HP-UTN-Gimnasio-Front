@@ -11,7 +11,11 @@ import { FormularioBaseComponent } from 'src/app/base/formulario-base.component'
 export class TipoEjercicioAgregarComponent extends FormularioBaseComponent {
 
 	public tituloFormulario  : string = this.modoEdicion ? 'Editar Tipo ejercicio' : 'Agregar Tipo ejercicio';
-
+	public registrosMaqEle : Array<any> = [{
+		id:0,
+		descripcion:'Ninguno',
+		estado:true,
+	},];
 	constructor(
 		private route : ActivatedRoute,
 	) {
@@ -24,15 +28,38 @@ export class TipoEjercicioAgregarComponent extends FormularioBaseComponent {
 		let params = this.route.snapshot.params;
 		if(this.modoEdicion) {
 			this.id = params['id'];
-			this.obtenerYCompletar();
+			this.obtenerParaEditar();
 		}
+		this.rellenarMaquinasElementos();
 	}
 
 	private crearFormulario() {
 		this.form = this.formBuilder.group({
-			descripcion : new FormControl({ value: '', disabled: false }),
-			multimedia  : new FormControl({ value: '', disabled: false }),
+			nombre 				: new FormControl({ value: '', disabled: false }),
+			descripcion 		: new FormControl({ value: '', disabled: false }),
+			multimedia  		: new FormControl({ value: '', disabled: false }),
+			idMaquinaElemento  	: new FormControl({ value: '', disabled: false }),
 		});
+	}
+
+	private async rellenarMaquinasElementos() : Promise <void>{
+		this.registrosMaqEle =this.registrosMaqEle.concat(await this.apiService.getData("/maquina-elemento/listar"));
+	} 
+
+	private async obtenerParaEditar(): Promise<void> {
+        let response = await this.apiService.getData(`${this.uri}/${this.id}/obtener`);
+		let mqeid = null;
+		if(response.maquinaElemento){
+			mqeid = response.maquinaElemento.id
+		}
+		console.log("id maquina elemento",mqeid)
+		this.form.setValue({
+			nombre: response.nombre,
+			descripcion: response.descripcion,
+			multimedia: response.multimedia,
+			idMaquinaElemento: mqeid
+		})
+
 	}
 
 	public async enviar() : Promise<void> {
@@ -42,6 +69,7 @@ export class TipoEjercicioAgregarComponent extends FormularioBaseComponent {
 		if(this.form.invalid){
 			return;
 		}
+		console.log("Form:", formValue)
 		if(this.modoEdicion){
 			try {
 				await this.apiService.post(`${this.uri}/${this.id}/editar`,formValue);
