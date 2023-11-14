@@ -23,7 +23,8 @@ export class LayoutGeneralComponent {
         },
         {
             nombre : "Precio cuota",
-            route  : "/precio-cuota/listar"
+            route  : "/precio-cuota/listar",
+            rolesPermitidos : [1]
         },
         {
             nombre : "Cuota",
