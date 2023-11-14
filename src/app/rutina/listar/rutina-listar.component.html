@@ -1,0 +1,16 @@
+<app-layout-listado
+    [tituloListado]="'Listado de rutinas'"
+    [urlAgregar]="'/rutina/agregar'"
+    [esRutina] = "true"
+    [registrosListado]="registrosListado"
+    [columnasAMostrar]="columnasAMostrar"
+    (clickBotonEditarRutina)="clickBotonEditar($event)"
+    (clickBotonEliminarRutina)="clickBotonEliminar($event)"
+    (clickBotonAsignarRutina)="clickBotonAsignarRutina($event)"
+    (clickFiltroPreset)="obtenerListado($event)"
+    (clickBotonAgregar) ="clickBotonAgregar()"
+    (clickBotonFiltrar)="clickFiltrar()"
+    [filtrosDisponibles] ="filtrosDisponibles"
+>
+</app-layout-listado>
+

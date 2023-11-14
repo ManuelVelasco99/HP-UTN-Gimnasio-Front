@@ -7,8 +7,8 @@
             <ng-content select="contenido"></ng-content>
 
             <div class="contenedor-botones">
-                <button mat-raised-button (click)="clickBotonCancelar.emit()">Cancelar</button>
-                <button mat-raised-button color="primary" (click)="clickBotonPrincipal.emit()">{{textoBotonPrincipal}}</button>
+                <button mat-raised-button (click)="clickBotonCancelar.emit()" >Cancelar</button>
+                <button mat-raised-button color="primary" (click)="clickBotonPrincipal.emit()" disabled="{{this.botonesDesHabilitados}}">{{textoBotonPrincipal}}</button>
             </div>
         </mat-card>
     </contenido>

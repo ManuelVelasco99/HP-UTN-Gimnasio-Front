@@ -1,0 +1,14 @@
+.contenedor-campos{
+    display: flex;
+    justify-content: center;
+    column-gap: 16px;
+    align-items: center;
+
+    
+}
+.botonEliminar{
+                text-align: center;
+                mat-icon{
+                    cursor: pointer;
+                }
+}

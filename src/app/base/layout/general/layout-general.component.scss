@@ -1,7 +1,50 @@
 :host{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 
-    mat-toolbar{
+    mat-toolbar.desktop{
         display: flex;
-        column-gap: 16px;
+        justify-content: space-between;
+
+        .accesos{
+            display: flex;
+            column-gap: 16px;
+        }
+
+        .boton-ingresar{
+            cursor: pointer;
+            background: #3964c8;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 18px;
+
+
+        }
+
+        .boton-usuario {
+            display: flex;
+            padding: 4px 8px;
+            background: #3964c8;
+            border-radius: 8px;
+            align-items: center;
+            gap: 4px;
+            font-size: 18px;
+        }
+    }
+
+    mat-toolbar.mobile{
+        display: flex;
+        justify-content: flex-end;
+
+        .boton-usuario {
+            display: flex;
+            padding: 4px 8px;
+            background: #3964c8;
+            border-radius: 8px;
+            align-items: center;
+            gap: 4px;
+            font-size: 18px;
+        }
     }
 }

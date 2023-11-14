@@ -1,0 +1,10 @@
+:host{
+    display: flex;
+
+
+    iframe{
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        border: none !important;
+    }
+}

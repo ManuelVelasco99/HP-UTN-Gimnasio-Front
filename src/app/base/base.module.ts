@@ -4,12 +4,18 @@ import { MatCardModule       } from '@angular/material/card';
 import { MAT_DATE_LOCALE     } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule     } from '@angular/material/dialog';
+import { MatDividerModule    } from '@angular/material/divider';
 import { MatFormFieldModule  } from '@angular/material/form-field';
 import { MatIconModule       } from '@angular/material/icon';
 import { MatInputModule      } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule      } from '@angular/material/table';
+import { MatTabsModule       } from '@angular/material/tabs';
 import { MatToolbarModule    } from '@angular/material/toolbar';
+////seba adss//
+import { MatSelectModule	 } from '@angular/material/select';
+import { MatCheckboxModule	 } from '@angular/material/checkbox';
+
 
 //ANGULAR COMMON
 import { CommonModule } from '@angular/common';
@@ -28,12 +34,18 @@ import { LayoutFormularioComponent  } from './layout/formulario/layout-formulari
 import { LayoutGeneralComponent     } from './layout/general/layout-general.component';
 import { LayoutListadoComponent     } from './layout/listado/layout-listado.component';
 import { PopupConfirmacionComponent } from './popup-confirmacion/popup-confirmacion.component';
-
+import { PopupMultimediaComponent   } from './popup-multimedia/popup-multimedia.component';
 //MODULES
 import { RouterModule } from '@angular/router';
 
 //SERVICES
-import { ApiService } from './api.service';
+import { ApiService        } from './api.service';
+import { AuthService       } from './auth.service';
+import { DeviceService     } from './device.service';
+import { MultimediaService } from './multimedia.service';
+
+//PIPES
+import { SafePipe } from './pipe';
 
 
 @NgModule({
@@ -42,6 +54,8 @@ import { ApiService } from './api.service';
 		LayoutFormularioComponent,
 		LayoutListadoComponent,
   		PopupConfirmacionComponent,
+		PopupMultimediaComponent,
+		SafePipe,
  	],
 	imports: [
 
@@ -54,12 +68,17 @@ import { ApiService } from './api.service';
         MatCardModule,
 		MatDatepickerModule,
 		MatDialogModule,
+		MatDividerModule,
         MatFormFieldModule,
 		MatIconModule,
         MatInputModule,
 		MatNativeDateModule,
 		MatTableModule,
+		MatTabsModule,
         MatToolbarModule,
+		/////////sebaads/////
+		MatSelectModule,
+		MatCheckboxModule,
 
 		//ANGULAR FORMS
 		FormsModule,
@@ -80,11 +99,16 @@ import { ApiService } from './api.service';
         MatCardModule,
 		MatDatepickerModule,
 		MatDialogModule,
+		MatDividerModule,
         MatFormFieldModule,
 		MatIconModule,
         MatInputModule,
 		MatNativeDateModule,
+		MatTableModule,
         MatToolbarModule,
+		MatTabsModule,
+		/////////sebaads/////
+		MatSelectModule,
 
 		//ANGULAR FORMS
 		FormsModule,
@@ -100,6 +124,12 @@ import { ApiService } from './api.service';
 
 		//SERVICES
 		ApiService,
+		AuthService,
+		DeviceService,
+		MultimediaService,
+
+		//PIPES
+		SafePipe,
 	],
 	schemas: [
 		//ANGULAR CORE
@@ -107,6 +137,7 @@ import { ApiService } from './api.service';
     ],
 	providers: [
 		MatNativeDateModule,
+		AuthService,
 		{
 			provide: MAT_DATE_LOCALE,
 			useValue: 'en-GB' 

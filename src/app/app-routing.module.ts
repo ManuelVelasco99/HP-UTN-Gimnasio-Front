@@ -12,6 +12,15 @@ const routes: Routes = [
 			},
 		]
 	},
+    {
+        path : 'auth',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+            },
+        ]
+    },
 	{
         path : 'maquina-elemento',
         children : [
@@ -31,6 +40,15 @@ const routes: Routes = [
         ]
     },
     {
+        path : 'tipo-clase',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./tipo-clase/tipo-clase.module').then(m => m.TipoClaseModule),
+            },
+        ]
+    },
+    {
         path : 'precio-cuota',
         children : [
             {
@@ -45,6 +63,69 @@ const routes: Routes = [
             {
                 path: '',
                 loadChildren: () => import('./cuota/cuota.module').then(m => m.CuotaModule),
+            },
+        ]
+    },
+    {
+        path : 'usuario',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule),
+            },
+        ]
+    },
+    {
+        path : 'rutina',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./rutina/rutina.module').then(m => m.RutinaModule),
+            },
+        ]
+    },
+    {
+        path : 'ingreso-socio',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./ingreso-socio/ingreso-socio.module').then(m => m.IngresoSocioModule),
+            },
+        ]
+    },
+    {
+        path : 'clase',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./clase/clase.module').then(m => m.ClaseModule),
+            }
+        ]
+    },
+    {
+        path : 'socio',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./socio/socio.module').then(m => m.SocioModule),
+            },
+        ]
+    },
+    {
+        path : 'profesor',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./profesor/profesor.module').then(m => m.ProfesorModule),
+            },
+        ]
+    },
+    {
+        path : 'consulta-rutina',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./consulta-rutina/consulta-rutina.module').then(m => m.ConsultaRutinaModule),
             },
         ]
     },
