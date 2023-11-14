@@ -11,6 +11,8 @@ import { FormularioBaseComponent } from 'src/app/base/formulario-base.component'
 export class CuotaAgregarComponent extends FormularioBaseComponent {
 	public tituloFormulario  : string = this.modoEdicion ? 'Editar Cuota' : 'Agregar Cuota';
 
+	public deshabilitarBotonPrincipal : boolean = true;
+
 	constructor(
 		private route : ActivatedRoute,
 	) {
@@ -70,17 +72,13 @@ export class CuotaAgregarComponent extends FormularioBaseComponent {
 	}
 
 	public async clickValidarDniSocio() : Promise<void> {
+		this.deshabilitarBotonPrincipal = false;
 		try {
-			let response= await this.apiService.post("/cuota-mensual/validar-pago",{dni:this.form.get("dni")?.value})
-			this.form = this.formBuilder.group({
-				dni: new FormControl			 ({ value: response.data.socio.dni, disabled: false }),
-				nombre: new FormControl		 	 ({ value: response.data.socio.nombre, disabled: true }),
-				apellido: new FormControl		 ({ value: response.data.socio.apellido, disabled: true }),
-				fecha_nacimiento: new FormControl({ value: response.data.socio.fecha_nacimiento, disabled: true }),
-				telefono: new FormControl		 ({ value: response.data.socio.telefono, disabled: true }),
-				fecha_desde: new FormControl	 ({ value: response.data.precio_cuota.fecha_desde, disabled: true }),
-				monto: new FormControl			 ({ value: response.data.precio_cuota.monto, disabled: true }),
+			let response = (await this.apiService.post("/cuota-mensual/validar-pago",{dni:this.form.get("dni")?.value})).data.socio;
+			Object.keys(response).forEach((element: any) => {
+				this.form.get(element)?.setValue(response[element]);
 			});
+			this.deshabilitarBotonPrincipal = false;
 			
 		} catch (error) {
 			console.log(error)
