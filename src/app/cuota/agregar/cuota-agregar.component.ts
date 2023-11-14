@@ -56,6 +56,8 @@ export class CuotaAgregarComponent extends FormularioBaseComponent {
 		}
 		else{
 			try {
+				console.log("Entro al agregar")
+				console.log(formValue)
 				await this.apiService.post(`${this.uri}/agregar`,formValue);
 				this.router.navigate(["cuota/listar"]);
 			} catch (error) {}
@@ -78,8 +80,8 @@ export class CuotaAgregarComponent extends FormularioBaseComponent {
 				telefono: new FormControl		 ({ value: response.data.socio.telefono, disabled: true }),
 				fecha_desde: new FormControl	 ({ value: response.data.precio_cuota.fecha_desde, disabled: true }),
 				monto: new FormControl			 ({ value: response.data.precio_cuota.monto, disabled: true }),
-	
 			});
+			
 		} catch (error) {
 			console.log(error)
 		}

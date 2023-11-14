@@ -9,8 +9,8 @@ import { CuotaListarComponent } from './listar/cuota-listar.component';
 
 @NgModule({
 	declarations: [
-    CuotaAgregarComponent,
-    CuotaListarComponent
+		CuotaAgregarComponent,
+		CuotaListarComponent
   ],
 	imports: [
 		BaseModule,
