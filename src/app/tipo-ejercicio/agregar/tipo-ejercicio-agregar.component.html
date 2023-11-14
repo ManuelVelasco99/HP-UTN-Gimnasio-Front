@@ -12,9 +12,23 @@
             <div class="contenedor-campos">
 
                 <mat-form-field>
+                    <mat-label>Nombre</mat-label>
+                    <input formControlName="nombre" matInput required>
+                    <mat-error *ngIf="form.get('nombre')?.getError('required')">Obligatorio</mat-error>
+                </mat-form-field>
+                
+                <mat-form-field>
                     <mat-label>Descripcion</mat-label>
                     <input formControlName="descripcion" matInput required>
                     <mat-error *ngIf="form.get('descripcion')?.getError('required')">Obligatorio</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                <mat-label>Maquina/elemento</mat-label>	
+                        <mat-select formControlName="idMaquinaElemento"  matInput >   
+                            <mat-option *ngFor="let maquinaElemento of registrosMaqEle " [value]='maquinaElemento.id'>
+                                {{maquinaElemento.descripcion}}
+                            </mat-option>
+                        </mat-select>
                 </mat-form-field>
 
                 <mat-form-field>

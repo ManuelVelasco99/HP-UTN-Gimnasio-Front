@@ -100,4 +100,5 @@ export class RutinaListarComponent extends ListadoBaseComponent {
         console.log(borrado);
       }
 	}
+
 }

@@ -90,6 +90,7 @@ export class ConsultaRutinaDiaListadoEjerciciosComponent {
 	public clickMultimedia($event : any, index : number) {
 		$event.stopPropagation();
 		this.multimediaService.mostrarPopupMultimedia(this.ejerciciosParaMostrar[index].multimedia);
+		console.log(this.ejerciciosParaMostrar[index].multimedia)
 	}
 
 
