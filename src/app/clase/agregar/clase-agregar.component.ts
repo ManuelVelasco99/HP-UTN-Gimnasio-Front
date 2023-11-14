@@ -1,12 +1,12 @@
+import { ActivatedRoute          } from '@angular/router';
 import { Component               } from '@angular/core';
 import { FormControl             } from '@angular/forms';
-import { ActivatedRoute          } from '@angular/router';
 import { FormularioBaseComponent } from 'src/app/base/formulario-base.component';
 
 @Component({
-  selector: 'app-clase-agregar',
-  templateUrl: './clase-agregar.component.html',
-  styleUrls: ['./clase-agregar.component.scss']
+	selector    : 'app-clase-agregar',
+	templateUrl : './clase-agregar.component.html',
+	styleUrls   : ['./clase-agregar.component.scss']
 })
 export class ClaseAgregarComponent extends FormularioBaseComponent{
   
@@ -16,21 +16,20 @@ export class ClaseAgregarComponent extends FormularioBaseComponent{
 		super();
 	}
 
-  public tituloFormulario : string = this.modoEdicion ? 'Editar clase': 'Agregar clase ';
+	public tituloFormulario : string = this.modoEdicion ? 'Editar clase': 'Agregar clase ';
 
-  public tiposClase: Array<any> = [];
-  public profesores: Array<any> = [];
+	public tiposClase: Array<any> = [];
+	public profesores: Array<any> = [];
 
-  ngOnInit(): void {	
-    this.uri = "/clase"	
-    this.crearFormulario();
-    this.cargarParaAsignar()
-    let params = this.route.snapshot.params;
-    if(this.modoEdicion){
-      this.id = params['id'];
-      this.obtenerYCompletar();
-      
-    }
+	ngOnInit(): void {	
+		this.uri = "/clase";
+		this.crearFormulario();
+		this.rellenarTipoEjercicioYProfesor()
+		let params = this.route.snapshot.params;
+		if(this.modoEdicion){
+			this.id = params['id'];
+			this.obtenerYCompletar();
+		}
 	}
 
   private crearFormulario() {
@@ -38,15 +37,14 @@ export class ClaseAgregarComponent extends FormularioBaseComponent{
 			horario_inicio : new FormControl({ value: '', disabled: false }),
 			horario_fin    : new FormControl({ value: '', disabled: false }),
 			fecha          : new FormControl({ value: '', disabled: false }),
-      tipoClase      : new FormControl({ value: '', disabled: false }),
+      		tipoClase      : new FormControl({ value: '', disabled: false }),
 			profesor       : new FormControl({ value: '', disabled: false }),
 		});
 	}
 
-  private async rellenarTipoEjercicioYProfesor() : Promise <void>{
-    this.tiposClase = await this.apiService.getData(`/tipoClase/listar`);
-    console.log(this.tiposClase)
-    this.profesores = await this.apiService.getData(`/profesor/listar`);
+  	private async rellenarTipoEjercicioYProfesor() : Promise <void>{
+		this.tiposClase = await this.apiService.getData(`/tipo-clase/listar`);
+		this.profesores = await this.apiService.getData(`/profesor/listar`);
 	}
 
   public async enviar() : Promise<void> {
@@ -87,20 +85,4 @@ export class ClaseAgregarComponent extends FormularioBaseComponent{
 		this.router.navigate(["clase/listar"]);
 	}
 
-  public async cargarParaAsignar(): Promise<void>{
-    let clase = await this.apiService.getData(`/clase/${this.id}/obtener`);
-      this.form.setValue({
-        fecha          : clase.fecha,
-        horario_inicio : clase.horario_inicio,
-        horario_fin    : clase.horario_fin,
-        tipoClase      : clase.tipoClase.id,
-        profesor       : clase.usuario.id,
-        /*
-        tipoClase      : clase.tipoClase,
-        profesor       : clase.profesor,
-         */
-      });
-
-      this.rellenarTipoEjercicioYProfesor();
-  }
 }
