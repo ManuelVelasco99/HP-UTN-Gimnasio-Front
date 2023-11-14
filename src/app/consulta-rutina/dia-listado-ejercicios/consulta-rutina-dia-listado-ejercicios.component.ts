@@ -5,6 +5,7 @@ import { firstValueFrom                 } from 'rxjs';
 import { Input                          } from '@angular/core';
 import { ListarNotasEjerciciosComponent } from '../listar-notas-ejercicios/listar-notas-ejercicios.component';
 import { MatDialog                      } from '@angular/material/dialog';
+import { MultimediaService              } from 'src/app/base/multimedia.service';
 
 @Component({
     selector   : 'app-consulta-rutina-dia-listado-ejercicios',
@@ -22,8 +23,9 @@ export class ConsultaRutinaDiaListadoEjerciciosComponent {
 	public diaRutina! : number;
 
 	constructor(
-		private apiService : ApiService,
-		public  dialog: MatDialog
+		private apiService        : ApiService,
+		public  dialog            : MatDialog,
+		private multimediaService : MultimediaService,
 	){
 
 	}
@@ -38,6 +40,7 @@ export class ConsultaRutinaDiaListadoEjerciciosComponent {
 				series: element.series,
 				mostrarNotas : false,
 				repeticiones: element.repeticiones,
+				multimedia: element.multimedia,
 				notas: element.notas ? element.notas : []
 			})
 		});
@@ -82,6 +85,11 @@ export class ConsultaRutinaDiaListadoEjerciciosComponent {
 				maxHeight : "90vh"
 			}
 		)
+	}
+
+	public clickMultimedia($event : any, index : number) {
+		$event.stopPropagation();
+		this.multimediaService.mostrarPopupMultimedia(this.ejerciciosParaMostrar[index].multimedia);
 	}
 
 

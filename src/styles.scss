@@ -7,3 +7,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-left: 16px;
     margin-right: 16px;
 }
+
+.panel-multimedia{
+    max-width: 600px !important;
+    margin-left: 16px;
+    margin-right: 16px;
+    aspect-ratio: 4/3;
+}

@@ -15,7 +15,7 @@
             <mat-divider></mat-divider>
             <div class="contenedor-inferior">
                 Descipcion: {{ejercicio.descripcion}}
-                <mat-icon>smart_display</mat-icon>
+                <mat-icon (click)="clickMultimedia($event, indexOfelement)">smart_display</mat-icon>
             </div>
             <ng-container *ngIf="ejercicio.notas.length > 0">
                 <div class="nota">
