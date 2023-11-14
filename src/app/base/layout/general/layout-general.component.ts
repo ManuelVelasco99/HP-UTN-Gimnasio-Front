@@ -22,6 +22,15 @@ export class LayoutGeneralComponent {
             rolesPermitidos : [1]
         },
         {
+            nombre : "Precio cuota",
+            route  : "/precio-cuota/listar"
+        },
+        {
+            nombre : "Cuota",
+            route  : "/cuota/listar",
+            rolesPermitidos : [1]
+        },
+        {
             nombre          : "Tipo ejercicio",
             route           : "/tipo-ejercicio/listar",
             rolesPermitidos : [1]

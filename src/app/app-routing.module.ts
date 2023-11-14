@@ -58,6 +58,15 @@ const routes: Routes = [
         ]
     },
     {
+        path : 'cuota',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./cuota/cuota.module').then(m => m.CuotaModule),
+            },
+        ]
+    },
+    {
         path : 'usuario',
         children : [
             {

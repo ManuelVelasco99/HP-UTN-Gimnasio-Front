@@ -1,0 +1,22 @@
+:host{
+
+    .contenedor{
+        display: flex;
+        flex-direction: column;
+        padding-left: 50px;
+        padding-top: 20px;
+
+
+        .boton-agregar{
+            width: 150px;
+        }
+
+        .row{
+            display: flex;
+            align-items: center;
+            column-gap: 10px;
+            justify-content: flex-start;
+        
+        }
+    }
+}
