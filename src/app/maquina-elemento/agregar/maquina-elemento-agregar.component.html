@@ -10,7 +10,7 @@
             <div class="contenedor-campos">
                 <mat-form-field>
                     <mat-label>Descripcion</mat-label>
-                    <input formControlName="descripcion" matInput required>
+                    <input formControlName="descripcion" matInput required maxlength="40">
                     <mat-error *ngIf="form.get('descripcion')?.getError('required')">Obligatorio</mat-error>
                 </mat-form-field>
             </div>

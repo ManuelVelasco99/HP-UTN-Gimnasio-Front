@@ -20,13 +20,24 @@ export class TipoEjercicioListarComponent extends ListadoBaseComponent {
 	public columnasAMostrar : Array<string> = ["id","nombre", "multimedia", "editar", "eliminar"];
 
 	ngOnInit() : void {	
+		this.filtrosDisponibles.push(
+			{
+				textoFiltro  : "Nombre",
+				valorFiltro  : "",
+				nombreFiltro : "nombre"
+			}
+		);
 		this.obtenerListado();
 	}
 
 	private async obtenerListado() : Promise<void> {
-		this.registrosListado = await this.apiService.getData("/tipo-ejercicio/listar");
+		this.registrosListado = await this.apiService.getData("/tipo-ejercicio/listar"+this.queryParams);
 	}
 
+	public clickFiltrar() : void {
+		this.actualizarQueryParamsDesdeFiltros(this.filtrosDisponibles);
+		this.obtenerListado();
+	}
 
 	public clickBotonEditar(id : number) : void {
 		this.router.navigate([`tipo-ejercicio/${id}/editar`]);
@@ -48,8 +59,9 @@ export class TipoEjercicioListarComponent extends ListadoBaseComponent {
 
 		 if(respuesta){
 			resback = await this.apiService.getData(`/tipo-ejercicio/${id}/eliminar`);
+			await this.confirmService.mostrarMensajeConfirmacion(resback);
 		 }
-		 await this.confirmService.mostrarMensajeConfirmacion(resback);
+		 
 		 this.obtenerListado();
 
 		
