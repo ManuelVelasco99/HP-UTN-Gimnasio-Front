@@ -28,16 +28,21 @@ export class MisClasesListarComponent extends ListadoBaseComponent {
 	}
 
 	public async clickInscribirseMisClases(idClase : any) : Promise<void> {
-		console.log("idClase: ",idClase);
 
-		//postinscripcion
+		try {
+			let inscripcion = await this.apiService.post(`/mis-clases/${idClase}/inscribirse`,{});
+			console.log("inscripcion ",inscripcion);
+			let respuesta = await this.confirmService.mostrarMensajeConfirmacion(
+			`Usted se ha inscripto a la clase de ${inscripcion.data.clase.tipoClase.descripcion}`,
+				"Aceptar",
+				"",
+				true
+			);
+			
+		} catch (error) {
+			
+		}
 
-		let respuesta = await this.confirmService.mostrarMensajeConfirmacion(
-			"Usted se ha inscripto a la clase de XXXXX”",
-			"Aceptar",
-			"",
-			true
-		);
 	}
 
 	public async clickCancelarInscripcionMisClases(idClase : any) : Promise<void> {
