@@ -2,6 +2,7 @@ import { ActivatedRoute          } from '@angular/router';
 import { Component               } from '@angular/core';
 import { FormControl             } from '@angular/forms';
 import { FormularioBaseComponent } from 'src/app/base/formulario-base.component';
+import * as moment from 'moment';
 
 @Component({
 	selector    : 'app-clase-agregar',
@@ -10,7 +11,7 @@ import { FormularioBaseComponent } from 'src/app/base/formulario-base.component'
 })
 export class ClaseAgregarComponent extends FormularioBaseComponent{
   
-  constructor(
+  	constructor(
 		private route : ActivatedRoute,
 	) {
 		super();
@@ -32,7 +33,7 @@ export class ClaseAgregarComponent extends FormularioBaseComponent{
 		}
 	}
 
-  private crearFormulario() {
+  	private crearFormulario() {
 		this.form = this.formBuilder.group({
 			horario_inicio : new FormControl({ value: '', disabled: false }),
 			horario_fin    : new FormControl({ value: '', disabled: false }),
@@ -47,7 +48,7 @@ export class ClaseAgregarComponent extends FormularioBaseComponent{
 		this.profesores = await this.apiService.getData(`/profesor/listar`);
 	}
 
-  public async enviar() : Promise<void> {
+  	public async enviar() : Promise<void> {
 		this.form.markAllAsTouched();
 		let formValue = this.form.value;
 
@@ -57,21 +58,23 @@ export class ClaseAgregarComponent extends FormularioBaseComponent{
 		if(this.modoEdicion){
 			try {
 				
-        formValue.fecha = new Date(formValue.fecha).toISOString().split("T")[0];
-        formValue.horario_inicio = new Date(`1970-01-01T${formValue.horario_inicio}`).toISOString().split("T")[1];
-        formValue.horario_fin = new Date(`1970-01-01T${formValue.horario_fin}`).toISOString().split("T")[1];
-				
-        await this.apiService.post(`${this.uri}/${this.id}/editar`,formValue);
-				this.router.navigate(["clase/listar"]);
+				formValue.fecha = new Date(formValue.fecha).toISOString().split("T")[0];
+				formValue.horario_inicio = moment(`1970-01-01 ${formValue.horario_inicio}`).format('HH:mm:ss');
+				formValue.horario_fin = moment(`1970-01-01 ${formValue.horario_fin}`).format('HH:mm:ss');
+				formValue.profesor = parseInt(formValue.profesor, 10);
+
+				await this.apiService.post(`${this.uri}/${this.id}/editar`,formValue);
+						this.router.navigate(["clase/listar"]);
 			} catch (error) {
 	
 			}
 		}else{
 			try {
 				formValue.fecha = new Date(formValue.fecha).toISOString().split("T")[0];
-        formValue.horario_inicio = new Date(`1970-01-01T${formValue.horario_inicio}`).toISOString().split("T")[1];
-        formValue.horario_fin = new Date(`1970-01-01T${formValue.horario_fin}`).toISOString().split("T")[1];
-
+				formValue.horario_inicio = moment(`1970-01-01 ${formValue.horario_inicio}`).format('HH:mm:ss');
+				formValue.horario_fin = moment(`1970-01-01 ${formValue.horario_fin}`).format('HH:mm:ss');
+				formValue.profesor = parseInt(formValue.profesor, 10);
+				
 				await this.apiService.post(`${this.uri}/agregar`,formValue);
 				this.router.navigate(["clase/listar"]);
 			} catch (error) {
