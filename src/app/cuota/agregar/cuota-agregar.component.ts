@@ -58,8 +58,6 @@ export class CuotaAgregarComponent extends FormularioBaseComponent {
 		}
 		else{
 			try {
-				console.log("Entro al agregar")
-				console.log(formValue)
 				await this.apiService.post(`${this.uri}/agregar`,formValue);
 				this.router.navigate(["cuota/listar"]);
 			} catch (error) {}
@@ -74,9 +72,16 @@ export class CuotaAgregarComponent extends FormularioBaseComponent {
 	public async clickValidarDniSocio() : Promise<void> {
 		this.deshabilitarBotonPrincipal = false;
 		try {
-			let response = (await this.apiService.post("/cuota-mensual/validar-pago",{dni:this.form.get("dni")?.value})).data.socio;
-			Object.keys(response).forEach((element: any) => {
-				this.form.get(element)?.setValue(response[element]);
+			let response = (await this.apiService.post("/cuota-mensual/validar-pago",{dni:this.form.get("dni")?.value})).data;
+
+			let socio= response.socio
+			let precio_cuota=response.precio_cuota
+
+			Object.keys(socio).forEach((element: any) => {
+				this.form.get(element)?.setValue(socio[element]);
+			});
+			Object.keys(precio_cuota).forEach((element: any) => {
+				this.form.get(element)?.setValue(precio_cuota[element]);
 			});
 			this.deshabilitarBotonPrincipal = false;
 			
