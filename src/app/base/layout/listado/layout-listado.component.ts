@@ -45,6 +45,9 @@ export class LayoutListadoComponent {
 	@Input()
 	public textoBotonListado : string = "Agregar";
 
+	@Input()
+	public ocultarBotonListado : boolean = false;
+
 	@Output()
     public clickBotonEditar   : EventEmitter<number> = new EventEmitter();
 
@@ -71,6 +74,12 @@ export class LayoutListadoComponent {
 
 	@Output()
 	public clickMultimediaEvent : EventEmitter<string> = new EventEmitter();
+
+	@Output()
+	public clickInscribirseMisClases : EventEmitter<number> = new EventEmitter();
+
+	@Output()
+	public clickCancelarInscripcionMisClases : EventEmitter<number> = new EventEmitter();
 
 	@ViewChild(MatTable)
 	public table! : MatTable<any>;
