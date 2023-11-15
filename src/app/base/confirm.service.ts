@@ -16,6 +16,7 @@ export class ConfirmService {
 		textoPrincipal : string     = "",
 		textoBotonAceptar : string  = "",
 		textoBotonCancelar : string = "",
+		ocultarBotonCancelar : boolean = false,
 
 	) : Promise<boolean> {
 		let resposne = await firstValueFrom( 
@@ -25,7 +26,8 @@ export class ConfirmService {
 					data : {
 						textoPrincipal     : textoPrincipal,
 						textoBotonAceptar  : textoBotonAceptar,
-						textoBotonCancelar : textoBotonCancelar
+						textoBotonCancelar : textoBotonCancelar,
+						ocultarBotonCancelar : ocultarBotonCancelar,
 					},
 					autoFocus: false
 				}

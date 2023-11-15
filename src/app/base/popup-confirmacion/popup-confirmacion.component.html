@@ -3,7 +3,7 @@
         {{textoPrincipal}}
     </div>
     <div class="botones">
-        <button mat-raised-button mat-dialog-close>
+        <button *ngIf="!ocultarBotonCancelar" mat-raised-button mat-dialog-close>
             {{textoBotonCancelar}}
         </button>
         <button mat-raised-button color="primary" (click)="dialogRef.close(true)">
