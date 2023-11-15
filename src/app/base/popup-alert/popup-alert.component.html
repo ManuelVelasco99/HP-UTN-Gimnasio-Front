@@ -1,0 +1,34 @@
+
+<div *ngIf="tipoAlerta ==1" class="contenedor-popup-puede-ingresar">
+    <mat-icon class="icon">verified</mat-icon>
+    <div class="texto">
+        Puede ingresar
+    </div>
+    <div class="texto2">
+        Pase por el molinete
+    </div>
+</div>
+<div *ngIf="tipoAlerta ==2" class="contenedor-popup-no-puede-ingresar">
+    <mat-icon class="icon">X</mat-icon>
+    <div class="texto">
+        No puede ingresar
+    </div>
+    <div class="texto2">
+        {{textoNASocio}}
+    </div>
+    <div class="texto2">
+       Adeuda una o mas cuotas
+    </div>
+    <div class="texto2">
+        Pase por administracion para abonar
+    </div>
+</div>
+<div *ngIf="tipoAlerta ==3" class="contenedor-popup-socio-no-encontrado">
+    <mat-icon class="icon">help</mat-icon>
+    <div class="texto">
+            Socio no encontrado
+    </div>
+    <div class="texto2">
+        Por favor ingrese un DNI valido
+    </div>
+</div>

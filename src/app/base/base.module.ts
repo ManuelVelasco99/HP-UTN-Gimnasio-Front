@@ -35,6 +35,7 @@ import { LayoutGeneralComponent     } from './layout/general/layout-general.comp
 import { LayoutListadoComponent     } from './layout/listado/layout-listado.component';
 import { PopupConfirmacionComponent } from './popup-confirmacion/popup-confirmacion.component';
 import { PopupMultimediaComponent   } from './popup-multimedia/popup-multimedia.component';
+import { PopupAlertComponent } from './popup-alert/popup-alert.component';
 //MODULES
 import { RouterModule } from '@angular/router';
 
@@ -55,6 +56,7 @@ import { SafePipe } from './pipe';
 		LayoutListadoComponent,
   		PopupConfirmacionComponent,
 		PopupMultimediaComponent,
+		PopupAlertComponent,
 		SafePipe,
  	],
 	imports: [
@@ -109,6 +111,7 @@ import { SafePipe } from './pipe';
 		MatTabsModule,
 		/////////sebaads/////
 		MatSelectModule,
+		
 
 		//ANGULAR FORMS
 		FormsModule,

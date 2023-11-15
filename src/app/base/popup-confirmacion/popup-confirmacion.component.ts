@@ -14,6 +14,7 @@ export class PopupConfirmacionComponent {
 	public textoPrincipal!     : string;
 	public textoBotonAceptar!  : string;
 	public textoBotonCancelar! : string;
+	public ocultarBotonCancelar : boolean = false;
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) data: {name: string},
@@ -29,6 +30,8 @@ export class PopupConfirmacionComponent {
 		this.textoBotonAceptar = data?.textoBotonAceptar ? data.textoBotonAceptar : "Aceptar";
 
 		this.textoBotonCancelar = data?.textoBotonCancelar ? data.textoBotonCancelar : "Cancelar";
+
+		this.ocultarBotonCancelar = data.ocultarBotonCancelar;
 
 	}
 	

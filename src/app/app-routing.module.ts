@@ -129,6 +129,15 @@ const routes: Routes = [
             },
         ]
     },
+    {
+        path : 'mis-clases',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./mis-clases/mis-clases.module').then(m => m.MisClasesModule),
+            },
+        ]
+    },
 ];
 
 @NgModule({

@@ -13,15 +13,16 @@
 
                 <mat-form-field>
                     <mat-label>Nombre</mat-label>
-                    <input formControlName="nombre" matInput required>
+                    <input formControlName="nombre" matInput required maxlength="40">
                     <mat-error *ngIf="form.get('nombre')?.getError('required')">Obligatorio</mat-error>
                 </mat-form-field>
                 
                 <mat-form-field>
                     <mat-label>Descripcion</mat-label>
-                    <input formControlName="descripcion" matInput required>
+                    <textarea class="desc" formControlName="descripcion" matInput required maxlength="1000">  </textarea>
                     <mat-error *ngIf="form.get('descripcion')?.getError('required')">Obligatorio</mat-error>
                 </mat-form-field>
+                
                 <mat-form-field>
                 <mat-label>Maquina/elemento</mat-label>	
                         <mat-select formControlName="idMaquinaElemento"  matInput >   
@@ -33,7 +34,7 @@
 
                 <mat-form-field>
                     <mat-label>Multimedia</mat-label>
-                    <input formControlName="multimedia" matInput>
+                    <input formControlName="multimedia" matInput maxlength="255">
                 </mat-form-field>
 
             </div>

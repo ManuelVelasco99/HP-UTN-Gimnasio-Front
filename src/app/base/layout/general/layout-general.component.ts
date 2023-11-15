@@ -75,6 +75,11 @@ export class LayoutGeneralComponent {
             nombre          : "Sus rutinas",
             route           : "/consulta-rutina",
             rolesPermitidos : [4]
+        },
+        {
+            nombre          : "Mis clases",
+            route           : "/mis-clases",
+            rolesPermitidos : [4]
         }
     ];
 

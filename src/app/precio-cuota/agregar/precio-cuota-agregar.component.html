@@ -11,7 +11,7 @@
 
                 <mat-form-field>
                     <mat-label>Precio de la cuota</mat-label>
-                    <input formControlName="monto" matInput required>
+                    <input formControlName="monto" matInput required type="number">
                     <mat-error *ngIf="form.get('monto')?.getError('required')">Obligatorio</mat-error>
                 </mat-form-field>
 

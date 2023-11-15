@@ -3,6 +3,8 @@
     [urlAgregar]="'/tipo-ejercicio/agregar'"
     [registrosListado]="registrosListado"
     [columnasAMostrar]="columnasAMostrar"
+    [filtrosDisponibles]="filtrosDisponibles"
+    (clickBotonFiltrar)="clickFiltrar()"
     (clickBotonEditar)="clickBotonEditar($event)"
     (clickBotonEliminar)="clickBotonEliminar($event)"
     (clickMultimediaEvent) = "clickMultimedia($event)"
