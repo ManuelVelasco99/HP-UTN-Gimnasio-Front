@@ -1,11 +1,11 @@
 <mat-card class="card-ingreso">
 
     <span class="texto-ingreso">Escriba el DNI para ingresar</span>
-
-    <form (ngSubmit)="validarIngreso()">
+ 
+    <form [formGroup]="form" (ngSubmit)="validarIngreso()">
         <mat-form-field>
             <mat-label>DNI</mat-label>
-            <input formControlName="descripcion" matInput>
+            <input formControlName="dni" matInput required="">
         </mat-form-field>
     
         <button mat-raised-button color="primary">Ingresar</button>
