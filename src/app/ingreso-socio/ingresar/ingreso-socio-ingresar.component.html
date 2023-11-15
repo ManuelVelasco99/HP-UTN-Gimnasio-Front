@@ -5,7 +5,7 @@
     <form [formGroup]="form" (ngSubmit)="validarIngreso()">
         <mat-form-field>
             <mat-label>DNI</mat-label>
-            <input formControlName="dni" matInput required="">
+            <input formControlName="dni" matInput required="" maxlength="128">
         </mat-form-field>
     
         <button mat-raised-button color="primary">Ingresar</button>
