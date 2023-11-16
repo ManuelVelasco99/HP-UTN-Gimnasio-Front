@@ -22,7 +22,7 @@ export abstract class ListadoBaseComponent {
                     this.queryParams = "?";
                 }
                 else{
-                    this.queryParams = this.queryParams + "%";
+                    this.queryParams = this.queryParams + "&";
                 }
                 this.queryParams = this.queryParams + filtro.nombreFiltro + "=" + filtro.valorFiltro;
             }
