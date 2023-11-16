@@ -10,6 +10,8 @@ import { FormularioBaseComponent } from 'src/app/base/formulario-base.component'
 })
 export class ProfesorAgregarComponent extends FormularioBaseComponent {
 
+	public errorDni : string = "";
+
 	constructor(
 		private route : ActivatedRoute,
 	) {
@@ -55,16 +57,32 @@ export class ProfesorAgregarComponent extends FormularioBaseComponent {
 				formValue.fecha_nacimiento = new Date(formValue.fecha_nacimiento).toISOString().split("T")[0];
 				await this.apiService.post(`${this.uri}/actualizar`,{formValue, id: this.id});
 				this.router.navigate(["profesor/listar"]);
-			} catch (error) {
-	
+			} catch (error : any) {
+				if(error.status === 409){
+					let errorAux = error.error;
+					if(errorAux.dni){
+						this.form.get("dni")?.setErrors({dni : errorAux.dni});
+					}
+					if(errorAux.email){
+						this.form.get("email")?.setErrors({email : errorAux.email});
+					}
+				}
 			}
 		}else{
 			try {
 				formValue.fecha_nacimiento = new Date(formValue.fecha_nacimiento).toISOString().split("T")[0];
 				await this.apiService.post(`${this.uri}/agregar`,formValue);
 				this.router.navigate(["profesor/listar"]);
-			} catch (error) {
-	
+			} catch (error : any) {
+				if(error.status === 409){
+					let errorAux = error.error;
+					if(errorAux.dni){
+						this.form.get("dni")?.setErrors({dni : errorAux.dni});
+					}
+					if(errorAux.email){
+						this.form.get("email")?.setErrors({email : errorAux.email});
+					}
+				}
 			}
 		}
 

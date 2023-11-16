@@ -24,6 +24,7 @@
                     <mat-label>DNI</mat-label>
                     <input formControlName="dni" matInput required maxlength="128">
                     <mat-error *ngIf="form.get('dni')?.getError('required')">Obligatorio</mat-error>
+                    <mat-error *ngIf="form.get('dni')?.getError('dni')">{{form.get('dni')?.getError('dni')}}</mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
@@ -46,6 +47,7 @@
                     <mat-label>Email</mat-label>
                     <input formControlName="email" matInput required maxlength="50">
                     <mat-error *ngIf="form.get('email')?.getError('required')">Obligatorio</mat-error>
+                    <mat-error *ngIf="form.get('email')?.getError('email')">{{form.get('email')?.getError('email')}}</mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
