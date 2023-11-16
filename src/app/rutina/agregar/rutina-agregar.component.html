@@ -4,13 +4,14 @@
     [tituloFormulario]="tituloFormulario"
     (clickBotonCancelar)="clickCancelar()"
     (clickBotonPrincipal)="enviar()"
-    [textoBotonPrincipal]="textoBoton"
-    [botonesDesHabilitados] = "camposDeshabilitados"
+    [textoBotonPrincipal]="botonPrincipal"
+    [botonesDesHabilitados]="camposDeshabilitados"
 >
 
 <contenido>
     <mat-card  *ngIf="!this.esPreset"> 
     <div class="contenedor-campos"> 
+        <h1>Socio</h1>
         <mat-form-field>
             <mat-label>DNI socio</mat-label>
                 <input  matInput required [(ngModel)]="dniSocio" disabled="{{this.modoEdicion}}">
