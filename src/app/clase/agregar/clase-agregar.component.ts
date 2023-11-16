@@ -3,6 +3,8 @@ import { Component               } from '@angular/core';
 import { FormControl             } from '@angular/forms';
 import { FormularioBaseComponent } from 'src/app/base/formulario-base.component';
 import * as moment from 'moment';
+import { LocatorService } from 'src/app/base/locator.service';
+import { ConfirmService } from 'src/app/base/confirm.service';
 
 @Component({
 	selector    : 'app-clase-agregar',
@@ -10,6 +12,7 @@ import * as moment from 'moment';
 	styleUrls   : ['./clase-agregar.component.scss']
 })
 export class ClaseAgregarComponent extends FormularioBaseComponent{
+	public confirmService = LocatorService.injector.get(ConfirmService);
   
   	constructor(
 		private route : ActivatedRoute,
@@ -65,8 +68,10 @@ export class ClaseAgregarComponent extends FormularioBaseComponent{
 
 				await this.apiService.post(`${this.uri}/${this.id}/editar`,formValue);
 						this.router.navigate(["clase/listar"]);
-			} catch (error) {
-	
+			} catch (error : any) {
+				if(error.status === 409){
+					this.confirmService.mostrarMensajeConfirmacion(error.error.message,"","",true);
+				}
 			}
 		}else{
 			try {
@@ -77,8 +82,10 @@ export class ClaseAgregarComponent extends FormularioBaseComponent{
 				
 				await this.apiService.post(`${this.uri}/agregar`,formValue);
 				this.router.navigate(["clase/listar"]);
-			} catch (error) {
-	
+			} catch (error : any) {
+				if(error.status === 409){
+					this.confirmService.mostrarMensajeConfirmacion(error.error.message,"","",true);
+				}
 			}
 		}
 
