@@ -23,7 +23,7 @@ export class RutinaAgregarComponent extends FormularioBaseComponent{
 	public confirmService = LocatorService.injector.get(ConfirmService);
 	public esPreset 					: boolean = true;
 	public tituloRutina 				: string = this.esPreset ? 'Rutina Preset' : 'Rutina';
-	public tituloFormulario  			: string = this.modoEdicion ? 'Editar ' +this.tituloRutina: 'Agregar ' +  this.tituloRutina;
+	public tituloFormulario  			: string = this.modoEdicion ? 'Editar ' + this.tituloRutina : 'Agregar ' +  this.tituloRutina;
 	public registrosRoles 				: Array<any> = [];
 	public registrosDias				: Array<any> = []; 
 	public idRutinaP 					: number = 0;
@@ -37,6 +37,7 @@ export class RutinaAgregarComponent extends FormularioBaseComponent{
 	public idProfe 						: number = 4;
 	public botonesFormularioDeshab 		: boolean = true;
 	public datosValidos 				: boolean = false;
+	public botonPrincipal 				: string = this.modoEdicion ? 'Guardar rutina ': 'Cargar rutina ';
 	constructor(
 		private route : ActivatedRoute,
 	) {
@@ -56,12 +57,14 @@ export class RutinaAgregarComponent extends FormularioBaseComponent{
 		}
 
 		this.idRutinaP = params['id'];
+		console.log("es preset: ", this.esPreset)
+		console.log("params['esP'] ", params['esP'])
 
-		if(params['esP']=='true'){
+		if(params['esP'] == 'true'){
 				this.esPreset =true;
 				this.uri ="/rutinaPreset"
 		}else{
-				this.esPreset =false;
+				this.esPreset = false;
 				this.uri ="/rutina";
 				this.verificarSocio();
 			}
@@ -72,11 +75,12 @@ export class RutinaAgregarComponent extends FormularioBaseComponent{
 			this.verificarSocio();
 			///this.camposDeshabilitados = false;
 		}
-
+		this.tituloRutina 				= this.esPreset ? 'Rutina Preset' : 'Rutina';
+		this.tituloFormulario  			= this.modoEdicion ? 'Editar ' + this.tituloRutina : 'Agregar ' +  this.tituloRutina;
 		if(this.asignarMode){
 			this.tituloFormulario = "Asignar Rutina preset a un socio"
 		}
-
+		
 		this.crearFormulario();		
 		this.agregarDia();	
 

@@ -59,7 +59,7 @@ export class TipoEjercicioListarComponent extends ListadoBaseComponent {
 
 		 if(respuesta){
 			resback = await this.apiService.getData(`/tipo-ejercicio/${id}/eliminar`);
-			await this.confirmService.mostrarMensajeConfirmacion(resback);
+			await this.confirmService.mostrarMensajeConfirmacion(resback, 'Aceptar', '123', true);
 		 }
 		 
 		 this.obtenerListado();
