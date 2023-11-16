@@ -51,17 +51,38 @@ export class SocioAgregarComponent extends FormularioBaseComponent {
 			try {
 				formValue.fecha_nacimiento = new Date(formValue.fecha_nacimiento).toISOString().split("T")[0];
 				await this.apiService.post(`${this.uri}/actualizar`,{formValue, id: this.id});
+				this.confirmSetvice.mostrarMensajeConfirmacion("Socio actualizado con exito", "","",true);
 				this.router.navigate(["socio/listar"]);
-			} catch (error) {
+			} 
+			catch (error : any) {
+				if(error.status === 409){
+					let errorAux = error.error;
+					if(errorAux.dni){
+						this.form.get("dni")?.setErrors({dni : errorAux.dni});
+					}
+					if(errorAux.email){
+						this.form.get("email")?.setErrors({email : errorAux.email});
+					}
+				}
 	
 			}
 		}else{
 			try {
 				formValue.fecha_nacimiento = new Date(formValue.fecha_nacimiento).toISOString().split("T")[0];
 				await this.apiService.post(`${this.uri}/agregar`,formValue);
+				this.confirmSetvice.mostrarMensajeConfirmacion("Socio cargado con exito", "","",true);
 				this.router.navigate(["socio/listar"]);
-			} catch (error) {
-	
+			} 
+			catch (error : any) {
+				if(error.status === 409){
+					let errorAux = error.error;
+					if(errorAux.dni){
+						this.form.get("dni")?.setErrors({dni : errorAux.dni});
+					}
+					if(errorAux.email){
+						this.form.get("email")?.setErrors({email : errorAux.email});
+					}
+				}
 			}
 		}
 

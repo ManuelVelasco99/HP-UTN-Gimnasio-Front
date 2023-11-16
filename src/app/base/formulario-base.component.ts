@@ -3,6 +3,7 @@ import { FormBuilder    } from '@angular/forms';
 import { FormGroup      } from '@angular/forms';
 import { LocatorService } from './locator.service';
 import { ActivatedRoute, Router         } from '@angular/router';
+import { ConfirmService } from './confirm.service';
 
 export abstract class FormularioBaseComponent {
 
@@ -15,6 +16,7 @@ export abstract class FormularioBaseComponent {
 
     public    apiService = LocatorService.injector.get(ApiService    );
     public    router     = LocatorService.injector.get(Router        );
+    public    confirmSetvice = LocatorService.injector.get(ConfirmService);
 
     constructor(
     ) {
