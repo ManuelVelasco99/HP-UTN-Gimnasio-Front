@@ -47,9 +47,18 @@ export class ClaseListarComponent extends ListadoBaseComponent{
 			"¿Estás seguro que quieres eliminar esta clase?",
 			"Eliminar"
 		);
-		if(respuesta){
-			await this.apiService.getData(`/clase/${id}/eliminar`);
+		try {
+			if(respuesta){
+				await this.apiService.getData(`/clase/${id}/eliminar`);
+			}
+			
+		} catch (error : any) {
+			if(error.status === 409){
+				this.confirmService.mostrarMensajeConfirmacion(error.error.message,"","",true);
+			}
 		}
-		this.obtenerListado();
+		finally{
+			this.obtenerListado();
+		}
 	}
 }
