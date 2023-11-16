@@ -38,8 +38,14 @@ export class SocioListarComponent extends ListadoBaseComponent {
 	}
 
 	public async clickBotonEliminar(id : number) : Promise<void> {
+		let nombreSocio = "";
+		this.registrosListado.forEach(element => {
+			if(element.id === id) {
+				nombreSocio = element.nombre + " " + element.apellido;
+			}
+		});
 		let respuesta = await this.confirmService.mostrarMensajeConfirmacion(
-			"¿Estás seguro que quieres eliminar al socio Juan Perez?",
+		`¿Estás seguro que quieres eliminar al socio ${nombreSocio}?`,
 			"Eliminar"
 		);
 		if(respuesta){

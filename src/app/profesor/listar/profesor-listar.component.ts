@@ -38,8 +38,15 @@ export class ProfesorListarComponent extends ListadoBaseComponent{
 	}
 
 	public async clickBotonEliminar(id : number) : Promise<void> {
+		let nombreProfesor = "";
+		this.registrosListado.forEach(element => {
+			if(element.id === id) {
+				nombreProfesor = element.nombre + " " + element.apellido;
+			}
+		});
+
 		let respuesta = await this.confirmService.mostrarMensajeConfirmacion(
-			"¿Estás seguro que quieres eliminar al profesor Juan Perez?",
+			`¿Estás seguro que quieres eliminar al profesor ${nombreProfesor}?`,
 			"Eliminar"
 		);
 
