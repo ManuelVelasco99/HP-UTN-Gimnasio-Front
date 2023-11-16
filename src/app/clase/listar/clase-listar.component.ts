@@ -12,15 +12,33 @@ export class ClaseListarComponent extends ListadoBaseComponent{
 
   public columnasAMostrar : Array<string> = ["id", "clase", "fecha","horario_inicio", "horario_fin","cupo","profesor", "editar", "eliminar"];
 
-  ngOnInit() : void {	
+  	ngOnInit() : void {	
+		this.filtrosDisponibles.push(
+			{
+				textoFiltro  : "Clase",
+				valorFiltro  : "",
+				nombreFiltro : "clase"
+			},
+			{
+				textoFiltro  : "Profesor",
+				valorFiltro  : "",
+				nombreFiltro : "profesor"
+			}
+		);
 		this.obtenerListado();
 	}
 
-  private async obtenerListado() : Promise<void> {
-		this.registrosListado = await this.apiService.getData("/clase/listar");
+	private async obtenerListado(): Promise<void> {
+		const queryParams = `?clase=${this.filtrosDisponibles[0].valorFiltro}&profesor=${this.filtrosDisponibles[1].valorFiltro}`;
+		this.registrosListado = await this.apiService.getData("/clase/listar" + queryParams);
+	  }
+
+	public clickFiltrar() : void {
+		this.actualizarQueryParamsDesdeFiltros(this.filtrosDisponibles);
+		this.obtenerListado();
 	}
 
-  public clickBotonEditar(id : number) : void {
+  	public clickBotonEditar(id : number) : void {
 		this.router.navigate([`clase/${id}/editar`]);
 	}
 
