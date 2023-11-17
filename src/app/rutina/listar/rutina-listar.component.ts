@@ -94,7 +94,9 @@ export class RutinaListarComponent extends ListadoBaseComponent {
         }
         await this.confirmService.mostrarMensajeConfirmacion(
           msjD,
-          "Continuar"	
+          "Continuar",
+          "",
+          true
         );
         this.obtenerListado();
         console.log(borrado);
