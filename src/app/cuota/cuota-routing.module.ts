@@ -13,7 +13,7 @@ const routes: Routes = [
 		component: CuotaAgregarComponent,
 	},
     {
-		path: ':id/editar',
+		path: ':id/eliminar',
 		component: CuotaAgregarComponent,
 	},
 ];

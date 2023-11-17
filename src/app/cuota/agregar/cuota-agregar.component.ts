@@ -9,9 +9,10 @@ import { FormularioBaseComponent } from 'src/app/base/formulario-base.component'
   styleUrls: ['./cuota-agregar.component.scss']
 })
 export class CuotaAgregarComponent extends FormularioBaseComponent {
-	public tituloFormulario  : string = this.modoEdicion ? 'Editar Cuota' : 'Agregar Cuota';
+	public tituloFormulario  : string = 'Agregar Cuota';
 
 	public deshabilitarBotonPrincipal : boolean = true;
+	public eliminacion : boolean=false;
 
 	constructor(
 		private route : ActivatedRoute,
@@ -24,11 +25,24 @@ export class CuotaAgregarComponent extends FormularioBaseComponent {
 		this.uri = "/cuota"	
 		this.crearFormulario();
 		let params = this.route.snapshot.params;
-		if(this.modoEdicion) {
-			this.id = params['id'];
-			this.obtenerYCompletar();
-		}
+		
+		this.validarModoEliminacion();
 	}
+
+	private async validarModoEliminacion() : Promise<void> {
+        let url = this.router.url;
+        let urlArray = url.split("/");
+        if(urlArray[urlArray.length - 1] == "eliminar"){
+			let cuotaEliminar : any= await this.apiService.get(`${this.uri}/${this.id}/obtenerDatos`);
+			console.log(cuotaEliminar)
+			this.form.get("dni")?.setValue(cuotaEliminar.dni)
+			this.tituloFormulario="Eliminar Cuota"
+            this.eliminacion = true;
+			this.form.get('dni')?.disable();
+            this.textoBoton = "Dar de baja el pago";
+
+        }
+    }
 
 	private crearFormulario() {
 		this.form = this.formBuilder.group({
@@ -37,8 +51,9 @@ export class CuotaAgregarComponent extends FormularioBaseComponent {
 			apellido: new FormControl({ value: '', disabled: true }),
 			fecha_nacimiento: new FormControl({ value: '', disabled: true }),
 			telefono: new FormControl({ value: '', disabled: true }),
-			fecha_desde: new FormControl({ value: '', disabled: true }),
+			fecha_periodo: new FormControl({ value: '', disabled: true }),
 			monto: new FormControl({ value: '', disabled: true }),
+			motivo_baja:new FormControl({ value: '', disabled: false }),
 		});
 	}
 
@@ -50,9 +65,9 @@ export class CuotaAgregarComponent extends FormularioBaseComponent {
 		if(this.form.invalid){
 			return;
 		}
-		if(this.modoEdicion){
+		if(this.eliminacion){
 			try {
-				await this.apiService.post(`${this.uri}/${this.id}/editar`,formValue);
+				await this.apiService.post(`${this.uri}/${this.id}/eliminar`,formValue);
 				this.router.navigate(["cuota/listar"]);
 			} catch (error) {}
 		}
@@ -72,10 +87,11 @@ export class CuotaAgregarComponent extends FormularioBaseComponent {
 	public async clickValidarDniSocio() : Promise<void> {
 		this.deshabilitarBotonPrincipal = false;
 		try {
-			let response = (await this.apiService.post("/cuota-mensual/validar-pago",{dni:this.form.get("dni")?.value})).data;
+			let response = (await this.apiService.post("/cuota/validar-pago",{dni:this.form.get("dni")?.value})).data;
 
 			let socio= response.socio
 			let precio_cuota=response.precio_cuota
+			let periodoPago=response.periodoPago
 
 			Object.keys(socio).forEach((element: any) => {
 				this.form.get(element)?.setValue(socio[element]);
@@ -83,6 +99,8 @@ export class CuotaAgregarComponent extends FormularioBaseComponent {
 			Object.keys(precio_cuota).forEach((element: any) => {
 				this.form.get(element)?.setValue(precio_cuota[element]);
 			});
+			this.form.get("fecha_periodo")?.setValue(periodoPago);
+			
 			this.deshabilitarBotonPrincipal = false;
 			
 		} catch (error) {

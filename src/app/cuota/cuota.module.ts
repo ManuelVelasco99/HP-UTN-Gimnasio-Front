@@ -5,12 +5,14 @@ import { NgModule } from '@angular/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CuotaAgregarComponent } from './agregar/cuota-agregar.component';
 import { CuotaListarComponent } from './listar/cuota-listar.component';
+import { CuotaPopupMotivoBajaComponent } from './popup-motivo-baja/cuota-popup-motivo-baja.component';
 
 
 @NgModule({
 	declarations: [
 		CuotaAgregarComponent,
-		CuotaListarComponent
+		CuotaListarComponent,
+  CuotaPopupMotivoBajaComponent
   ],
 	imports: [
 		BaseModule,

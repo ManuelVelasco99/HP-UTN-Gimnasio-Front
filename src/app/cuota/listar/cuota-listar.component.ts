@@ -17,7 +17,7 @@ export class CuotaListarComponent extends ListadoBaseComponent {
 	}
 
 	private async obtenerListado() : Promise<void> {
-		this.registrosListado = await this.apiService.getData("/cuota-mensual/listar");
+		this.registrosListado = await this.apiService.getData("/cuota/listar");
 	}
 
 
@@ -27,8 +27,8 @@ export class CuotaListarComponent extends ListadoBaseComponent {
 			"Eliminar"
 		);
 		if(respuesta){
-			await this.apiService.post(`/cuota/${id}/eliminar`, {});
-			this.obtenerListado();
+			let ruta="/cuota/"+id+"/eliminar"
+			this.router.navigate([ruta]);
 		}
 	}
 
