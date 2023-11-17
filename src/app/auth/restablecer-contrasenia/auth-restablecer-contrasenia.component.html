@@ -2,33 +2,29 @@
     <contenido class="contenedor">
         <mat-card class="card-formulario">
 
-            <span class="texto-superior">Escriba su DNI y contraseña para ingresar</span>
+            <span class="texto-superior">Escriba su nueva contraseña</span>
 
 
-            <form [formGroup]="form" (ngSubmit)="ingresar()">
+            <form [formGroup]="form" (ngSubmit)="submit()">
 
                 <div class="contenedor-campos">
-                    <mat-form-field>
-                        <mat-label>DNI</mat-label>
-                        <input formControlName="dni" matInput required>
-                        <mat-error *ngIf="form.get('dni')?.getError('required')">Obligatorio</mat-error>
-                    </mat-form-field>
-
                     <mat-form-field style="margin-top: 12px;">
                         <mat-label>Contraseña</mat-label>
                         <input formControlName="contrasenia" matInput required type="password">
                         <mat-error *ngIf="form.get('contrasenia')?.getError('required')">Obligatorio</mat-error>
                     </mat-form-field>
-                    
-                    <a [routerLink]="'/auth/olvide-mi-contrasenia'" style="margin-top: 8px;">
-                        <span>Olvidé mi contraseña</span>
-                    </a>
+
+                    <mat-form-field style="margin-top: 12px;">
+                        <mat-label>Confirmar contraseña</mat-label>
+                        <input formControlName="confirmar_contrasenia" matInput required type="password">
+                        <mat-error *ngIf="form.get('confirmar_contrasenia')?.getError('required')">Obligatorio</mat-error>
+                    </mat-form-field>
 
                     <span class="mensaje-error" *ngIf="mensajeError">
                         {{mensajeError}}
                     </span>
 
-                    <button mat-raised-button color="primary" class="boton-ingresar">Ingresar</button>
+                    <button mat-raised-button color="primary" class="boton-ingresar">Confirmar</button>
                 </div>
     
             </form>
@@ -37,4 +33,3 @@
     </contenido>
 
 </app-layout-general>
-
