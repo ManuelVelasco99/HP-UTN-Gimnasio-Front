@@ -3,7 +3,7 @@
     (clickBotonCancelar)="clickCancelar()"
     (clickBotonPrincipal)="enviar()"
     [textoBotonPrincipal]="textoBoton"
-    [botonesDesHabilitados]="deshabilitarBotonPrincipal"
+    [botonesDesHabilitados]="deshabilitarBotonPrincipal && !eliminacion"
 >
     <contenido>
         <form [formGroup]="form">
@@ -16,7 +16,7 @@
                         <mat-error *ngIf="form.get('dni')?.getError('required')">Obligatorio</mat-error>
                     </mat-form-field>
 
-                    <button type="button" mat-raised-button (click)="clickValidarDniSocio()">Validar</button> 
+                    <button *ngIf="!eliminacion" type="button" mat-raised-button (click)="clickValidarDniSocio()">Validar</button> 
                 </div>
 
                 <mat-form-field>
@@ -41,12 +41,17 @@
 
                 <mat-form-field>
                     <mat-label>Mes a Pagar</mat-label>
-                    <input formControlName="fecha_desde" matInput>
+                    <input formControlName="fecha_periodo" matInput>
                 </mat-form-field>
 
                 <mat-form-field>
                     <mat-label>Monto</mat-label>
                     <input formControlName="monto" matInput>
+                </mat-form-field>
+
+                <mat-form-field *ngIf="eliminacion">
+                    <mat-label>Motivo Baja</mat-label>
+                    <textarea formControlName="motivo_baja" matInput ></textarea>
                 </mat-form-field>
             </div>
 
