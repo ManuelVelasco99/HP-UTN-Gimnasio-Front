@@ -1,10 +1,49 @@
-<div class="chart-wrapper">
-    <canvas baseChart 
-        [datasets]="barChartData"
-        [labels]="barChartLabels"
-        [options]="barChartOptions"
-        [plugins]="barChartPlugins"
-        [legend]="barChartLegend"
-        [chartType]="barChartType">
-    </canvas>
+
+<div class="repo">
+    <div clas="contenedor-reporte">
+        <mat-card>
+            <h3>Campos ingresados</h3>
+            <div class="contenedor-campos">      
+                <mat-form-field>
+                    <mat-label>Fecha desde</mat-label>
+                    <input  matInput [(ngModel)]="valoresBusqueda.fechaDesde"  disabled = true>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Fecha hasta</mat-label>
+                    <input  matInput [(ngModel)]="valoresBusqueda.fechaHasta" disabled = true>
+                </mat-form-field>
+            </div>
+        </mat-card>
+        <div class="chart-wrapper" >
+            <canvas baseChart    
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [plugins]="barChartPlugins"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+            </canvas>
+            <h1>Año/Mes</h1>
+        </div>
+        <div class="resumen">
+            <mat-card>
+                <mat-card-title>Cantidad de cuotas totales</mat-card-title>
+                <mat-card-header>{{cantCuotasTotal}}</mat-card-header>
+            </mat-card>
+            <mat-card>
+                <mat-card-title>Cantidad de cuotas pagas</mat-card-title>
+                <mat-card-header>{{cantCuotasPagas}}</mat-card-header>
+            </mat-card>
+            <mat-card>
+                <mat-card-title>Cantidad de cuotas impagas</mat-card-title>
+                <mat-card-header>{{cantCuotasImpagas}}</mat-card-header>
+            </mat-card>
+        </div>
+    </div>
 </div>
+<br>
+<div class="contenedor-botones">
+    <button mat-raised-button (click)="imprimir()" color="primary" >Imprimir</button>
+</div>
+
+
