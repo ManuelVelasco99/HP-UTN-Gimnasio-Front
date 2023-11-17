@@ -4,6 +4,7 @@
         display: flex;
         align-items: center;
         flex-direction: column;
+        
 
         .contenedor-titulo-formulario{
             display: flex;
@@ -25,14 +26,22 @@
 
 
             .contenedor-botones{
+                margin-top: 20px;
                 display: flex;
                 justify-content: center;
-                column-gap: 10px;
+                column-gap: 10px;           
             }
         }
     }
     mat-form-field{
         margin-left: 10px;
+    }
+    .contenedor-botones{
+        @media print {
+            :not(.printMe) {
+            visibility: hidden;
+            }
+        }   
     }
 
 }

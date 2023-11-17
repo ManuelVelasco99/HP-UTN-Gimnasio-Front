@@ -18,6 +18,7 @@ mat-card{
         column-gap: 16px;
         align-items: center;       
     }
+    
 }
 
 .resumen{
@@ -33,6 +34,7 @@ mat-card{
         color: white;
         justify-content: center;
         border-radius: 20px;
+        
         mat-card-header{
             font-size: 30px;
             display: flex;
@@ -50,7 +52,6 @@ mat-card{
     column-gap: 10px;
     align-items: center;
     text-align: center;
-
 }    
 
 .contenedor-botones{
