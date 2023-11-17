@@ -17,7 +17,12 @@ export class CuotaListarComponent extends ListadoBaseComponent {
 	}
 
 	private async obtenerListado() : Promise<void> {
-		this.registrosListado = await this.apiService.getData("/cuota/listar");
+		let listado = await this.apiService.getData("/cuota/listar");
+		for (let index = 0; index < listado.length; index++) {
+			const element = listado[index];
+			listado[index]["Mes Abonado"]	 = this.parsearMes(element["Mes Abonado"]);
+		}
+		this.registrosListado = listado;
 	}
 
 
@@ -30,6 +35,46 @@ export class CuotaListarComponent extends ListadoBaseComponent {
 			let ruta="/cuota/"+id+"/eliminar"
 			this.router.navigate([ruta]);
 		}
+	}
+
+	private parsearMes(mes : any) : string {
+		if(mes === "December"){
+			return "Diciembre";
+		}
+		if(mes === "November"){
+			return "Noviembre";
+		}
+		if(mes === "October"){
+			return "Octubre";
+		}
+		if(mes === "September"){
+			return "Septiembre"
+		}
+		if(mes === "August"){
+			return "Agosto";
+		}
+		if(mes === "July"){
+			return "Julio";
+		}
+		if(mes === "June"){
+			return "Junio";
+		}
+		if(mes === "May"){
+			return "Mayo";
+		}
+		if(mes === "April"){
+			return "Abril";
+		}
+		if(mes === "March"){
+			return "Marzo";
+		}
+		if(mes === "February"){
+			return "Febrero";
+		}
+		if(mes === "January"){
+			return "Enero";
+		}
+		return mes;
 	}
 
 }
