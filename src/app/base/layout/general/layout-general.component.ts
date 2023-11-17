@@ -57,6 +57,11 @@ export class LayoutGeneralComponent {
             rolesPermitidos : [1]
         },
         {
+            nombre          : "Reporte cuotas",
+            route           : "/reporte-pago/reporte-cuota",
+            rolesPermitidos : [1]
+        },
+        {
             nombre          : "Profesores",
             route           : "/profesor/listar",
             rolesPermitidos : [1]
