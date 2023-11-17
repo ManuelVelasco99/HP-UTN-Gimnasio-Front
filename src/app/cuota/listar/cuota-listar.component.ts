@@ -10,7 +10,7 @@ export class CuotaListarComponent extends ListadoBaseComponent {
 
   public registrosListado : Array<any> = [];
 
-	public columnasAMostrar : Array<string> = ["id", "fecha_periodo","fecha_pago", "motivo_baja", "eliminar"];
+	public columnasAMostrar : Array<string> = ["id", "dni","nombre","apellido","Mes Abonado","Año Abonado","Fecha Pago", "Motivo Baja", "eliminar"];
 
 	ngOnInit() : void {	
 		this.obtenerListado();
