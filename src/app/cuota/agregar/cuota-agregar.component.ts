@@ -25,17 +25,30 @@ export class CuotaAgregarComponent extends FormularioBaseComponent {
 		this.uri = "/cuota"	
 		this.crearFormulario();
 		let params = this.route.snapshot.params;
-		
+		this.id = params['id'];
 		this.validarModoEliminacion();
 	}
 
 	private async validarModoEliminacion() : Promise<void> {
         let url = this.router.url;
+		
         let urlArray = url.split("/");
         if(urlArray[urlArray.length - 1] == "eliminar"){
-			let cuotaEliminar : any= await this.apiService.get(`${this.uri}/${this.id}/obtenerDatos`);
+			let cuotaEliminar : any=await this.apiService.getData(`${this.uri}/${this.id}/obtenerDatos`);
 			console.log(cuotaEliminar)
-			this.form.get("dni")?.setValue(cuotaEliminar.dni)
+			this.form.get("dni")?.setValue(cuotaEliminar[0].dni)
+			this.form.get("nombre")?.setValue(cuotaEliminar[0].nombre)
+			this.form.get("apellido")?.setValue(cuotaEliminar[0].apellido)
+			
+			let fn=new Date((cuotaEliminar[0].fecha_nacimiento))
+			
+			this.form.get("fecha_nacimiento")?.setValue(fn.toLocaleDateString())
+			
+			this.form.get("telefono")?.setValue(cuotaEliminar[0].telefono)
+			let formatPeriodoMonth = new Date(cuotaEliminar[0].fecha_periodo).toLocaleString('es-es', { month: 'long' })
+			this.form.get("fecha_periodo")?.setValue(formatPeriodoMonth)
+			this.form.get("monto")?.setValue(cuotaEliminar[0].monto)
+			
 			this.tituloFormulario="Eliminar Cuota"
             this.eliminacion = true;
 			this.form.get('dni')?.disable();

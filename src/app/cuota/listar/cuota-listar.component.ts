@@ -21,7 +21,7 @@ export class CuotaListarComponent extends ListadoBaseComponent {
 	}
 
 
-	public async clickBotonEliminar(id : number) : Promise<void> {
+	public async clickBotonEliminar(id : any) : Promise<void> {
 		let respuesta = await this.confirmService.mostrarMensajeConfirmacion(
 			"¿Estás seguro que quieres eliminar esta cuota?",
 			"Eliminar"
