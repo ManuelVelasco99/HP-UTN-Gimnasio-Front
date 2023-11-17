@@ -26,6 +26,7 @@ export class AuthLoginComponent extends FormularioBaseComponent {
 		this.form = this.formBuilder.group({
 			dni         : new FormControl({ value: '', disabled: false }),
 			contrasenia : new FormControl({ value: '', disabled: false }),
+			recordarme : new FormControl({ value: false, disabled: false }),
 		});
 	}
 

@@ -20,9 +20,13 @@
                         <mat-error *ngIf="form.get('contrasenia')?.getError('required')">Obligatorio</mat-error>
                     </mat-form-field>
                     
-                    <a [routerLink]="'/auth/olvide-mi-contrasenia'" style="margin-top: 8px;">
-                        <span>Olvidé mi contraseña</span>
-                    </a>
+                    <div style="    display: flex;
+                    justify-content: space-between;">
+                        <mat-checkbox color="primary" formControlName="recordarme">Rercordarme</mat-checkbox>
+                        <a [routerLink]="'/auth/olvide-mi-contrasenia'" style="margin-top: 8px;">
+                            <span>Olvidé mi contraseña</span>
+                        </a>
+                    </div>
 
                     <span class="mensaje-error" *ngIf="mensajeError">
                         {{mensajeError}}

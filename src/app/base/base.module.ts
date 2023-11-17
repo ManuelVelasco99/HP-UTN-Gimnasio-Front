@@ -102,6 +102,7 @@ import { SafePipe } from './pipe';
 		//ANGULAR MATERIAL
         MatButtonModule,
         MatCardModule,
+		MatCheckboxModule,
 		MatDatepickerModule,
 		MatDialogModule,
 		MatDividerModule,
