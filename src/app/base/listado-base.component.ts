@@ -20,6 +20,7 @@ export abstract class ListadoBaseComponent {
             if(filtro.valorFiltro){
                 if(first){
                     this.queryParams = "?";
+                    first=false;
                 }
                 else{
                     this.queryParams = this.queryParams + "&";

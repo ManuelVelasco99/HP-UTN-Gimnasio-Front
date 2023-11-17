@@ -11,6 +11,7 @@
             </button>	
 
 			<mat-checkbox *ngIf="esRutina" color="primary" [(ngModel)]="soloPresets" (change)="clickFiltroPreset.emit(soloPresets)" >Rutinas Presets</mat-checkbox>
+			<mat-checkbox *ngIf="esPagoCuota" color="primary" [(ngModel)]="ocultarEliminadas" (change)="clickFiltroPagoCuota.emit(ocultarEliminadas)" >Ocultar eliminados</mat-checkbox>
 
 			<div *ngIf="filtrosDisponibles.length > 0" class="contenedor-filtros">
 				<ng-container *ngFor="let filtro of filtrosDisponibles">

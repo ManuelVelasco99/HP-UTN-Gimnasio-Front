@@ -8,16 +8,43 @@ import { ListadoBaseComponent } from 'src/app/base/listado-base.component';
 })
 export class CuotaListarComponent extends ListadoBaseComponent {
 
-  public registrosListado : Array<any> = [];
+  	public registrosListado : Array<any> = [];
 
 	public columnasAMostrar : Array<string> = ["id", "dni","nombre","apellido","Mes Abonado","Año Abonado","Fecha Pago", "Motivo Baja", "eliminar"];
 
+	public ocultarEliminados : boolean = false;
+
 	ngOnInit() : void {	
 		this.obtenerListado();
+		this.filtrosDisponibles.push(
+			{
+				textoFiltro  : "Nombre y/o Apellido",
+				valorFiltro  : "",
+				nombreFiltro : "nombre"
+			}
+		);
+		this.filtrosDisponibles.push(
+			{
+				textoFiltro  : "Dni",
+				valorFiltro  : "",
+				nombreFiltro : "dni"
+			}
+		);
 	}
 
 	private async obtenerListado() : Promise<void> {
-		let listado = await this.apiService.getData("/cuota/listar");
+		let queryParams = this.queryParams;
+		if(queryParams){
+			if(this.ocultarEliminados){
+				queryParams = queryParams + "&ocultar_eliminados=true";
+			}
+		}
+		else{
+			if(this.ocultarEliminados){
+				queryParams = "?ocultar_eliminados=true";
+			}
+		}
+		let listado = await this.apiService.getData("/cuota/listar"+queryParams);
 		for (let index = 0; index < listado.length; index++) {
 			const element = listado[index];
 			listado[index]["Mes Abonado"]	 = this.parsearMes(element["Mes Abonado"]);
@@ -75,6 +102,17 @@ export class CuotaListarComponent extends ListadoBaseComponent {
 			return "Enero";
 		}
 		return mes;
+	}
+
+	public clickFiltroPagoCuota($event : any) {
+		this.ocultarEliminados = $event;
+		this.obtenerListado();
+	}
+
+	public clickFiltrar() : void {
+		this.actualizarQueryParamsDesdeFiltros(this.filtrosDisponibles);
+		this.obtenerListado();
+
 	}
 
 }

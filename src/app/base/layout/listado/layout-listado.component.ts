@@ -43,6 +43,9 @@ export class LayoutListadoComponent {
 	public esRutina : boolean = false;
 
 	@Input()
+	public esPagoCuota : boolean = false;
+
+	@Input()
 	public textoBotonListado : string = "Agregar";
 
 	@Input()
@@ -73,6 +76,9 @@ export class LayoutListadoComponent {
 	public clickFiltroPreset : EventEmitter<boolean> = new EventEmitter();
 
 	@Output()
+	public clickFiltroPagoCuota : EventEmitter<boolean> = new EventEmitter();
+
+	@Output()
 	public clickMultimediaEvent : EventEmitter<string> = new EventEmitter();
 
 	@Output()
@@ -87,6 +93,8 @@ export class LayoutListadoComponent {
 	public confirmService = LocatorService.injector.get(ConfirmService);	  
 	
 	public soloPresets : boolean =false;
+
+	public ocultarEliminadas : boolean = false;
 
 
 	public cambioCheck(){

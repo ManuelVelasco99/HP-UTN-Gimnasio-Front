@@ -10,6 +10,7 @@ import { FormularioBaseComponent } from 'src/app/base/formulario-base.component'
 })
 export class CuotaAgregarComponent extends FormularioBaseComponent {
 	public tituloFormulario  : string = 'Agregar Cuota';
+	public override textoBoton ="Confirmar pago";
 
 	public deshabilitarBotonPrincipal : boolean = true;
 	public eliminacion : boolean=false;
