@@ -61,13 +61,17 @@ export class ConsultarReporteCuotaComponent extends FormularioBaseComponent {
       for(let i=0; i< respuesta.resultados.length; i++){
         this.nombreBarras.push(respuesta.resultados[i].mes)
         this.datosNumericos[0].data.push(respuesta.resultados[i].totalPagadas)
-        this.datosNumericos[1].data.push(respuesta.resultados[i].totalRegistros - respuesta.resultados[i].totalPagadas )
+
+       
 
         let x : number =+  respuesta.resultados[i].totalRegistros
         let y : number =+  respuesta.resultados[i].totalMontosBrutos
         let j : number =+  respuesta.resultados[i].totalPagadas
         let z : number =+  respuesta.resultados[i].totalMontosReal
 
+        this.datosNumericos[1].data.push((x - j))
+        console.log("cantidad de cuotas totales: ", x)
+        console.log("cantidad de cuotas pagas: ", j)
         this.cantCuotasTot.cTotal +=x
         this.cantCuotasTot.monto +=y
         this.cantCuotasPagas.cTotal +=j
@@ -77,9 +81,9 @@ export class ConsultarReporteCuotaComponent extends FormularioBaseComponent {
         this.preciosPorMes.push({mes : respuesta.resultados[i].mes, monto: (z/j)})
       }
       console.log("this.preciosPorMes", this.preciosPorMes)
-      ////this.clase = await this.apiService.getData(`${this.uri}/${this.form.value.clase_id}/obtener`);    
-      // this.valoresBusqueda.fecha_desde = new Date(this.form.value.fecha_desde).toLocaleString()
-      // this.valoresBusqueda.fecha_hasta = new Date(this.form.value.fecha_hasta).toLocaleString()
+      ///this.clase = await this.apiService.getData(`${this.uri}/${this.form.value.clase_id}/obtener`);    
+      this.valoresBusqueda.fecha_desde = new Date(this.form.value.fecha_desde).toLocaleString()
+      this.valoresBusqueda.fecha_hasta = new Date(this.form.value.fecha_hasta).toLocaleString()
       this.reporteGenerado = true;
       console.log("respuesta.resultados.length", respuesta.resultados.length)
     }
@@ -96,5 +100,10 @@ export class ConsultarReporteCuotaComponent extends FormularioBaseComponent {
     this.form.reset();
     this.porAsistenciaTotal=0;
     this.cantidadClases=0;
+    this.datosNumericos = [
+      { data:[] , label: 'Pagas' },
+      { data:[] , label: 'Impagas' }
+    ];
+    this.nombreBarras = []
   }
 }
