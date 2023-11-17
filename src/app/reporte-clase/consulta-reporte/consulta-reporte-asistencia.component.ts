@@ -88,6 +88,10 @@ export class ConsultaReporteAsistenciaComponent extends FormularioBaseComponent 
     this.form.reset();
     this.porAsistenciaTotal=0;
     this.cantidadClases=0;
+    this.datosNumericos = [
+      { xAxisID:"Clases"  , yAxisID:"Porcentaje de asistencia", data:[]},
+    ];
+    this.nombreBarras = []
   }
 }
 
