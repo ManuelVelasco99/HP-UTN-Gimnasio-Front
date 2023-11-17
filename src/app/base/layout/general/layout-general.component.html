@@ -26,13 +26,11 @@
         <mat-icon *ngIf="nombreUsuario" (click)="clickLogout()" style="cursor: pointer;">logout</mat-icon>
     </div>
 </mat-toolbar>
-<div class="accesos" *ngIf="deviceService.isMobile && enElHome">
+<div class="accesos-mobile" *ngIf="deviceService.isMobile && enElHome">
     <ng-container *ngFor="let acceso of accesos">
         <ng-container *ngIf="acceso.rolesPermitidos.length === 0 || acceso.rolesPermitidos.includes(rol_id)">
-            <div class="acceso">
                 <button *ngIf="!acceso.route" mat-button>{{acceso.nombre}}</button>
                 <button mat-button [routerLink]="acceso.route">{{acceso.nombre}}</button>
-            </div>
         </ng-container>
         
     </ng-container>
