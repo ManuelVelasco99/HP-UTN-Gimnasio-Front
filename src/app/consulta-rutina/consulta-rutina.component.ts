@@ -1,5 +1,6 @@
 import { Component            } from '@angular/core';
 import { ListadoBaseComponent } from 'src/app/base/listado-base.component';
+import { DeviceService } from '../base/device.service';
 
 
 @Component({
@@ -11,6 +12,12 @@ export class ConsultaRutinaComponent extends ListadoBaseComponent{
 
 	public registrosListado : Array<any> = [];
 	public mostrarMensaje   : boolean = false;
+
+	constructor(
+		public deviceService : DeviceService
+	){
+		super();
+	}
 
 	ngOnInit() : void {	
 		this.obtenerListado();

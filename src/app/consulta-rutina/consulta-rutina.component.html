@@ -2,6 +2,9 @@
     <contenido class="contenedor">
         <div class="contenedor-rutina">
             <ng-container *ngIf="registrosListado.length > 0">
+                <button *ngIf="deviceService.isMobile" mat-icon-button color="primary" [routerLink]="''" aria-label="Example icon button with a home icon">
+                    <mat-icon>home</mat-icon>
+                </button>	
                 <div class="nombre-rutina">
                     {{registrosListado[0].nombre}}
                 </div>
