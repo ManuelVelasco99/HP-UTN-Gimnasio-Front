@@ -6,11 +6,10 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CuotaAgregarComponent } from './agregar/cuota-agregar.component';
 import { CuotaListarComponent } from './listar/cuota-listar.component';
 
-
 @NgModule({
 	declarations: [
 		CuotaAgregarComponent,
-		CuotaListarComponent
+		CuotaListarComponent,
   ],
 	imports: [
 		BaseModule,
