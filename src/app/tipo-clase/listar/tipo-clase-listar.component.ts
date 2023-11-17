@@ -42,6 +42,25 @@ export class TipoClaseListarComponent extends ListadoBaseComponent {
 			"¿Estás seguro que quieres eliminar este tipo de clase?",
 			"Eliminar"	
 		);
+		if(respuesta){
+			try {
+				let response = await this.apiService.post(`/tipo-clase/${id}/eliminar`, {});
+				this.confirmService.mostrarMensajeConfirmacion(
+					"Tipo de clase eliminado con éxito",
+					'Aceptar',
+					'',
+					true
+				);
+			} catch (error : any) {
+				if(error.status === 409){
+					this.confirmService.mostrarMensajeConfirmacion(error.error.message,"","",true);
+				}
+			}
+			finally{
+				this.obtenerListado();
+			}
+			
+		}
 	}
 
 }
