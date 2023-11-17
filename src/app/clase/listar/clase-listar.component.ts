@@ -38,15 +38,29 @@ export class ClaseListarComponent extends ListadoBaseComponent{
 		this.obtenerListado();
 	}
 
-  	public clickBotonEditar(id : number) : void {
-		this.router.navigate([`clase/${id}/editar`]);
+  	public async clickBotonEditar(id : number) : Promise<void> {
+		try {
+			await this.apiService.getData(`/clase/${id}/validar-edicion`);
+			this.router.navigate([`clase/${id}/editar`]);
+			
+		} catch (error : any) {
+			this.confirmService.mostrarMensajeConfirmacion(error.error.message, "", "", true);
+		}
 	}
 
 	public async clickBotonEliminar(id : number) : Promise<void> {
+		try {
+			await this.apiService.getData(`/clase/${id}/validar-edicion`);
+			
+		} catch (error : any) {
+			this.confirmService.mostrarMensajeConfirmacion("No puede eliminar una clase que no le pertenece", "", "", true);
+			return;
+		}
 		let respuesta = await this.confirmService.mostrarMensajeConfirmacion(
 			"¿Estás seguro que quieres eliminar esta clase?",
 			"Eliminar"
 		);
+		
 		try {
 			if(respuesta){
 				await this.apiService.getData(`/clase/${id}/eliminar`);
