@@ -10,7 +10,7 @@ export class PrecioCuotaListarComponent extends ListadoBaseComponent {
 
   	public registrosListado : Array<any> = [];
 
-	public columnasAMostrar : Array<string> = ["id", "fecha_desde", "monto", "eliminar"];
+	public columnasAMostrar : Array<string> = ["id", "Fecha desde", "monto", "eliminar"];
 
 	ngOnInit() : void {	
 		this.obtenerListado();
