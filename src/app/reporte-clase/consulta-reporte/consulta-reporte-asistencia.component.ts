@@ -38,7 +38,7 @@ export class ConsultaReporteAsistenciaComponent extends FormularioBaseComponent 
 			return;
 		}
     if(this.form.value.fecha_desde >= this.form.value.fecha_hasta){
-      await this.confirmSetvice.mostrarMensajeConfirmacion("Ingrese un rango de fechas valido", 'Aceptar', '123', true);
+      await this.confirmService.mostrarMensajeConfirmacion("Ingrese un rango de fechas valido", 'Aceptar', '123', true);
       return;
     }
 
