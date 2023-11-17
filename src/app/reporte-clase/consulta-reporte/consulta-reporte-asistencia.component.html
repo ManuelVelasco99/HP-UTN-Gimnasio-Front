@@ -1,7 +1,7 @@
 <app-layout-general>
     <contenido  class="contenedor">
         <div class="contenedor-titulo-formulario">
-            <span>Reporte de asistencia</span>
+            <span>Reporte de clases</span>
         </div>
         <div *ngIf="!reporteGenerado"> 
             <mat-card class="card-formulario">
@@ -43,10 +43,17 @@
         <app-reporte-de-asistencia 
         [barChartData] = "datosNumericos"
         [barChartLabels] = "nombreBarras"
-        [valoresBusqueda]= ""
+        [valoresBusqueda]= "valoresBusqueda"
+        [cupoTotal]="clase.cupo"
+        [cantidadClases]="cantidadClases"
+        [porAsistenciaTotal] = "porAsistenciaTotal"
         *ngIf="reporteGenerado"
         
         ></app-reporte-de-asistencia>
+        <div class="contenedor-botones">
+
+            <button *ngIf="reporteGenerado" (click)="clickCerrarReporte()"  mat-raised-button >Cerrar Reporte</button>
+        </div>
 
     </contenido>
 

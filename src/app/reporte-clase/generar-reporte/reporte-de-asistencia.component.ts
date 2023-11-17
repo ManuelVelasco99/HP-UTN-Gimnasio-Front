@@ -33,7 +33,11 @@ export class ReporteDeAsistenciaComponent {
 		responsive: true,
 		backgroundColor : '#3f51b5',
 	};
-
+	ngOnInit():void{
+		console.log("barChartLabels", this.barChartLabels)
+		console.log("barChartData", this.barChartData)
+		console.log("this.valoresBusqueda", this.valoresBusqueda)
+	}
 	
 	barChartType: ChartType = 'bar';
 	barChartLegend = false;
@@ -42,6 +46,10 @@ export class ReporteDeAsistenciaComponent {
 	public imprimir():void{
 		window.print();
 	  }
+
+	public calculoResumen():void{
+		
+	}
 	
 }
 

@@ -6,18 +6,20 @@
                     <div class="contenedor-campos">      
                         <mat-form-field>
                         <mat-label>Tipo clase</mat-label>
-                            <input  matInput [(ngModel)]="valoresBusqueda.tipoClase"  disabled = true>
+                            <input  matInput [(ngModel)]="valoresBusqueda.nombre"  disabled = true>
                         </mat-form-field>
                         <mat-form-field>
                             <mat-label>Fecha desde</mat-label>
-                            <input  matInput [(ngModel)]="valoresBusqueda.fechaDesde"  disabled = true>
+                            <input  matInput [(ngModel)]="valoresBusqueda.fecha_desde"  disabled = true>
                         </mat-form-field>
                         <mat-form-field>
                             <mat-label>Fecha hasta</mat-label>
-                            <input  matInput [(ngModel)]="valoresBusqueda.fechaHasta" disabled = true>
+                            <input  matInput [(ngModel)]="valoresBusqueda.fecha_hasta" disabled = true>
                         </mat-form-field>
                     </div>
                 </mat-card>
+                <br>
+                <h1 class="ylabel">Porcentaje de asistencia</h1>
                 <div class="chart-wrapper" >
                     <canvas baseChart    
                         [datasets]="barChartData"
@@ -29,6 +31,7 @@
                     </canvas>
                     <h1>Horarios de clases</h1>
                 </div>
+                <hr>
                 <div class="resumen">
                     <mat-card>
                         <mat-card-title>Cupo total de la clase</mat-card-title>
