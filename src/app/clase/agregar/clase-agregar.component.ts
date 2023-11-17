@@ -3,8 +3,6 @@ import { Component               } from '@angular/core';
 import { FormControl             } from '@angular/forms';
 import { FormularioBaseComponent } from 'src/app/base/formulario-base.component';
 import * as moment from 'moment';
-import { LocatorService } from 'src/app/base/locator.service';
-import { ConfirmService } from 'src/app/base/confirm.service';
 
 @Component({
 	selector    : 'app-clase-agregar',
@@ -12,7 +10,6 @@ import { ConfirmService } from 'src/app/base/confirm.service';
 	styleUrls   : ['./clase-agregar.component.scss']
 })
 export class ClaseAgregarComponent extends FormularioBaseComponent{
-	public confirmService = LocatorService.injector.get(ConfirmService);
   
   	constructor(
 		private route : ActivatedRoute,
