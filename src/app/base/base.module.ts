@@ -38,6 +38,7 @@ import { PopupMultimediaComponent   } from './popup-multimedia/popup-multimedia.
 import { PopupAlertComponent } from './popup-alert/popup-alert.component';
 //MODULES
 import { RouterModule } from '@angular/router';
+import { NgChartsModule } from 'ng2-charts';
 
 //SERVICES
 import { ApiService        } from './api.service';
@@ -92,6 +93,8 @@ import { SafePipe } from './pipe';
 		//SERVICES
 		ApiService,
 
+		NgChartsModule,
+
 	
 	],
 	exports: [
@@ -133,6 +136,8 @@ import { SafePipe } from './pipe';
 
 		//PIPES
 		SafePipe,
+
+		NgChartsModule,
 	],
 	schemas: [
 		//ANGULAR CORE
