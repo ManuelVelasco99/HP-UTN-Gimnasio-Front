@@ -16,7 +16,7 @@ export abstract class FormularioBaseComponent {
 
     public    apiService = LocatorService.injector.get(ApiService    );
     public    router     = LocatorService.injector.get(Router        );
-    public    confirmSetvice = LocatorService.injector.get(ConfirmService);
+    public    confirmService = LocatorService.injector.get(ConfirmService);
 
     constructor(
     ) {

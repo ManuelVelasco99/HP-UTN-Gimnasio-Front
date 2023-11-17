@@ -1,10 +1,8 @@
-import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { ConfirmService } from 'src/app/base/confirm.service';
+import { Component               } from '@angular/core';
+import { FormControl             } from '@angular/forms';
 import { FormularioBaseComponent } from 'src/app/base/formulario-base.component';
-import { LocatorService } from 'src/app/base/locator.service';
-import { PopupAlertComponent } from 'src/app/base/popup-alert/popup-alert.component';
+import { MatDialog               } from '@angular/material/dialog';
+import { PopupAlertComponent     } from 'src/app/base/popup-alert/popup-alert.component';
 
 @Component({
 	selector    : 'app-ingreso-socio-ingresar',
@@ -12,7 +10,6 @@ import { PopupAlertComponent } from 'src/app/base/popup-alert/popup-alert.compon
 	styleUrls   : ['./ingreso-socio-ingresar.component.scss']
 })
 export class IngresoSocioIngresarComponent extends FormularioBaseComponent {
-	public confirmService = LocatorService.injector.get(ConfirmService);	
 	public dni :string =""; 
 
 

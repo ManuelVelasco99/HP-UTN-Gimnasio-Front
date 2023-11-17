@@ -51,8 +51,9 @@ export class SocioAgregarComponent extends FormularioBaseComponent {
 			try {
 				formValue.fecha_nacimiento = new Date(formValue.fecha_nacimiento).toISOString().split("T")[0];
 				await this.apiService.post(`${this.uri}/actualizar`,{formValue, id: this.id});
-				this.confirmSetvice.mostrarMensajeConfirmacion("Socio actualizado con exito", "","",true);
+				this.confirmService.mostrarMensajeConfirmacion("Socio actualizado con exito", "","",true);
 				this.router.navigate(["socio/listar"]);
+				return;
 			} 
 			catch (error : any) {
 				if(error.status === 409){
@@ -70,7 +71,7 @@ export class SocioAgregarComponent extends FormularioBaseComponent {
 			try {
 				formValue.fecha_nacimiento = new Date(formValue.fecha_nacimiento).toISOString().split("T")[0];
 				await this.apiService.post(`${this.uri}/agregar`,formValue);
-				this.confirmSetvice.mostrarMensajeConfirmacion("Socio cargado con exito", "","",true);
+				this.confirmService.mostrarMensajeConfirmacion("Socio cargado con exito", "","",true);
 				this.router.navigate(["socio/listar"]);
 			} 
 			catch (error : any) {

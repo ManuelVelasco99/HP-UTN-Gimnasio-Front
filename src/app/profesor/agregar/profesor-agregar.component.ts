@@ -46,12 +46,26 @@ export class ProfesorAgregarComponent extends FormularioBaseComponent {
 	}
 
 	public async enviar() : Promise<void> {
+		if(this.form.get("dni")?.value){
+			let response = await this.apiService.post(`${this.uri}/${this.form.get("dni")?.value}/validar-profesor-dado-de-baja`,{});
+			if(response.data.encontrado){
+				this.confirmService.mostrarMensajeConfirmacion(
+					`Antiguo profesor ${response.data.profesor.nombre + ' ' + response.data.profesor.apellido} dado de alta nuevamente`,
+					"",
+					"",
+					true
+				);
+				this.router.navigate(["profesor/listar"]);
+				return;
+			}
+		}
+
 		this.form.markAllAsTouched();
 		let formValue = this.form.value;
 
 		if(this.form.invalid){
 			return;
-		}
+		} 
 		if(this.modoEdicion){
 			try {
 				formValue.fecha_nacimiento = new Date(formValue.fecha_nacimiento).toISOString().split("T")[0];

@@ -20,7 +20,6 @@ import { ConfirmService } from 'src/app/base/confirm.service';
 
 
 export class RutinaAgregarComponent extends FormularioBaseComponent{
-	public confirmService = LocatorService.injector.get(ConfirmService);
 	public esPreset 					: boolean = true;
 	public tituloRutina 				: string = this.esPreset ? 'Rutina Preset' : 'Rutina';
 	public tituloFormulario  			: string = this.modoEdicion ? 'Editar ' + this.tituloRutina : 'Agregar ' +  this.tituloRutina;
