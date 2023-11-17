@@ -32,7 +32,7 @@ export class MaquinaElementoListarComponent extends ListadoBaseComponent {
 		);
 		if(respuesta){
 			resback = await this.apiService.getData(`/maquina-elemento/${id}/eliminar`, {});
-			await this.confirmService.mostrarMensajeConfirmacion(resback);
+			await this.confirmService.mostrarMensajeConfirmacion(resback, 'Aceptar', '123', true);
 			this.obtenerListado();
 		}
 	}

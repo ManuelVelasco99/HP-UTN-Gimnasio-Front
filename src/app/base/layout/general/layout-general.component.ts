@@ -49,11 +49,16 @@ export class LayoutGeneralComponent {
         {
             nombre          : "Rutinas",
             route           : "/rutina/listar",
-            rolesPermitidos : [1,2]
+            rolesPermitidos : [2]
         },
         {
             nombre          : "Socios",
             route           : "/socio/listar",
+            rolesPermitidos : [1]
+        },
+        {
+            nombre          : "Reporte clases",
+            route           : "/reporte-clase/reporte-asistencia",
             rolesPermitidos : [1]
         },
         {

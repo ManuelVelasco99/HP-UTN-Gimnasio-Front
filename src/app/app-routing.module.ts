@@ -138,6 +138,15 @@ const routes: Routes = [
             },
         ]
     },
+    {
+        path : 'reporte-clase',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./reporte-clase/reporte-clase.module').then(m => m.RepoirteDeAsistenciaModule),
+            },
+        ]
+    },
 ];
 
 @NgModule({

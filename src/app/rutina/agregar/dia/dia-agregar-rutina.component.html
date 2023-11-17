@@ -7,9 +7,10 @@
         [camposDeshabilitados]="camposDeshabilitados" 
         (clickBotonEliminarEjercicio) = "eliminarEjercicio(indexOfelement)"
     > </app-ejercicio-agregar-rutina>
-    <br>
-    <button mat-raised-button color="primary" (click)="this.agregarEjercicio()" disabled= "{{this.camposDeshabilitados}}" >Agregar ejercicio </button>
-    <br>
-    <button mat-raised-button (click)="this.clickBotonEliminarDia.emit()" disabled= "{{this.camposDeshabilitados}}">Eliminar dia</button>
-    <br>
+    <div class="contenedor-botones">
+        
+    <button class="boton" mat-raised-button (click)="this.clickBotonEliminarDia.emit()" disabled= "{{this.camposDeshabilitados}}">Eliminar dia</button>
+    <button class="boton" mat-raised-button color="primary" (click)="this.agregarEjercicio()" disabled= "{{this.camposDeshabilitados}}" >Agregar ejercicio </button>
+
+    </div>
 </mat-card>

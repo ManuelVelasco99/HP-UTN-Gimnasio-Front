@@ -28,27 +28,46 @@ export class MisClasesListarComponent extends ListadoBaseComponent {
 	}
 
 	public async clickInscribirseMisClases(idClase : any) : Promise<void> {
-		console.log("idClase: ",idClase);
 
-		//postinscripcion
-
-		let respuesta = await this.confirmService.mostrarMensajeConfirmacion(
-			"Usted se ha inscripto a la clase de XXXXX”",
-			"Aceptar",
-			"",
-			true
-		);
+		try {
+			let inscripcion = await this.apiService.post(`/mis-clases/${idClase}/inscribirse`,{});
+			this.confirmService.mostrarMensajeConfirmacion(
+			`Usted se ha inscripto a la clase de ${inscripcion.data.clase.tipoClase.descripcion}`,
+				"Aceptar",
+				"",
+				true
+			);
+			
+		} catch (error : any) {
+			if(error.status === 409){
+				console.log("es un 409")
+				this.confirmService.mostrarMensajeConfirmacion(error.error.message,"","",true);
+			}
+		}
+		finally{
+			this.obtenerListado();
+		}
+		
 	}
 
 	public async clickCancelarInscripcionMisClases(idClase : any) : Promise<void> {
-		console.log("idClase: ",idClase);
 
 		let respuesta = await this.confirmService.mostrarMensajeConfirmacion(
 			"¿Estás seguro que quieres eliminar la inscripción a la clase?",
 			"Eliminar"
 		);
 		if(respuesta){
-			//postcancelarinscripcion
+			try {
+				await this.apiService.post(`/mis-clases/${idClase}/cancelar-inscripcion`,{});
+				
+			} catch (error : any) {
+				if(error.status === 409){
+					this.confirmService.mostrarMensajeConfirmacion(error.error.message,"","",true);
+				}
+			}
+			finally{
+				this.obtenerListado();
+			}
 		}
 	}
 

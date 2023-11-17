@@ -36,6 +36,7 @@
     mat-toolbar.mobile{
         display: flex;
         justify-content: flex-end;
+        min-height: 56px;
 
         .boton-usuario {
             display: flex;
@@ -46,5 +47,28 @@
             gap: 4px;
             font-size: 18px;
         }
+    }
+
+
+    .accesos-mobile{
+        display: flex;
+        flex-wrap: wrap;
+        padding: 24px;
+        column-gap: 24px;
+        row-gap: 24px;
+        justify-content: center;
+        overflow-y: scroll;
+        max-height: 800px;
+
+
+            
+        button{
+            height: 140px;
+            width: 140px;
+            display: flex;
+            background: #d3d3d342;
+            color: whitesmoke;
+        }
+        
     }
 }

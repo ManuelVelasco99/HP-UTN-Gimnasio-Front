@@ -1,10 +1,8 @@
-import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { ConfirmService } from 'src/app/base/confirm.service';
+import { Component               } from '@angular/core';
+import { FormControl             } from '@angular/forms';
 import { FormularioBaseComponent } from 'src/app/base/formulario-base.component';
-import { LocatorService } from 'src/app/base/locator.service';
-import { PopupAlertComponent } from 'src/app/base/popup-alert/popup-alert.component';
+import { MatDialog               } from '@angular/material/dialog';
+import { PopupAlertComponent     } from 'src/app/base/popup-alert/popup-alert.component';
 
 @Component({
 	selector    : 'app-ingreso-socio-ingresar',
@@ -12,7 +10,6 @@ import { PopupAlertComponent } from 'src/app/base/popup-alert/popup-alert.compon
 	styleUrls   : ['./ingreso-socio-ingresar.component.scss']
 })
 export class IngresoSocioIngresarComponent extends FormularioBaseComponent {
-	public confirmService = LocatorService.injector.get(ConfirmService);	
 	public dni :string =""; 
 
 
@@ -28,15 +25,13 @@ export class IngresoSocioIngresarComponent extends FormularioBaseComponent {
 
 	private crearFormulario() {
 		this.form = this.formBuilder.group({
-			dni: new FormControl({ value: '', disabled: false }),
+			dni: new FormControl({ value: '', disabled: false}) ,
 		});
 	}
 
 	public async validarIngreso() : Promise <void> {
-
-		///await this.apiService.getData(`/profesor/${this.dni}/eliminar`);
-		/// /:dni/validar-ingreso'
-		if(this.form.invalid){
+		
+		if(!this.form.value.dni){
 			return;
 		}
 		this.dni = this.form.value.dni
@@ -49,21 +44,15 @@ export class IngresoSocioIngresarComponent extends FormularioBaseComponent {
 					tipoAlerta     : respuesta[1],
 					textoNASocio  : respuesta[0] ,
 				},
-				autoFocus: false
+				autoFocus: false,
+				disableClose: true
 			}
 		)
 
 		setTimeout(() => {
 			this.dialog.closeAll();
-			this.form.setValue(
-				{
-					dni:''
-				}
-			)
+			this.form.reset();
 		}, 5000);
-
-			
-
 		
 	}
 }

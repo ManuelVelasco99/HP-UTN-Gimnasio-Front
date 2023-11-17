@@ -1,7 +1,30 @@
-.texto-home{
-    margin-top: 24px;
-    width: 100%;
+:host{
+    background: url(https://png.pngtree.com/background/20230528/original/pngtree-gym-is-reflected-in-an-odd-light-picture-image_2773779.jpg);
     display: flex;
+    height: 100%;
+    background-size: cover;
+}
+
+
+
+.contenedor-texto-superior{
+    display: flex;
+    width: 100%;
     justify-content: center;
-    font-size: 20px;
+
+    .contenedor-texto{
+        margin-top: 48px;   
+        background: #d3d3d342;
+        padding: 8px;
+        border-radius: 6px;
+
+        .texto-home{
+            
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            font-size: 20px;
+            color: whitesmoke;
+        }
+    }
 }

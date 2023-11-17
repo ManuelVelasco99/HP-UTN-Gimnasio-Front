@@ -3,7 +3,11 @@
 >
 
     <contenido>
-        <span class="texto-home" *ngIf="deviceService.isDesktop">Home page</span>
+        <div *ngIf="deviceService.isDesktop" class="contenedor-texto-superior">
+            <div class="contenedor-texto">
+                <span class="texto-home">SISTEMA GESTOR DE GYM</span>
+            </div>
+        </div>
     </contenido>
 
 </app-layout-general>
