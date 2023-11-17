@@ -147,6 +147,15 @@ const routes: Routes = [
             },
         ]
     },
+    {
+        path : 'reporte-pago',
+        children : [
+            {
+                path: '',
+                loadChildren: () => import('./reporte-cuota/reporte-cuota.module').then(m => m.ReporteDeCuotaModule),
+            },
+        ]
+    },
 ];
 
 @NgModule({
