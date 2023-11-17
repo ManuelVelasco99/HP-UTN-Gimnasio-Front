@@ -1,8 +1,53 @@
-
 <app-layout-general>
-    <contenido>
-        <p>consulta-reporte-asistencia works!</p>
-        <app-reporte-de-asistencia> </app-reporte-de-asistencia>  
-    </contenido>
-</app-layout-general>
+    <contenido  class="contenedor">
+        <div class="contenedor-titulo-formulario">
+            <span>Reporte de asistencia</span>
+        </div>
+        <div *ngIf="!reporteGenerado"> 
+            <mat-card class="card-formulario">
+                <form [formGroup]="form">
+                    <div class="contenedor-campos">
+                        <mat-form-field>
+                            <mat-label>Tipo clase</mat-label>	
+                            <mat-select matInput required  formControlName="clase_id" >   
+                                <mat-option *ngFor="let clase of listadoClases " [value]='clase.id'>
+                                    {{clase.descripcion}}
+                                </mat-option>
+                                </mat-select>
+                                <mat-error>Obligatorio</mat-error>
+                            </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Fecha desde</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="fecha_desde" required>
+                            <mat-hint>DD/MM/YYYY</mat-hint>
+                            <mat-error *ngIf="form.get('fecha_desde')?.getError('required')">Obligatorio</mat-error>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        
+                        <mat-form-field>
+                            <mat-label>Fecha hasta</mat-label>
+                            <input matInput [matDatepicker]="picker1" formControlName="fecha_hasta" required>
+                            <mat-hint>DD/MM/YYYY</mat-hint>
+                            <mat-error *ngIf="form.get('fecha_hasta')?.getError('required')">Obligatorio</mat-error>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </form>
+                <div class="contenedor-botones">
+                    <button mat-raised-button color="primary" (click)="clickGenerarReporte()"  [disabled]="">Generar reporte</button>
+                </div>
+            </mat-card>
+        </div>
+        <app-reporte-de-asistencia 
+        [barChartData] = "datosNumericos"
+        [barChartLabels] = "nombreBarras"
+        [valoresBusqueda]= ""
+        *ngIf="reporteGenerado"
+        
+        ></app-reporte-de-asistencia>
 
+    </contenido>
+
+</app-layout-general>

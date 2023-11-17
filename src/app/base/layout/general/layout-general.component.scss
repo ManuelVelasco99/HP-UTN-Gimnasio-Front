@@ -71,4 +71,9 @@
         }
         
     }
+    @media print {
+        :not(.printMe) {
+          visibility: hidden;
+        }
+      }
 }
