@@ -1,6 +1,55 @@
 <app-layout-general>
-    <contenido>
-        <p>consulta-reporte-cuota works!</p>
-        <app-generar-reporte-cuota> </app-generar-reporte-cuota>  
+    <contenido  class="contenedor">
+        <div class="contenedor-titulo-formulario">
+            <span>Reporte de Cuotas</span>
+        </div>
+        <div *ngIf="!reporteGenerado"> 
+            <mat-card class="card-formulario">
+                <form [formGroup]="form">
+                    <div class="contenedor-campos">
+                        <mat-form-field>
+                            <mat-label>Fecha desde</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="fecha_desde" required>
+                            <mat-hint>DD/MM/YYYY</mat-hint>
+                            <mat-error *ngIf="form.get('fecha_desde')?.getError('required')">Obligatorio</mat-error>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        
+                        <mat-form-field>
+                            <mat-label>Fecha hasta</mat-label>
+                            <input matInput [matDatepicker]="picker1" formControlName="fecha_hasta" required>
+                            <mat-hint>DD/MM/YYYY</mat-hint>
+                            <mat-error *ngIf="form.get('fecha_hasta')?.getError('required')">Obligatorio</mat-error>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </form>
+                <div class="contenedor-botones">
+                    <button mat-raised-button color="primary" (click)="clickGenerarReporte()"  [disabled]="">Generar reporte</button>
+                </div>
+            </mat-card>
+        </div>
+        <app-generar-reporte-cuota
+        [cantCuotasTot] ="cantCuotasTot"
+        [cantCuotasPagas] = "cantCuotasPagas"
+        [cantCuotasImpagas] = "cantCuotasImpagas"
+        [preciosPorMes] = "preciosPorMes"
+        [barChartData] = "datosNumericos"
+        [barChartLabels] = "nombreBarras"
+        [valoresBusqueda]= "valoresBusqueda"
+        [cantidadClases]="cantidadClases"
+        [porAsistenciaTotal] = "porAsistenciaTotal"
+        *ngIf="reporteGenerado"
+        
+        ></app-generar-reporte-cuota>
+
+        
+        <div class="contenedor-botones">
+            <button *ngIf="reporteGenerado" (click)="clickCerrarReporte()"  mat-raised-button >Cerrar Reporte</button>
+        </div>
+
     </contenido>
+
 </app-layout-general>
