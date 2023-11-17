@@ -65,8 +65,10 @@ export class ClaseAgregarComponent extends FormularioBaseComponent{
 
 				await this.apiService.post(`${this.uri}/${this.id}/editar`,formValue);
 						this.router.navigate(["clase/listar"]);
-			} catch (error) {
-	
+			} catch (error : any) {
+				if(error.status === 409){
+					this.confirmService.mostrarMensajeConfirmacion(error.error.message,"","",true);
+				}
 			}
 		}else{
 			try {
@@ -77,8 +79,10 @@ export class ClaseAgregarComponent extends FormularioBaseComponent{
 				
 				await this.apiService.post(`${this.uri}/agregar`,formValue);
 				this.router.navigate(["clase/listar"]);
-			} catch (error) {
-	
+			} catch (error : any) {
+				if(error.status === 409){
+					this.confirmService.mostrarMensajeConfirmacion(error.error.message,"","",true);
+				}
 			}
 		}
 
