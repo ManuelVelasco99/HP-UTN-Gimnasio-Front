@@ -1,5 +1,5 @@
 <app-layout-general>
-    <contenido class="contenedor">
+    <contenido class="contenedor" style="overflow: auto;">
 
         <div class="contenedor-titulo-listado">
             <span>{{tituloListado}}</span>
@@ -23,8 +23,8 @@
 				
 				<button mat-raised-button color="primary" (click)="clickBotonFiltrar.emit()" disabled="{{soloPresets}}">Filtrar</button>
 			</div>
-            <button *ngIf="!esRutina && !ocultarBotonListado" mat-raised-button color="primary" [routerLink]="urlAgregar">{{textoBotonListado}}</button>
-			<button *ngIf="esRutina && !ocultarBotonListado" mat-raised-button color="primary" (click)="clickBotonAgregar.emit()">{{textoBotonListado}}</button>
+            <button *ngIf="!esRutina && !ocultarBotonListado" mat-raised-button color="primary" [routerLink]="urlAgregar" class="boton-principal-listado">{{textoBotonListado}}</button>
+			<button *ngIf="esRutina && !ocultarBotonListado" mat-raised-button color="primary" (click)="clickBotonAgregar.emit()" class="boton-principal-listado">{{textoBotonListado}}</button>
         </div>
 
         <table #table mat-table [dataSource]="registrosListado" class="mat-elevation-z8">
