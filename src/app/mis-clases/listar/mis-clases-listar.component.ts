@@ -24,7 +24,7 @@ export class MisClasesListarComponent extends ListadoBaseComponent {
 	}
 
 	private async obtenerListado() : Promise<void> {
-		this.registrosListado = await this.apiService.getData("/mis-clases/listar");
+		this.registrosListado = await this.apiService.getData("/mis-clases/listar"+this.queryParams);
 	}
 
 	public async clickInscribirseMisClases(idClase : any) : Promise<void> {
@@ -69,6 +69,11 @@ export class MisClasesListarComponent extends ListadoBaseComponent {
 				this.obtenerListado();
 			}
 		}
+	}
+
+	public clickFiltrar(){
+		this.actualizarQueryParamsDesdeFiltros(this.filtrosDisponibles);
+		this.obtenerListado();
 	}
 
 }
