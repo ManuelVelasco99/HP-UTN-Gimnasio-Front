@@ -1,0 +1,73 @@
+<app-layout-formulario
+    [tituloFormulario]="tituloFormulario"
+    (clickBotonCancelar)="clickCancelar()"
+    (clickBotonPrincipal)="enviar()"
+    [textoBotonPrincipal]="textoBoton"
+>
+    <contenido>
+        <form [formGroup]="form">
+
+            <div class="contenedor-campos">
+                <mat-form-field>
+                    <mat-label>Nombre</mat-label>
+                    <input formControlName="nombre" matInput required maxlength="40">
+                    <mat-error *ngIf="form.get('nombre')?.getError('required')">Obligatorio</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Apellido</mat-label>
+                    <input formControlName="apellido" matInput required maxlength="40">
+                    <mat-error *ngIf="form.get('apellido')?.getError('required')">Obligatorio</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>DNI</mat-label>
+                    <input formControlName="dni" matInput required maxlength="128">
+                    <mat-error *ngIf="form.get('dni')?.getError('required')">Obligatorio</mat-error>
+                    <mat-error *ngIf="form.get('dni')?.getError('dni')">{{form.get('dni')?.getError('dni')}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Fecha de nacimiento</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="fecha_nacimiento" required>
+                    <mat-hint>DD/MM/YYYY</mat-hint>
+                    <mat-error *ngIf="form.get('fecha_nacimiento')?.getError('required')">Obligatorio</mat-error>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Telefono</mat-label>
+                    <input formControlName="telefono" matInput required maxlength="40">
+                    <mat-error *ngIf="form.get('telefono')?.getError('required')">Obligatorio</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input formControlName="email" matInput required maxlength="50">
+                    <mat-error *ngIf="form.get('email')?.getError('required')">Obligatorio</mat-error>
+                    <mat-error *ngIf="form.get('email')?.getError('email')">{{form.get('email')?.getError('email')}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Contraseña</mat-label>
+                    <input formControlName="contrasenia" matInput required type="password" (change)="paswordChange()">
+                    <mat-error *ngIf="form.get('contrasenia')?.getError('required')">Obligatorio</mat-error>
+                    <mat-error *ngIf="form.get('contrasenia')?.getError('password_dont_macht')">Las contraseñas no coinciden</mat-error>
+
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Confirmar contraseña</mat-label>
+                    <input formControlName="confirmar_contrasenia" matInput required type="password" (change)="paswordConfirmChange()">
+                    <mat-error *ngIf="form.get('confirmar_contrasenia')?.getError('required')">Obligatorio</mat-error>
+                    <mat-error *ngIf="form.get('confirmar_contrasenia')?.getError('password_dont_macht')">Las contraseñas no coinciden</mat-error>
+                </mat-form-field>
+
+            </div>
+
+        </form>
+
+    </contenido>
+</app-layout-formulario>

@@ -1,0 +1,61 @@
+<app-layout-formulario
+    [tituloFormulario]="tituloFormulario"
+    (clickBotonCancelar)="clickCancelar()"
+    (clickBotonPrincipal)="enviar()"
+    [textoBotonPrincipal]="textoBoton"
+    [botonesDesHabilitados]="deshabilitarBotonPrincipal && !eliminacion"
+>
+    <contenido>
+        <form [formGroup]="form">
+
+            <div class="contenedor-campos">
+                <div class="contenedorValidarDni">
+                    <mat-form-field>
+                        <mat-label>DNI Socio</mat-label>
+                        <input formControlName="dni" matInput required>
+                        <mat-error *ngIf="form.get('dni')?.getError('required')">Obligatorio</mat-error>
+                    </mat-form-field>
+
+                    <button *ngIf="!eliminacion" type="button" mat-raised-button (click)="clickValidarDniSocio()">Validar</button> 
+                </div>
+
+                <mat-form-field>
+                    <mat-label>Nombre</mat-label>
+                    <input formControlName="nombre"  matInput>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Apellido</mat-label>
+                    <input formControlName="apellido" matInput >
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Fecha de Nacimiento</mat-label>
+                    <input formControlName="fecha_nacimiento" matInput>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Teléfono</mat-label>
+                    <input formControlName="telefono" matInput>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Mes a Pagar</mat-label>
+                    <input formControlName="fecha_periodo" matInput>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Monto</mat-label>
+                    <input formControlName="monto" matInput>
+                </mat-form-field>
+
+                <mat-form-field *ngIf="eliminacion">
+                    <mat-label>Motivo Baja</mat-label>
+                    <textarea formControlName="motivo_baja" matInput ></textarea>
+                </mat-form-field>
+            </div>
+
+        </form>
+
+    </contenido>
+</app-layout-formulario>

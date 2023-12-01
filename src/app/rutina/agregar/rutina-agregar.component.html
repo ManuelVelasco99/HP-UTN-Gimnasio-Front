@@ -1,0 +1,52 @@
+
+        
+<app-layout-formulario
+    [tituloFormulario]="tituloFormulario"
+    (clickBotonCancelar)="clickCancelar()"
+    (clickBotonPrincipal)="enviar()"
+    [textoBotonPrincipal]="botonPrincipal"
+    [botonesDesHabilitados]="camposDeshabilitados"
+>
+
+<contenido>
+    <mat-card  *ngIf="!this.esPreset"> 
+    <div class="contenedor-campos"> 
+        <h1>Socio</h1>
+        <mat-form-field>
+            <mat-label>DNI socio</mat-label>
+                <input  matInput required [(ngModel)]="dniSocio" disabled="{{this.modoEdicion}}">
+            <mat-error>Obligatorio</mat-error>
+        </mat-form-field>
+        <button class="boton-verificarSocio" (click)="this.verificarSocio()" mat-raised-button color="primary" disabled="{{this.modoEdicion}}">Verificar socio</button>
+    </div>
+        <app-usuario-verificar
+            [socio] = this.socio
+        ></app-usuario-verificar>
+    </mat-card>
+    <br>
+    <mat-card>
+        <h1>Rutina</h1>
+        <div class="contenedor-campos">
+            <mat-form-field>
+                <mat-label>Nombre Rutina</mat-label>
+                    <input  matInput required [(ngModel)]="nombreRutina" maxlength="40">
+                <mat-error>Obligatorio</mat-error>
+            </mat-form-field>
+        </div>
+        <app-dia-agregar-rutina *ngFor="let dia of registrosDias" 
+            [ejercicios]="dia" 
+            [numeroDia]=dia.numeroDia 
+            (clickBotonEliminarDia) = "eliminarDia(dia)" 
+            (clickBotonAgregarEjercicio) = "addEjercicio(dia)"
+            [camposDeshabilitados]="camposDeshabilitados"
+            [cargoEjerAlIniciar] = "cargoEjerAlIniciar"
+            >    
+        </app-dia-agregar-rutina>
+    </mat-card>
+    <br>
+    <div class="contenedor-botones">
+        <button mat-raised-button (click)="this.agregarDia()" color="primary" disabled= "{{this.camposDeshabilitados}}">Agregar Día</button>
+    </div>
+    <br>
+</contenido>
+</app-layout-formulario>

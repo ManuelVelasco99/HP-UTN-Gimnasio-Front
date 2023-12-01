@@ -1,0 +1,58 @@
+<app-layout-formulario
+    [tituloFormulario]="tituloFormulario"
+    (clickBotonCancelar)="clickCancelar()"
+    (clickBotonPrincipal)="enviar()"
+    [textoBotonPrincipal]="textoBoton"
+>
+    <contenido>
+        <form [formGroup]="form">
+
+            <div class="contenedor-campos">
+                <mat-form-field>
+                    <mat-label>Fecha</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="fecha" required>
+                    <mat-hint>DD/MM/YYYY</mat-hint>
+                    <mat-error *ngIf="form.get('fecha')?.getError('required')">Obligatorio</mat-error>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Horario Inicio</mat-label>
+                    <input formControlName="horario_inicio" matInput required>
+                    <mat-error *ngIf="form.get('horario_inicio')?.getError('required')">Obligatorio</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Horario Fin</mat-label>
+                    <input formControlName="horario_fin" matInput required>
+                    <mat-error *ngIf="form.get('horario_fin')?.getError('required')">Obligatorio</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Tipo de Clase</mat-label>
+                    <mat-select formControlName="tipoClase" required>
+                        <mat-option *ngFor="let tipoClase of tiposClase" [value]="tipoClase.id">
+                            {{ tipoClase.descripcion }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form.get('tipoClaseId')?.getError('required')">Obligatorio</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Profesor</mat-label>
+                    <mat-select formControlName="profesor" required>
+                        <mat-option *ngFor="let usuario of profesores" [value]="usuario.id">
+                            {{ usuario.nombre }} {{ usuario.apellido }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form.get('usuarioId')?.getError('required')">Obligatorio</mat-error>
+                </mat-form-field>
+
+
+            </div>
+
+        </form>
+
+    </contenido>
+</app-layout-formulario>

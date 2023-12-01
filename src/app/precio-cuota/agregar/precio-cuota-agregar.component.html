@@ -1,0 +1,32 @@
+<app-layout-formulario
+    [tituloFormulario]="tituloFormulario"
+    (clickBotonCancelar)="clickCancelar()"
+    (clickBotonPrincipal)="enviar()"
+    [textoBotonPrincipal]="textoBoton"
+>
+    <contenido>
+        <form [formGroup]="form">
+
+            <div class="contenedor-campos">
+
+                <mat-form-field>
+                    <mat-label>Precio de la cuota</mat-label>
+                    <input formControlName="monto" matInput required type="number">
+                    <mat-error *ngIf="form.get('monto')?.getError('required')">Obligatorio</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Fecha de vigencia</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="fecha_desde" required>
+                    <mat-hint>DD/MM/YYYY</mat-hint>
+                    <mat-error *ngIf="form.get('fecha_desde')?.getError('required')">Obligatorio</mat-error>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+            </div>
+
+        </form>
+
+    </contenido>
+</app-layout-formulario>

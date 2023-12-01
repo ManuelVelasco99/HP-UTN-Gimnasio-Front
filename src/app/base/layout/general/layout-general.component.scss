@@ -1,0 +1,79 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    mat-toolbar.desktop{
+        display: flex;
+        justify-content: space-between;
+
+        .accesos{
+            display: flex;
+            column-gap: 16px;
+        }
+
+        .boton-ingresar{
+            cursor: pointer;
+            background: #3964c8;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 18px;
+
+
+        }
+
+        .boton-usuario {
+            display: flex;
+            padding: 4px 8px;
+            background: #3964c8;
+            border-radius: 8px;
+            align-items: center;
+            gap: 4px;
+            font-size: 18px;
+        }
+    }
+
+    mat-toolbar.mobile{
+        display: flex;
+        justify-content: flex-end;
+        min-height: 56px;
+
+        .boton-usuario {
+            display: flex;
+            padding: 4px 8px;
+            background: #3964c8;
+            border-radius: 8px;
+            align-items: center;
+            gap: 4px;
+            font-size: 18px;
+        }
+    }
+
+
+    .accesos-mobile{
+        display: flex;
+        flex-wrap: wrap;
+        padding: 24px;
+        column-gap: 24px;
+        row-gap: 24px;
+        justify-content: center;
+        overflow-y: scroll;
+        max-height: 800px;
+
+
+            
+        button{
+            height: 140px;
+            width: 140px;
+            display: flex;
+            background: #d3d3d342;
+            color: whitesmoke;
+        }
+        
+    }
+    @media print {
+        :not(.printMe) {
+          visibility: hidden;
+        }
+      }
+}

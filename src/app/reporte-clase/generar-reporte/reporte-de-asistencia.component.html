@@ -1,0 +1,56 @@
+
+        <div class="repo">
+            <div clas="contenedor-reporte">
+                <mat-card>
+                    <h3>Campos ingresados</h3>
+                    <div class="contenedor-campos">      
+                        <mat-form-field>
+                        <mat-label>Tipo clase</mat-label>
+                            <input  matInput [(ngModel)]="valoresBusqueda.nombre"  disabled = true>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Fecha desde</mat-label>
+                            <input  matInput [(ngModel)]="valoresBusqueda.fecha_desde"  disabled = true>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Fecha hasta</mat-label>
+                            <input  matInput [(ngModel)]="valoresBusqueda.fecha_hasta" disabled = true>
+                        </mat-form-field>
+                    </div>
+                </mat-card>
+                <br>
+                <h1 class="ylabel">Porcentaje de asistencia</h1>
+                <div class="chart-wrapper" >
+                    <canvas baseChart    
+                        [datasets]="barChartData"
+                        [labels]="barChartLabels"
+                        [options]="barChartOptions"
+                        [plugins]="barChartPlugins"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType">
+                    </canvas>
+                    <h1>Horarios de clases</h1>
+                </div>
+                <hr>
+                <div class="resumen">
+                    <mat-card>
+                        <mat-card-title>Cupo total de la clase</mat-card-title>
+                        <mat-card-header>{{cupoTotal}}</mat-card-header>
+                    </mat-card>
+                    <mat-card>
+                        <mat-card-title>Cantidad de clases disponibles</mat-card-title>
+                        <mat-card-header>{{cantidadClases}}</mat-card-header>
+                    </mat-card>
+                    <mat-card>
+                        <mat-card-title>Porcentaje de asistencia total</mat-card-title>
+                        <mat-card-header>{{porAsistenciaTotal}}</mat-card-header>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="contenedor-botones">
+            <button mat-raised-button (click)="imprimir()" color="primary" >Imprimir</button>
+        </div>
+
+

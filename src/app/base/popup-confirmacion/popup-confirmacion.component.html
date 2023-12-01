@@ -1,0 +1,13 @@
+<div class="contenedor-popup">
+    <div class="texto">
+        {{textoPrincipal}}
+    </div>
+    <div class="botones">
+        <button *ngIf="!ocultarBotonCancelar" mat-raised-button mat-dialog-close>
+            {{textoBotonCancelar}}
+        </button>
+        <button mat-raised-button color="primary" (click)="dialogRef.close(true)">
+            {{textoBotonAceptar}}
+        </button>
+    </div>
+</div>

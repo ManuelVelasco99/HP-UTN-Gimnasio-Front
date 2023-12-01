@@ -1,0 +1,44 @@
+<app-layout-general>
+    <contenido class="contenedor">
+        <mat-card class="card-formulario">
+
+            <span class="texto-superior">Escriba su DNI y contraseña para ingresar</span>
+
+
+            <form [formGroup]="form" (ngSubmit)="ingresar()">
+
+                <div class="contenedor-campos">
+                    <mat-form-field>
+                        <mat-label>DNI</mat-label>
+                        <input formControlName="dni" matInput required>
+                        <mat-error *ngIf="form.get('dni')?.getError('required')">Obligatorio</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field style="margin-top: 12px;">
+                        <mat-label>Contraseña</mat-label>
+                        <input formControlName="contrasenia" matInput required type="password">
+                        <mat-error *ngIf="form.get('contrasenia')?.getError('required')">Obligatorio</mat-error>
+                    </mat-form-field>
+                    
+                    <div style="    display: flex;
+                    justify-content: space-between;">
+                        <mat-checkbox color="primary" formControlName="recordarme">Rercordarme</mat-checkbox>
+                        <a [routerLink]="'/auth/olvide-mi-contrasenia'" style="margin-top: 8px;">
+                            <span>Olvidé mi contraseña</span>
+                        </a>
+                    </div>
+
+                    <span class="mensaje-error" *ngIf="mensajeError">
+                        {{mensajeError}}
+                    </span>
+
+                    <button mat-raised-button color="primary" class="boton-ingresar">Ingresar</button>
+                </div>
+    
+            </form>
+
+        </mat-card>
+    </contenido>
+
+</app-layout-general>
+

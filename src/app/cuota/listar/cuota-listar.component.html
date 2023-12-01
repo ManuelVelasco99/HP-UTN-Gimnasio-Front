@@ -1,0 +1,13 @@
+<app-layout-listado
+    [tituloListado]="'Cuotas'"
+    [urlAgregar]="'/cuota/agregar'"
+    [textoBotonListado]="'Registrar Pago'"
+    [registrosListado]="registrosListado"
+    [columnasAMostrar]="columnasAMostrar"
+    [esPagoCuota]="true"
+    [filtrosDisponibles]="filtrosDisponibles"
+    (clickFiltroPagoCuota)="clickFiltroPagoCuota($event)"
+    (clickBotonEliminar)="clickBotonEliminar($event)"
+    (clickBotonFiltrar)="clickFiltrar()"
+>
+</app-layout-listado>

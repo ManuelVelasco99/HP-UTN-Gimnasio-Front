@@ -1,0 +1,30 @@
+<app-layout-formulario
+    [tituloFormulario]="tituloFormulario"
+    (clickBotonCancelar)="clickCancelar()"
+    (clickBotonPrincipal)="enviar()"
+    [textoBotonPrincipal]="textoBoton"
+>
+    <contenido>
+        
+        <form [formGroup]="form">
+
+            <div class="contenedor-campos">
+
+                <mat-form-field>
+                    <mat-label>Descripcion</mat-label>
+                    <input formControlName="descripcion" matInput required maxlength="50">
+                    <mat-error *ngIf="form.get('descripcion')?.getError('required')">Obligatorio</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Cupo de personas</mat-label>
+                    <input formControlName="cupo" matInput required type="number">
+                    <mat-error *ngIf="form.get('cupo')?.getError('required')">Obligatorio</mat-error>
+                </mat-form-field>
+
+            </div>
+
+        </form>
+
+    </contenido>
+</app-layout-formulario>

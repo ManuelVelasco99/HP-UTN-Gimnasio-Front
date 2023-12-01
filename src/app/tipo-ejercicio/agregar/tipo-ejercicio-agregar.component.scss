@@ -1,0 +1,17 @@
+:host{
+    form{
+        .contenedor-campos{
+            display: flex;
+            justify-content: center;
+            column-gap: 16px;
+            flex-wrap: wrap;
+
+            mat-form-field {
+                min-width: 600px;
+            }
+        }
+        .desc{
+            height: 100px;
+        }
+    }
+}

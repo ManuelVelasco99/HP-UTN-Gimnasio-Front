@@ -1,0 +1,47 @@
+:host{
+
+    .contenedor{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        
+
+        .contenedor-titulo-formulario{
+            display: flex;
+            width: 100%;
+            background: #d3d3d3a3;
+            font-size: 24px;
+            font-weight: 500;
+            height: 60px;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .card-formulario{
+            margin-top: 40px;
+            width: 100%;
+            max-width: 800px;
+            padding: 30px;
+
+
+            .contenedor-botones{
+                margin-top: 20px;
+                display: flex;
+                justify-content: center;
+                column-gap: 10px;           
+            }
+        }
+    }
+    mat-form-field{
+        margin-left: 10px;
+    }
+    .contenedor-botones{
+        @media print {
+            :not(.printMe) {
+            visibility: hidden;
+            }
+        }   
+    }
+
+}

@@ -1,0 +1,35 @@
+<app-layout-general>
+    <contenido class="contenedor">
+        <mat-card class="card-formulario">
+
+            <span class="texto-superior">Escriba su nueva contraseña</span>
+
+
+            <form [formGroup]="form" (ngSubmit)="submit()">
+
+                <div class="contenedor-campos">
+                    <mat-form-field style="margin-top: 12px;">
+                        <mat-label>Contraseña</mat-label>
+                        <input formControlName="contrasenia" matInput required type="password">
+                        <mat-error *ngIf="form.get('contrasenia')?.getError('required')">Obligatorio</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field style="margin-top: 12px;">
+                        <mat-label>Confirmar contraseña</mat-label>
+                        <input formControlName="confirmar_contrasenia" matInput required type="password">
+                        <mat-error *ngIf="form.get('confirmar_contrasenia')?.getError('required')">Obligatorio</mat-error>
+                    </mat-form-field>
+
+                    <span class="mensaje-error" *ngIf="mensajeError">
+                        {{mensajeError}}
+                    </span>
+
+                    <button mat-raised-button color="primary" class="boton-ingresar">Confirmar</button>
+                </div>
+    
+            </form>
+
+        </mat-card>
+    </contenido>
+
+</app-layout-general>

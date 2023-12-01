@@ -1,0 +1,29 @@
+<app-layout-general>
+    <contenido class="contenedor">
+        <div class="contenedor-rutina">
+            <ng-container *ngIf="registrosListado.length > 0">
+                <button *ngIf="deviceService.isMobile" mat-icon-button color="primary" [routerLink]="''" aria-label="Example icon button with a home icon">
+                    <mat-icon>home</mat-icon>
+                </button>	
+                <div class="nombre-rutina">
+                    {{registrosListado[0].nombre}}
+                </div>
+        
+                <mat-tab-group>
+                    <mat-tab *ngFor="let dia of obtenerCantidadDeDias(registrosListado[0].ejercicios)" [label]="'Día '+dia.toString()">
+                        <app-consulta-rutina-dia-listado-ejercicios
+                            [ejercicios]="registrosListado[0].ejercicios"
+                            [diaRutina]="dia"
+                        ></app-consulta-rutina-dia-listado-ejercicios>
+                    </mat-tab>
+                </mat-tab-group>
+            </ng-container>
+
+            <ng-container *ngIf="registrosListado.length === 0 && mostrarMensaje">
+                Aún no tienes rutinas asignadas
+            </ng-container>
+            
+        </div>
+        
+    </contenido>
+</app-layout-general>

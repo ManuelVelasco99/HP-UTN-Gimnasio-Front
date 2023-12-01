@@ -1,0 +1,29 @@
+:host{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    .card-ingreso{
+        max-width: 600px;
+        width: 100%;
+        padding: 32px;
+
+        form{
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .texto-ingreso{
+            text-align: center;
+            font-style: italic;
+            color: gray;
+            font-size: 16px;
+        }
+
+
+    }
+
+}
+

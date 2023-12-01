@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component     } from '@angular/core';
+import { DeviceService } from 'src/app/base/device.service';
 
 @Component({
     selector    : 'app-home-page',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class HomePageComponent {
 
+    constructor(public deviceService : DeviceService){
+
+    }
 }

@@ -1,0 +1,45 @@
+<app-layout-formulario
+    [tituloFormulario]="tituloFormulario"
+    (clickBotonCancelar)="clickCancelar()"
+    (clickBotonPrincipal)="enviar()"
+    [textoBotonPrincipal]="textoBoton"
+>
+    <contenido>
+
+        
+        <form [formGroup]="form">
+
+            <div class="contenedor-campos">
+
+                <mat-form-field>
+                    <mat-label>Nombre</mat-label>
+                    <input formControlName="nombre" matInput required maxlength="40">
+                    <mat-error *ngIf="form.get('nombre')?.getError('required')">Obligatorio</mat-error>
+                </mat-form-field>
+                
+                <mat-form-field>
+                    <mat-label>Descripcion</mat-label>
+                    <textarea class="desc" formControlName="descripcion" matInput required maxlength="1000">  </textarea>
+                    <mat-error *ngIf="form.get('descripcion')?.getError('required')">Obligatorio</mat-error>
+                </mat-form-field>
+                
+                <mat-form-field>
+                <mat-label>Maquina/elemento</mat-label>	
+                        <mat-select formControlName="idMaquinaElemento"  matInput >   
+                            <mat-option *ngFor="let maquinaElemento of registrosMaqEle " [value]='maquinaElemento.id'>
+                                {{maquinaElemento.descripcion}}
+                            </mat-option>
+                        </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Multimedia</mat-label>
+                    <input formControlName="multimedia" matInput maxlength="255">
+                </mat-form-field>
+
+            </div>
+
+        </form>
+
+    </contenido>
+</app-layout-formulario>

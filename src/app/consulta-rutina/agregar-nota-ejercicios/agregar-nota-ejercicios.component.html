@@ -1,0 +1,22 @@
+<div>
+    <span class="titulo-agregar-nota">Agregar nota</span>
+    <form [formGroup]="form" (ngSubmit)="agregarNota()">
+
+        <div class="contenedor-campos">
+            <mat-form-field>
+                <mat-label>Comentario</mat-label>
+                <input formControlName="comentario" matInput required>
+                <mat-error *ngIf="form.get('comentario')?.getError('required')">Obligatorio</mat-error>
+            </mat-form-field>
+
+            <mat-form-field style="margin-top: 12px;">
+                <mat-label>Peso</mat-label>
+                <input formControlName="peso" matInput required type="number">
+                <mat-error *ngIf="form.get('peso')?.getError('required')">Obligatorio</mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" class="boton-ingresar">Agregar</button>
+        </div>
+
+    </form>
+</div>

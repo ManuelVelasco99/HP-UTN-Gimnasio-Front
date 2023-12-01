@@ -43,3 +43,6 @@ Thumbs.db
 
 #NODE
 node_modules
+
+#ENV
+src/environments/environment.ts
